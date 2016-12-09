@@ -3183,3 +3183,39 @@ G:\fadongji 修改通道_12_5\fadongji 修改通道\fadongji\FBGEMSystem20150512
 G:\fadongji 修改通道_12_5\fadongji 修改通道\fadongji\FBGEMSystem20150512\FBGEMSystem\obj\x86\Debug\FBGEMSystem.exe.manifest
 G:\fadongji 修改通道_12_5\fadongji 修改通道\fadongji\FBGEMSystem20150512\FBGEMSystem\obj\x86\Debug\FBGEMSystem.application
 G:\fadongji 修改通道_12_5\fadongji 修改通道\fadongji\FBGEMSystem20150512\FBGEMSystem\obj\x86\Debug\FBGEMSystem.Setting.resources
+G:\pipe\Pipe\FBGEMSystem\bin\Debug\FBGEMSystem.exe.config
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.exe
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.pdb
+G:\pipe\Pipe\FBGEMSystem\bin\Debug\FBGEMSystem.exe.manifest
+G:\pipe\Pipe\FBGEMSystem\bin\Debug\FBGEMSystem.application
+G:\pipe\Pipe\FBGEMSystem\bin\Debug\FBGEMSystem.exe
+G:\pipe\Pipe\FBGEMSystem\bin\Debug\FBGEMSystem.pdb
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.csprojResolveAssemblyReference.cache
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\LiveDataShow\ElecSensorData.baml
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\LiveDataShow\FBGData.baml
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\MainWindow.baml
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\ChannelCurve.baml
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\CHBar.baml
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\Histogram.baml
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\Status.baml
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\TrendCurve.baml
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\SystemSetting\axisYSet.baml
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\LiveDataShow\ElecSensorData.g.cs
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\LiveDataShow\FBGData.g.cs
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\MainWindow.g.cs
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\ChannelCurve.g.cs
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\CHBar.g.cs
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\Histogram.g.cs
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\Status.g.cs
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\TrendCurve.g.cs
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\SystemSetting\axisYSet.g.cs
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\App.g.cs
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem_MarkupCompile.cache
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.g.resources
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.Setting.resources
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.LiveDataShow.FBGData1.resources
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.Form1.resources
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.Properties.Resources.resources
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.csproj.GenerateResource.Cache
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.exe.manifest
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.application

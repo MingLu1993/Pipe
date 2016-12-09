@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-G:\fadongji 修改通道_12_5\fadongji 修改通道\fadongji\FBGEMSystem20150512\FBGEMSystem\obj\x86\Debug\
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\
 FBGEMSystem
 none
 false
 DEBUG;TRACE
-G:\fadongji 修改通道_12_5\fadongji 修改通道\fadongji\FBGEMSystem20150512\FBGEMSystem\App.xaml
+G:\pipe\Pipe\FBGEMSystem\App.xaml
 9-1790477515
 
 39720797328
-21-1819962393
+21-1575307780
 LiveDataShow\ElecSensorData.xaml;LiveDataShow\FBGData.xaml;MainWindow.xaml;RealtimeStatus\ChannelCurve.xaml;RealtimeStatus\CHBar.xaml;RealtimeStatus\Histogram.xaml;RealtimeStatus\Status.xaml;RealtimeStatus\TrendCurve.xaml;SystemSetting\axisYSet.xaml;
 
 False
