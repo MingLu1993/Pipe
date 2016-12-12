@@ -153,7 +153,7 @@
                         </MenuItem>
                     </MenuItem>
 
-                    <MenuItem Header="添加设备图片" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemChoosePicture_Click" Foreground="Black">
+                    <MenuItem Header="设置" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemChoosePicture_Click" Foreground="Black">
                         <MenuItem.Icon>
                             <Image Source="/FBGEMSystem;component/Image/PictureTasks32.png"/>
                         </MenuItem.Icon>
