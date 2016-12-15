@@ -5,6 +5,13 @@ using System.Text;
 
 namespace FBGEMSystem
 {
+    public struct Electric_sensor 
+    {
+        public bool is_Choose { get; set; }     //判断通道是否使用
+        public float Sensitivity { get; set; }  //记录传感器灵敏度
+        public float range_high { get; set; }   //量程上限
+        public float range_low { get; set; }    //量程下限
+    }
     class Data
     {
         //端口数
@@ -16,17 +23,12 @@ namespace FBGEMSystem
         //电类传感器个数
         public const int num_Sensor = 8;        //add
         //电类传感器包数
-        public const int num_Package = 40;      //add   
+        public const int num_Package = 40;      //add  
 
-        //判断通道是否使用
-        public static bool[] is_PressureSensor = new bool[num_Sensor] ;   
-        public static bool[] is_Temperature = new bool[num_Sensor];
-        public static bool[] is_Vibration = new bool[num_Sensor];
+        public static Electric_sensor[] Pressure = new Electric_sensor[num_Sensor];
+        public static Electric_sensor[] Temperature = new Electric_sensor[num_Sensor];
+        public static Electric_sensor[] Vibration = new Electric_sensor[num_Sensor];
 
-        //记录24个通道的传感器灵敏度
-        public static float[] Pressure_Sensitivity = new float[num_Sensor];
-        public static float[] Temperature_Sensitivity = new float[num_Sensor];
-        public static float[] Vibration_Sensitivity = new float[num_Sensor];
 
         //后添加的FBG所在点数
         public static int point_eddyCurrent = 7;
