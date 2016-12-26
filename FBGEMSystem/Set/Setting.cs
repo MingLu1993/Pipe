@@ -34,6 +34,23 @@ namespace FBGEMSystem
             CheckSensor();
             GetSensitivity();
             GetRange();
+
+            //获取各传感器通道使用索引
+            for(int i=0;i<Data.num_Sensor;i++)
+            {
+                if(Data.Pressure[i].is_Choose == true)
+                {
+                    Data.PressureIndex.Add(i);
+                }
+                if (Data.Temperature[i].is_Choose == true)
+                {
+                    Data.TemperatureIndex.Add(i);
+                }
+                if (Data.Vibration[i].is_Choose == true)
+                {
+                    Data.VibrationIndex.Add(i);
+                }
+            }
             this.Close();
         }
 
@@ -231,7 +248,7 @@ namespace FBGEMSystem
 
 
 
-        #region  //设置灵敏度textbox中只能输  "-",数字,"." 
+        #region  //设置textbox中只能输  "-",数字,"." 
         private void TextboxLimit(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 13 && e.KeyChar != 45 && e.KeyChar != 46)
@@ -604,5 +621,375 @@ namespace FBGEMSystem
             TextboxLimit(sender, e);
         }
         #endregion
+
+        #region  //设置textbox点击时若text为"0"，则清空
+        private void TextBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+            if (textbox.Text == "0")
+            {
+                textbox.Text = "";
+            }
+        }
+        private void Pressure_Sensitivity1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Pressure_Sensitivity2_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Pressure_Sensitivity3_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Pressure_Sensitivity4_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Pressure_Sensitivity5_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Pressure_Sensitivity6_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Pressure_Sensitivity7_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Pressure_Sensitivity8_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_low1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_low2_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_low3_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_low4_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_low5_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_low6_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_low7_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_low8_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_high1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_high2_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_high3_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_high4_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_high5_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_high6_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_high7_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void PressureRange_high8_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Temperature_Sensitivity1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Temperature_Sensitivity2_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Temperature_Sensitivity3_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Temperature_Sensitivity4_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Temperature_Sensitivity5_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Temperature_Sensitivity6_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Temperature_Sensitivity7_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Temperature_Sensitivity8_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_low1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_low2_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_low3_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_low4_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_low5_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_low6_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_low7_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_low8_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_high1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_high2_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_high3_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_high4_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_high5_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_high6_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_high7_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void TemperatureRange_high8_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Vibration_Sensitivity1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Vibration_Sensitivity2_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Vibration_Sensitivity3_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Vibration_Sensitivity4_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Vibration_Sensitivity5_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Vibration_Sensitivity6_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Vibration_Sensitivity7_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void Vibration_Sensitivity8_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_low1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_low2_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_low3_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_low4_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_low5_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_low6_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_low7_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_low8_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_high1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_high2_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_high3_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_high4_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_high5_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_high6_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_high7_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+
+        private void VibrationRange_high8_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_MouseDown(sender, e);
+        }
+        #endregion  //设置textbox点击时若text为"0"，则清空
     }
 }

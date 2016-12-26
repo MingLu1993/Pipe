@@ -12,6 +12,7 @@ namespace FBGEMSystem
         public float range_high { get; set; }   //量程上限
         public float range_low { get; set; }    //量程下限
     }
+
     class Data
     {
         //端口数
@@ -29,6 +30,9 @@ namespace FBGEMSystem
         public static Electric_sensor[] Temperature = new Electric_sensor[num_Sensor];
         public static Electric_sensor[] Vibration = new Electric_sensor[num_Sensor];
 
+        public static List<int> PressureIndex = new List<int>();          //使用的压力传感器的通道索引
+        public static List<int> TemperatureIndex = new List<int>();       //使用的温度传感器的通道索引
+        public static List<int> VibrationIndex = new List<int>();         //使用的振动传感器的通道索引
 
         //后添加的FBG所在点数
         public static int point_eddyCurrent = 7;

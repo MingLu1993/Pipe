@@ -60,15 +60,15 @@ namespace FBGEMSystem
             {
                 threRecvs[i].Start();
             }
-            for (int j = 0; j < threRecvs.Length; j++)
-            {
-            
-                threRecvs[j] = new Thread(new ThreadStart(storer.Stor));
-            }
-            for (int j = 0; j < threRecvs.Length; j++)
+            for (int j = 0; j < threStor.Length; j++)
             {
 
-                threRecvs[j].Start();
+                threStor[j] = new Thread(new ThreadStart(storer.Stor));
+            }
+            for (int j = 0; j < threStor.Length; j++)
+            {
+
+                threStor[j].Start();
             }
               
             //create system config

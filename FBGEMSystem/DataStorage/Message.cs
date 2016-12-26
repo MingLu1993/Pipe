@@ -27,8 +27,7 @@ namespace FBGEMSystem
             //public float[] CH4;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 25)]
             public string dataTime;   
-           // public string datetime;
+           
 
-           // public bool isfull;
         }
 }

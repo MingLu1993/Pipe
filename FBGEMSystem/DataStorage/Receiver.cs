@@ -24,11 +24,11 @@ namespace FBGEMSystem
     class Receiver
     {
 
-        //private UdpClient udpClient_FBG; 
-        //private static IPAddress IP = IPAddress.Parse("127.0.0.1");
+        private UdpClient udpClient;
+        private static IPAddress IP = IPAddress.Parse("127.0.0.1");
         //private IPEndPoint iep_FBG = new IPEndPoint(IP, Data.port);
-        //IPEndPoint remote = null;
-        private TcpClient tcpcz = null;
+        IPEndPoint remote = null;
+        
 
         public static int index = 0;
         public static int buffer_capacity = 4000;
@@ -36,7 +36,7 @@ namespace FBGEMSystem
         public static HoldIntegerSynchronized sharedLocation1 = new HoldIntegerSynchronized(buffer_capacity);//绘图缓冲  
         public static HoldIntegerSynchronized process_all_msg = new HoldIntegerSynchronized(buffer_capacity);//分析缓冲
         
-        NetworkStream stream;
+        
 
         //string[] bufferArray_eddyCurrent = new string[Data.numPerPack_eddyCurrent];
          
@@ -46,48 +46,10 @@ namespace FBGEMSystem
 
         public void TCPClient_Initi()
         {
-          //  udpClient_FBG = new UdpClient(Data.port);
-           // udpClient_FBG.Client.ReceiveBufferSize = 1024 * 1024;
-            tcpcz = new TcpClient();
-            tcpcz.BeginConnect("127.0.0.1", 8001, new AsyncCallback(ConnectCallback), tcpcz);
-        }
-
-        //确保与服务器端完成对接
-        private void ConnectCallback(IAsyncResult ar)
-        {
-            TcpClient t = (TcpClient)ar.AsyncState;
-            try
-            {
-                if (t.Connected)
-                {
-                    t.EndConnect(ar);
-                }
-                else { }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-        }
-
-        //回调函数，用于重复接收数据
-        public static void myReadCallBack(IAsyncResult iar)
-        {
-            NetworkStream ns = (NetworkStream)iar.AsyncState;
-            //NetworkStream stream = (NetworkStream)iar.AsyncState;
-            byte[] read = new byte[1024];
-            String data = "";
-            int recv;
-
-            recv = ns.EndRead(iar);
-            // recv = stream.EndRead(iar);
-            data = String.Concat(data, Encoding.ASCII.GetString(read, 0, recv));
-
-            //接收到的消息长度可能大于缓冲区总大小，反复循环直到读完为止
-            while (ns.DataAvailable)
-            {
-                ns.BeginRead(read, 0, read.Length, new AsyncCallback(myReadCallBack), ns);
-            }
+            udpClient = new UdpClient(Data.port);
+            udpClient.Client.ReceiveBufferSize = 1024 * 1024;
+       
+           
         }
          
          
@@ -99,9 +61,7 @@ namespace FBGEMSystem
                 {
                     lock (this)
                     {
-                       // bytes2 = udpClient_FBG.Receive(ref remote);
-                        stream = tcpcz.GetStream();
-                        stream.BeginRead(bytes2, 0, bytes2.Length, new AsyncCallback(myReadCallBack), stream);
+                        bytes2 = udpClient.Receive(ref remote);
                     }
 
                     if (bytes2 != null)
@@ -147,7 +107,7 @@ namespace FBGEMSystem
 
             catch (Exception err)
             {
-                //MessageBox.Show(err.ToString());
+                MessageBox.Show(err.ToString());
             }
         }
 
