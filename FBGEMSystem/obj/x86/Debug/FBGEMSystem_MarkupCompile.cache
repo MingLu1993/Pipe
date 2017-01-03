@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 G:\pipe\Pipe\FBGEMSystem\App.xaml
-8-180221377
+9-999419671
 
-40895241715
+422069531679
 20624614994
-LiveDataShow\ElecSensorData.xaml;LiveDataShow\FBGData.xaml;MainWindow.xaml;RealtimeStatus\ChannelCurve.xaml;RealtimeStatus\CHBar.xaml;RealtimeStatus\Histogram.xaml;RealtimeStatus\TrendCurve.xaml;SystemSetting\axisYSet.xaml;
+LiveDataShow\ElecSensorData.xaml;LiveDataShow\FBGData.xaml;MainWindow.xaml;RealtimeStatus\ChannelCurve.xaml;RealtimeStatus\CHBar.xaml;RealtimeStatus\ElectricShow.xaml;RealtimeStatus\Histogram.xaml;RealtimeStatus\TrendCurve.xaml;SystemSetting\axisYSet.xaml;
 
 False
 

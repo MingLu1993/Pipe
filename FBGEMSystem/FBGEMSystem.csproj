@@ -97,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataStorage\HoldIntegerSynchronizedElc.cs" />
+    <Compile Include="RealtimeStatus\ElectricShow.xaml.cs">
+      <DependentUpon>ElectricShow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Set\AddLabelInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RealtimeStatus\CHBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RealtimeStatus\ElectricShow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

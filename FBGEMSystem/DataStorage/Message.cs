@@ -27,7 +27,13 @@ namespace FBGEMSystem
             //public float[] CH4;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 25)]
             public string dataTime;   
-           
+        }
 
+        public struct Message_Electric
+        {
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = (Data.num_Sensor * 3) * Data.num_Package)]
+            public float[] CH1;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 25)]
+            public string dataTime;
         }
 }

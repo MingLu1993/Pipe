@@ -15,6 +15,35 @@ namespace FBGEMSystem
         public Setting()
         {
             InitializeComponent();
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            PressureSensor1.Checked = false;
+            PressureSensor2.Checked = false;
+            PressureSensor3.Checked = false;
+            PressureSensor4.Checked = false;
+            PressureSensor5.Checked = false;
+            PressureSensor6.Checked = false;
+            PressureSensor7.Checked = false;
+            PressureSensor8.Checked = false;
+            Temperature1.Checked = false;
+            Temperature2.Checked = false;
+            Temperature3.Checked = false;
+            Temperature4.Checked = false;
+            Temperature5.Checked = false;
+            Temperature6.Checked = false;
+            Temperature7.Checked = false;
+            Temperature8.Checked = false;
+            Vibration1.Checked = false;
+            Vibration2.Checked = false;
+            Vibration3.Checked = false;
+            Vibration4.Checked = false;
+            Vibration5.Checked = false;
+            Vibration6.Checked = false;
+            Vibration7.Checked = false;
+            Vibration8.Checked = false;
         }
 
         private void Button_Choose_Click(object sender, EventArgs e)
@@ -31,12 +60,22 @@ namespace FBGEMSystem
 
         private void Sure_Button_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < Data.num_Sensor; i++)
+            {
+                Data.Pressure[i].is_Choose = false;
+                Data.Temperature[i].is_Choose = false;
+                Data.Vibration[i].is_Choose =false;
+            }
+            Data.PressureIndex.Clear();
+            Data.TemperatureIndex.Clear();
+            Data.VibrationIndex.Clear();
+
             CheckSensor();
             GetSensitivity();
             GetRange();
 
             //获取各传感器通道使用索引
-            for(int i=0;i<Data.num_Sensor;i++)
+            for (int i=0;i<Data.num_Sensor;i++)
             {
                 if(Data.Pressure[i].is_Choose == true)
                 {

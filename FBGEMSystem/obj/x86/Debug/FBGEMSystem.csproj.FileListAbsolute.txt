@@ -3217,3 +3217,6 @@ G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.Properties.Resources.resource
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.csproj.GenerateResource.Cache
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.exe.manifest
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.application
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\ElectricShow.g.cs
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem_MarkupCompile.lref
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\ElectricShow.baml

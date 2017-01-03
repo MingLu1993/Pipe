@@ -54,22 +54,22 @@ namespace FBGEMSystem
 
             for (int i = 0; i < threRecvs.Length; i++)
             {
-                threRecvs[i] = new Thread(new ThreadStart(receiver.Recv_FBG));
+                threRecvs[i] = new Thread(new ThreadStart(receiver.Recv_Electric));
             }
             for (int i = 0; i < threRecvs.Length; i++)
             {
                 threRecvs[i].Start();
             }
-            for (int j = 0; j < threStor.Length; j++)
-            {
+            //for (int j = 0; j < threStor.Length; j++)
+            //{
 
-                threStor[j] = new Thread(new ThreadStart(storer.Stor));
-            }
-            for (int j = 0; j < threStor.Length; j++)
-            {
+            //    threStor[j] = new Thread(new ThreadStart(storer.Stor));
+            //}
+            //for (int j = 0; j < threStor.Length; j++)
+            //{
 
-                threStor[j].Start();
-            }
+            //    threStor[j].Start();
+            //}
               
             //create system config
             ReadConfig readConfig = new ReadConfig();
@@ -181,6 +181,12 @@ namespace FBGEMSystem
             }
         }
 
+        private void MenuItemEle_Click(object sender, RoutedEventArgs e)
+        {
+            ElectricShow electricShow = new ElectricShow();
+            electricShow.Show();
+
+        }
         private void MenuItemCiucitSensor_Click(object sender, RoutedEventArgs e)
         {
             ElecSensorData ElectricData = new ElecSensorData();
@@ -259,5 +265,6 @@ namespace FBGEMSystem
             Canvas.SetLeft(LabelInfo, X);
             Canvas.SetTop(LabelInfo, Y);
         }
+
     }
 }

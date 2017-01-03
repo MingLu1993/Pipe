@@ -690,7 +690,7 @@ namespace FBGEMSystem
                 pre_msg = del_msg();
                 decode_process(pre_msg, j);
                 pro_cnt++;
-            }
+            }  
             un_pro++;
             for (int i = 0; i < CH_NUM; i++)
             

@@ -26,7 +26,7 @@ namespace FBGEMSystem
     public partial class Form1 : Form
     {
 
-#region 初始化全局变量
+        #region 初始化全局变量
         //public static user global = new user();
         public user global = new user();
      
@@ -57,7 +57,7 @@ namespace FBGEMSystem
         private static object sync_select_index = new object(); //同步操作的对象
         private static object sync_select_index1 = new object(); //同步操作的对象
         //FFT绘图
-        PointPairList[] pplist_fft4 = new PointPairList[maxpoint];
+        PointPairList[] pplist_fft4 = new PointPairList[maxpoint];   //PointPairList是ZedGraph插件提供的类
         PointPairList[] pplist_fft1 = new PointPairList[maxpoint];
         PointPairList[] pplist_fft2 = new PointPairList[maxpoint];
         PointPairList[] pplist_fft3 = new PointPairList[maxpoint];
@@ -207,7 +207,8 @@ namespace FBGEMSystem
             this.zedGraphControl13.GraphPane.YAxis.Title.FontSpec = myFont;
             BarItem mybar5 = this.zedGraphControl13.GraphPane.AddBar("峭度", list_time4, Color.Purple);
         }
-
+        
+        //解包线程
         private void decode_thread()
         {
             int ii = 0;
@@ -224,6 +225,8 @@ namespace FBGEMSystem
                 //Thread.Sleep(5);
             }
         }
+
+        //去噪线程  画时域图
         private void denoise_thread()
         {
             double[] result = new double[0];
@@ -1131,6 +1134,8 @@ namespace FBGEMSystem
         {
             string temp = Receiver.sharedLocation.BufferSize.ToString() + "-" + Receiver.sharedLocation1.BufferSize.ToString() + "-" + Receiver.process_all_msg.BufferSize.ToString() + "-" + Receiver.index.ToString();
         }
+
+        //界面下拉框等初始设置
         private void Form1_Load(object sender, EventArgs e)
         {
             cbpoint.Items.Clear();

@@ -19,8 +19,7 @@ using FBGEMSystem.SystemSetting;
 using FBGEMSystem.DataStorage;
 using System.IO;
 using System.Xml;
-using System.IO;
-using System.Xml;
+
 
 namespace FBGEMSystem.RealtimeStatus
 {
