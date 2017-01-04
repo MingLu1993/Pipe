@@ -3220,3 +3220,6 @@ G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.application
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\ElectricShow.g.cs
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem_MarkupCompile.lref
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\ElectricShow.baml
+F:\GitHub\Pipe\Pipe\FBGEMSystem\bin\Debug\FBGEMSystem.exe.config
+F:\GitHub\Pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.exe
+F:\GitHub\Pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.pdb
