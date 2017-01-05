@@ -26,31 +26,43 @@ namespace FBGEMSystem.RealtimeStatus
         Thread thread;
         public ElectricShow()
         {
-            InitializeComponent();
-            Initial();  //设置电类传感器类型选择下拉选项
-            SingleAy.StartFromZero = false;//坐标自动化
-            //启动解析线程
-            thread = new Thread(new ThreadStart(decodeEle_thread));
-            thread.IsBackground = true;
-            thread.Start();
-            //启动定时器
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(5);
-            dispatcherTimer.Tick += new EventHandler(OnTimedEvent);
-            
-            dispatcherTimer.Start();
+                InitializeComponent();
+                Initial();  //设置电类传感器类型选择下拉选项
+                SingleAy.StartFromZero = false;//坐标自动化
+                                               //启动解析线程
+                thread = new Thread(new ThreadStart(decodeEle_thread));
+                thread.IsBackground = true;
+                thread.Start();
+
+                //启动定时器
+                dispatcherTimer = new DispatcherTimer();
+                dispatcherTimer.Interval = TimeSpan.FromMilliseconds(5);
+                dispatcherTimer.Tick += new EventHandler(OnTimedEvent);
+                dispatcherTimer.Start();
+
         }
 
         private void Initial()
         {
             Data.IsControl2 = true;
 
-            comboBox_typeNum.Items.Add("压力传感器");
-            comboBox_typeNum.Items.Add("温度传感器");
-            comboBox_typeNum.Items.Add("振动传感器");
+            if (Data.PressureIndex.Count != 0)
+            {
+                comboBox_typeNum.Items.Add("压力传感器");
+            }
+            if (Data.TemperatureIndex.Count != 0)
+            {
+                comboBox_typeNum.Items.Add("温度传感器");
+            }
 
-            comboBox_typeNum.SelectedIndex = 0;  //默认设置为压力传感器
+            if (Data.VibrationIndex.Count != 0)
+            {
+                comboBox_typeNum.Items.Add("振动传感器");
+            }
+            comboBox_typeNum.SelectedIndex = 0;   //通道默认设置为当前传感器类型的第一项
+
         }
+            
 
         private void decodeEle_thread()
         {
@@ -181,21 +193,21 @@ namespace FBGEMSystem.RealtimeStatus
             }
             //根据设置的各类传感器通道来设置item
             comboBox_CHNum.Items.Clear();
-            if (comboBox_typeNum.SelectedIndex == 0)
+            if (comboBox_typeNum.SelectedValue.ToString() == "压力传感器")
             {
                 for (int i = 0; i < Data.PressureIndex.Count; i++)
                 {
                     comboBox_CHNum.Items.Add(Data.PressureIndex[i] + 1);
                 }
             }
-            else if (comboBox_typeNum.SelectedIndex == 1)
+            if (comboBox_typeNum.SelectedValue.ToString() == "温度传感器")
             {
                 for (int i = 0; i < Data.TemperatureIndex.Count; i++)
                 {
                     comboBox_CHNum.Items.Add(Data.TemperatureIndex[i] + 1);
                 }
             }
-            else
+            if (comboBox_typeNum.SelectedValue.ToString() == "振动传感器")
             {
                 for (int i = 0; i < Data.VibrationIndex.Count; i++)
                 {
@@ -203,7 +215,7 @@ namespace FBGEMSystem.RealtimeStatus
                 }
             }
 
-            comboBox_CHNum.SelectedIndex = 0;   //默认设置为第一项
+            comboBox_CHNum.SelectedIndex = 0;   //通道默认设置为当前传感器类型的第一项
             string selectedCH = comboBox_CHNum.SelectedValue.ToString();
             channel1 = int.Parse(selectedCH);
         }

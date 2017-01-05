@@ -34,6 +34,8 @@ namespace FBGEMSystem
         public static List<int> TemperatureIndex = new List<int>();       //使用的温度传感器的通道索引
         public static List<int> VibrationIndex = new List<int>();         //使用的振动传感器的通道索引
 
+        public static bool isSetting = false;
+
         //后添加的FBG所在点数
         public static int point_eddyCurrent = 7;
 

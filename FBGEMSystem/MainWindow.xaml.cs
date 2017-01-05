@@ -51,7 +51,7 @@ namespace FBGEMSystem
             receiver.TCPClient_Initi();
             storer.GetConfig();
             storer.InitiTb();
-            
+
             for (int i = 0; i < threRecvs.Length; i++)
             {
                 threRecvs[i] = new Thread(new ThreadStart(receiver.Recv_Electric));
@@ -74,15 +74,6 @@ namespace FBGEMSystem
             //create system config
             ReadConfig readConfig = new ReadConfig();
             string result =readConfig.CreateConfigFile(); 
-
-        }
-
-
-        private void MenuItemTDZT_Click(object sender, RoutedEventArgs e)
-        {
-
-            ChannelCurve channleCurve = new ChannelCurve();
-            channleCurve.ShowDialog();
 
         }
 
@@ -183,9 +174,18 @@ namespace FBGEMSystem
 
         private void MenuItemEle_Click(object sender, RoutedEventArgs e)
         {
+            //如果未进行通道设置，提示先设置通道
+            if (Data.isSetting == false)
+            {
+                Data.IsControl2 = false;
+                System.Windows.Forms.MessageBox.Show("请先设置通道", "帮助");
+                Setting setting = new Setting();
+                setting.Show();
+                return;
+            }
+
             ElectricShow electricShow = new ElectricShow();
             electricShow.Show();
-
         }
         private void MenuItemCiucitSensor_Click(object sender, RoutedEventArgs e)
         {
