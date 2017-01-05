@@ -3193,7 +3193,6 @@ G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.csprojResolveAssemblyReferenc
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\LiveDataShow\ElecSensorData.baml
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\LiveDataShow\FBGData.baml
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\MainWindow.baml
-G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\ChannelCurve.baml
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\CHBar.baml
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\Histogram.baml
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\TrendCurve.baml
@@ -3201,7 +3200,6 @@ G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\SystemSetting\axisYSet.baml
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\LiveDataShow\ElecSensorData.g.cs
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\LiveDataShow\FBGData.g.cs
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\MainWindow.g.cs
-G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\ChannelCurve.g.cs
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\CHBar.g.cs
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\Histogram.g.cs
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\RealtimeStatus\TrendCurve.g.cs

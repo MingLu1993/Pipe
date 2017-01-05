@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FBGEMSystem.exe" size="5610496">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FBGEMSystem.exe" size="5600768">
       <assemblyIdentity name="FBGEMSystem" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>sgtiEIyz0imoM/FhcUtU7Pk4gLQ=</dsig:DigestValue>
+        <dsig:DigestValue>KE2YBF1tl+6G0IOo1gSj5l676Z4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

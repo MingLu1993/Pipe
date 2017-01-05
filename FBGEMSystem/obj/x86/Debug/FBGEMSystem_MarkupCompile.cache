@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-F:\GitHub\Pipe\Pipe_yf\FBGEMSystem\obj\x86\Debug\
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\
 FBGEMSystem
 none
 false
 DEBUG;TRACE
-F:\GitHub\Pipe\Pipe_yf\FBGEMSystem\App.xaml
-9-999419671
+G:\pipe\Pipe\FBGEMSystem\App.xaml
+8-1784593103
 
-422069531679
-20-2090935179
-LiveDataShow\ElecSensorData.xaml;LiveDataShow\FBGData.xaml;MainWindow.xaml;RealtimeStatus\ChannelCurve.xaml;RealtimeStatus\CHBar.xaml;RealtimeStatus\ElectricShow.xaml;RealtimeStatus\Histogram.xaml;RealtimeStatus\TrendCurve.xaml;SystemSetting\axisYSet.xaml;
+41830907271
+20624614994
+LiveDataShow\ElecSensorData.xaml;LiveDataShow\FBGData.xaml;MainWindow.xaml;RealtimeStatus\CHBar.xaml;RealtimeStatus\ElectricShow.xaml;RealtimeStatus\Histogram.xaml;RealtimeStatus\TrendCurve.xaml;SystemSetting\axisYSet.xaml;
 
 False
 

@@ -69,6 +69,7 @@ namespace FBGEMSystem
             Data.PressureIndex.Clear();
             Data.TemperatureIndex.Clear();
             Data.VibrationIndex.Clear();
+            Data.isSetting = false;
 
             CheckSensor();
             GetSensitivity();
@@ -90,6 +91,7 @@ namespace FBGEMSystem
                     Data.VibrationIndex.Add(i);
                 }
             }
+            Data.isSetting = true;
             this.Close();
         }
 

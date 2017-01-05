@@ -145,9 +145,6 @@
     <Compile Include="DataStorage\HoldIntegerSynchronized.cs" />
     <Compile Include="DataStorage\Message.cs" />
     <Compile Include="DataStorage\MySectionHandler.cs" />
-    <Compile Include="RealtimeStatus\ChannelCurve.xaml.cs">
-      <DependentUpon>ChannelCurve.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RealtimeStatus\CHBar.xaml.cs">
       <DependentUpon>CHBar.xaml</DependentUpon>
     </Compile>
@@ -184,10 +181,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RealtimeStatus\ChannelCurve.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="RealtimeStatus\CHBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
