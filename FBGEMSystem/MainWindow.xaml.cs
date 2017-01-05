@@ -40,6 +40,7 @@ namespace FBGEMSystem
         
         Thread[] threRecvs = new Thread[1];
         Thread[] threStor = new Thread[1];
+        
         public static MainWindow pCurrentWin = null;
 
         public MainWindow()
@@ -52,6 +53,8 @@ namespace FBGEMSystem
             storer.GetConfig();
             storer.InitiTb();
 
+            Thread thredecode = new Thread(new ThreadStart(receiver.decode_Electric));
+
             for (int i = 0; i < threRecvs.Length; i++)
             {
                 threRecvs[i] = new Thread(new ThreadStart(receiver.Recv_Electric));
@@ -60,6 +63,7 @@ namespace FBGEMSystem
             {
                 threRecvs[i].Start();
             }
+            thredecode.Start();
             //for (int j = 0; j < threStor.Length; j++)
             //{
 
@@ -190,7 +194,7 @@ namespace FBGEMSystem
         private void MenuItemCiucitSensor_Click(object sender, RoutedEventArgs e)
         {
             ElecSensorData ElectricData = new ElecSensorData();
-            ElectricData.ShowDialog();
+            ElectricData.Show();
 
         }
         private void MenuItemFBGSensor_Click(object sender, RoutedEventArgs e)

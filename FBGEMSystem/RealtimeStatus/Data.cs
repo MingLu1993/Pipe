@@ -104,12 +104,12 @@ namespace FBGEMSystem
             set { ch4 = value; }
         }
 
-        private static float[] ele = new float[(num_Sensor*3) * num_Package];
-        public static float[] Ele
-        {
-            get { return ele; }
-            set { ele = value; }
-        }
+        //private static float[] ele = new float[(num_Sensor*3) * num_Package];
+        //public static float[] Ele
+        //{
+        //    get { return ele; }
+        //    set { ele = value; }
+        //}
 
         //控制曲线的启动
         private static bool isControl=false;

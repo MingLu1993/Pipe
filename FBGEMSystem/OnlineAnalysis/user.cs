@@ -926,9 +926,9 @@ namespace FBGEMSystem
             {
                 for (int i = 0; i < Data.num_Package; i++)
                 {
-                    temp_ch1_point_signal[k, j * Data.num_Package + i] = msg.CH1[i * Data.num_Sensor + k];
-                    temp_ch2_point_signal[k, j * Data.num_Package + i] = msg.CH2[i * Data.num_Sensor + k];
-                    temp_ch3_point_signal[k, j * Data.num_Package + i] = msg.CH3[i * Data.num_Sensor + k];
+                    temp_ch1_point_signal[k, j * Data.num_Package + i] = msg.CH1_Press[i * Data.num_Sensor + k];
+                    temp_ch2_point_signal[k, j * Data.num_Package + i] = msg.CH2_Temp[i * Data.num_Sensor + k];
+                    temp_ch3_point_signal[k, j * Data.num_Package + i] = msg.CH3_Vibration[i * Data.num_Sensor + k];
                     //temp_ch4_point_signal[k, j * Data.num_Package + i] = msg.CH4[i * Data.num_Sensor + k];
                 }
             }

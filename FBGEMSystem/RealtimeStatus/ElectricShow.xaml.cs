@@ -14,10 +14,12 @@ namespace FBGEMSystem.RealtimeStatus
     public partial class ElectricShow : Window
     {
         private Queue<float> que = new Queue<float>();
-        Message_Electric msg = new Message_Electric();
+        //Message_Electric msg = new Message_Electric();
+        Message msg = new Message();
         private int k = 1500;
         int channel1 = 0;
-        int type = 0;
+        string type = "";
+        int type_num = 0;
 
         private int interval = 3000;//控制横轴的间距
         private DispatcherTimer dispatcherTimer = null;
@@ -29,7 +31,7 @@ namespace FBGEMSystem.RealtimeStatus
                 InitializeComponent();
                 Initial();  //设置电类传感器类型选择下拉选项
                 SingleAy.StartFromZero = false;//坐标自动化
-                                               //启动解析线程
+                //将数据转为画图控件格式
                 thread = new Thread(new ThreadStart(decodeEle_thread));
                 thread.IsBackground = true;
                 thread.Start();
@@ -68,23 +70,40 @@ namespace FBGEMSystem.RealtimeStatus
         {
             while (true)
             {
-                while (Receiver.sharedLocation1Ele.BufferSize > 0)
+                while (Receiver.sharedLocation1.BufferSize > 0)
                 {
                     ProcessDataEle();
+                    //Thread.Sleep(1);
                 }
             }
         }
 
         private void ProcessDataEle()
         {
-            msg = Receiver.sharedLocation1Ele.Buffer;
+            msg = Receiver.sharedLocation1.Buffer;
 
             try
             {
                 for (int i = 0; i < Data.num_Package; i++)
                 {
-                    que.Enqueue(msg.CH1[i * Data.num_Sensor * 3 + type * 8 + (channel1 - 1)]); 
+                    //que.Enqueue(msg.CH1[i * Data.num_Sensor * 3 + type * 8 + (channel1 - 1)]);
+                    switch (type_num)
+                    {
+                        case 0:
+                            que.Enqueue(msg.CH1_Press[i*Data.num_Sensor+ channel1 - 1]);
+                            break;
+                        case 1:
+                            que.Enqueue(msg.CH2_Temp[i * Data.num_Sensor + channel1 - 1]);
+                            break;
+                        case 2:
+                            que.Enqueue(msg.CH3_Vibration[i * Data.num_Sensor + channel1 - 1]);
+                            break;
+                        default:
+                            break;
+                    }
                 }
+                
+                    
             }
             catch (Exception err)
             {
@@ -188,27 +207,30 @@ namespace FBGEMSystem.RealtimeStatus
         {
             if (this.comboBox_typeNum.SelectedIndex != -1)
             {
-                string selectedType = comboBox_typeNum.SelectedIndex.ToString();
-                type = int.Parse(selectedType);
+                type = comboBox_typeNum.SelectedValue.ToString();
+
             }
             //根据设置的各类传感器通道来设置item
             comboBox_CHNum.Items.Clear();
-            if (comboBox_typeNum.SelectedValue.ToString() == "压力传感器")
+            if (type == "压力传感器")
             {
+                type_num = 0;
                 for (int i = 0; i < Data.PressureIndex.Count; i++)
                 {
                     comboBox_CHNum.Items.Add(Data.PressureIndex[i] + 1);
                 }
             }
-            if (comboBox_typeNum.SelectedValue.ToString() == "温度传感器")
+            if (type == "温度传感器")
             {
+                type_num = 1;
                 for (int i = 0; i < Data.TemperatureIndex.Count; i++)
                 {
                     comboBox_CHNum.Items.Add(Data.TemperatureIndex[i] + 1);
                 }
             }
-            if (comboBox_typeNum.SelectedValue.ToString() == "振动传感器")
+            if (type == "振动传感器")
             {
+                type_num = 2;
                 for (int i = 0; i < Data.VibrationIndex.Count; i++)
                 {
                     comboBox_CHNum.Items.Add(Data.VibrationIndex[i] + 1);
