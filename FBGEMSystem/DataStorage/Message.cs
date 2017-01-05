@@ -18,11 +18,11 @@ namespace FBGEMSystem
         public struct Message
         {
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = Data.num_Sensor * Data.num_Package)]
-            public float[] CH1;
+            public float[] CH1_Press;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = Data.num_Sensor * Data.num_Package)]
-            public float[] CH2;
+            public float[] CH2_Temp;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = Data.num_Sensor * Data.num_Package)]
-            public float[] CH3;
+            public float[] CH3_Vibration;
             //[MarshalAs(UnmanagedType.ByValArray, SizeConst = 64 * 40)]
             //public float[] CH4;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 25)]

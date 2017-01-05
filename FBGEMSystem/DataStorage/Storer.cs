@@ -27,7 +27,7 @@ namespace FBGEMSystem
         public string dateTime = "";
 
         private SqlConnection conn;
-        //更改为电类传感器类型的额三张数据表
+        //更改为电类传感器类型的三张数据表
         public IDataParameter[] parameters = new IDataParameter[Data.type_Sensor];
         public string[] tablename = new string[Data.type_Sensor];
 
@@ -96,9 +96,9 @@ namespace FBGEMSystem
                 {
 
                     msg = Receiver.sharedLocation.Buffer;
-                    CH1 = msg.CH1;
-                    CH2 = msg.CH2;
-                    CH3 = msg.CH3;
+                    CH1 = msg.CH1_Press;
+                    CH2 = msg.CH2_Temp;
+                    CH3 = msg.CH3_Vibration;
                   //  CH4 = msg.CH4;
                     dateTime = msg.dataTime;
 

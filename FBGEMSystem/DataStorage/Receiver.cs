@@ -28,7 +28,7 @@ namespace FBGEMSystem
         private static IPAddress IP = IPAddress.Parse("127.0.0.1");
         //private IPEndPoint iep_FBG = new IPEndPoint(IP, Data.port);
         IPEndPoint remote = null;
-
+        //int kk = 0;
 
         public static int index = 0;
         public static int buffer_capacity = 4000;
@@ -38,10 +38,10 @@ namespace FBGEMSystem
         public static HoldIntegerSynchronized process_all_msg = new HoldIntegerSynchronized(buffer_capacity);//分析缓冲
 
         //电类传感器缓冲
-        public static HoldIntegerSynchronizedElc sharedLocationEle = new HoldIntegerSynchronizedElc(buffer_capacity);//存储缓冲 
-        public static HoldIntegerSynchronizedElc sharedLocation1Ele = new HoldIntegerSynchronizedElc(buffer_capacity);//绘图缓冲  
-        public static HoldIntegerSynchronizedElc process_all_msgEle = new HoldIntegerSynchronizedElc(buffer_capacity);//分析缓冲
-        public static Message_Electric msgDatashow = new Message_Electric();
+        public static HoldIntegerSynchronizedElc sharedDecodeEle = new HoldIntegerSynchronizedElc(buffer_capacity);//解包缓冲 
+        //public static HoldIntegerSynchronizedElc sharedLocation1Ele = new HoldIntegerSynchronizedElc(buffer_capacity);//绘图缓冲  
+        //public static HoldIntegerSynchronizedElc process_all_msgEle = new HoldIntegerSynchronizedElc(buffer_capacity);//分析缓冲
+        public static Message_Electric msgDatashow = new Message_Electric(); //表格界面中显示实时数值从这里取值
         //string[] bufferArray_eddyCurrent = new string[Data.numPerPack_eddyCurrent];
 
         //Message msg = new Message(); 原有的
@@ -133,34 +133,36 @@ namespace FBGEMSystem
                     {
                         msgEle = ConvertTool.ByteToStructure<Message_Electric>(bytes2);
                         msg2Ele.CH1 = msgEle.CH1;
-                        msgDatashow.CH1 = msgEle.CH1;
-                        if (sharedLocationEle.isFull == false)
+                        msgDatashow.CH1 = msgEle.CH1;  //供表格界面的ViewElecData使用
+                        if (sharedDecodeEle.isFull == false)
                         {
-                            sharedLocationEle.Buffer = msgEle;
+                            sharedDecodeEle.Buffer = msgEle;  //放入解包缓存
                         }
-                        if (process_all_msgEle.isFull == false)
-                        {
-                            process_all_msgEle.Buffer = msg2Ele;
-                        }
-                        if (Data.IsControl == true)
-                        {
-                            if (sharedLocation1Ele.isFull == false)
-                            {
-                                sharedLocation1Ele.Buffer = msgEle;
-                            }
-                        }
-                        if (Data.IsControl2 == true)
-                        {
-                            if (sharedLocation1Ele.isFull == false)
-                            {
-                                sharedLocation1Ele.Buffer = msgEle;
-                            }
-                        }
-                        if (Data.IsControl1 == true)
-                        {
-                            Data.Ele = msgEle.CH1;
-                        }
+                        //if (process_all_msgEle.isFull == false)
+                        //{
+                        //    process_all_msgEle.Buffer = msg2Ele;
+                        //}
+                        //if (Data.IsControl == true)
+                        //{
+                        //    if (sharedLocation1Ele.isFull == false)
+                        //    {
+                        //        sharedLocation1Ele.Buffer = msgEle;
+                        //    }
+                        //}
+                        //if (Data.IsControl2 == true)
+                        //{
+                        //    if (sharedLocation1Ele.isFull == false)
+                        //    {
+                        //        sharedLocation1Ele.Buffer = msgEle;
+                        //    }
+                        //}
+                        //if (Data.IsControl1 == true)
+                        //{
+                        //    Data.Ele = msgEle.CH1;
+                        //}
                         index++;
+                        //decode_Electric();
+                        //kk = sharedLocation1.BufferSize;
                     }
                 }
             }
@@ -169,6 +171,51 @@ namespace FBGEMSystem
             {
                 MessageBox.Show(err.ToString());
             }
+        }
+
+        //解包线程，从解包缓存sharedDecodeEle中读取Message_Electric,解包成Message,放入绘图缓存sharedLocation1中
+        public void decode_Electric()
+        {
+            while(true)
+            {
+                float[] CH1 = new float[Data.num_Sensor * Data.num_Package];
+                float[] CH2 = new float[Data.num_Sensor * Data.num_Package];
+                float[] CH3 = new float[Data.num_Sensor * Data.num_Package];
+                Message_Electric msg = new Message_Electric();
+                Message msg_decode = new Message();
+                if (sharedDecodeEle.BufferSize != 0)
+                {
+                    msg = sharedDecodeEle.Buffer;
+                    for (int i = 0; i < Data.num_Package; i++)
+                    {
+                        for (int j = 0; j < Data.num_Sensor; j++)
+                        {
+                            CH1[i * Data.num_Sensor + j] = msg.CH1[i * Data.num_Sensor * 3 + j];
+                        }
+                        for (int j = 0; j < Data.num_Sensor; j++)
+                        {
+                            CH2[i * Data.num_Sensor + j] = msg.CH1[i * Data.num_Sensor * 3 + j + Data.num_Sensor];
+                        }
+                        for (int j = 0; j < Data.num_Sensor; j++)
+                        {
+                            CH3[i * Data.num_Sensor + j] = msg.CH1[i * Data.num_Sensor * 3 + j + Data.num_Sensor * 2];
+                        }
+                    }
+                    msg_decode.CH1_Press = CH1;
+                    msg_decode.CH2_Temp = CH2;
+                    msg_decode.CH3_Vibration = CH3;
+                    msg_decode.dataTime = msg.dataTime;
+                    if (Data.IsControl2 == true)
+                    {
+                        if (sharedLocation1.isFull == false)
+                        {
+                            sharedLocation1.Buffer = msg_decode;
+                        }
+                    }
+                }
+            }
+            
+               
         }
     }
 }
