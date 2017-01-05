@@ -15,6 +15,9 @@ using System.Collections.ObjectModel;
 using FBGEMSystem.LiveDataShow;
 using System.ComponentModel;
 using System.Threading;
+using System.Web;
+using System.Windows.Forms;
+using System.Windows.Controls;
 
 namespace FBGEMSystem.LiveDataShow
 {
@@ -27,7 +30,9 @@ namespace FBGEMSystem.LiveDataShow
         public ElecSensorData()
         {
             InitializeComponent();
+            
             this.DataContext = EltecticData;
         }
+        
     }
 }

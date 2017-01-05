@@ -9,7 +9,7 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <TextBlock Text=" 温度传感器数据" Foreground="Blue" TextAlignment="Center" Width="100" Margin="213,12,-148,253"/>
-        <ListView  Grid.Row="0" ItemsSource="{Binding Temp_bind}" Margin="0,35,-371,178">
+        <ListView Name="listview1" Grid.Row="0" ItemsSource="{Binding Temp_bind}" Margin="0,35,-371,193">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -26,7 +26,7 @@
             </ListView.View>
         </ListView>
         <TextBlock Text=" 压力传感器数据" Foreground="Blue" TextAlignment="Center"  Width="100" Margin="216,124,-151,139"/>
-        <ListView Grid.Row="0" ItemsSource="{Binding Pres_bind}" Margin="0,160,-371,63">
+        <ListView Grid.Row="0" ItemsSource="{Binding Pres_bind}" Margin="0,160,-371,46">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -43,18 +43,18 @@
             </ListView.View>
         </ListView>
         <TextBlock Text=" 加速度传感器数据" Foreground="Blue" TextAlignment="Center"  Width="110" Margin="212,242,-157,25"/>
-        <ListView ItemsSource="{Binding Acce_bind}" Margin="0,279,-365,-131" Grid.RowSpan="2">
+        <ListView ItemsSource="{Binding Vibrate_bind}" Margin="0,282,-370,-56" Grid.RowSpan="2">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn DisplayMemberBinding="{Binding Acce1}" Header="通道1"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Acce2}" Header="通道2"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Acce3}" Header="通道3"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Acce4}" Header="通道4"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Acce5}" Header="通道5"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Acce6}" Header="通道6"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Acce7}" Header="通道7"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Acce8}" Header="通道8"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding vibrate1}" Header="通道1"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding vibrate2}" Header="通道2"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding vibrate3}" Header="通道3"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding vibrate4}" Header="通道4"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding vibrate5}" Header="通道5"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding vibrate6}" Header="通道6"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding vibrate7}" Header="通道7"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding vibrate8}" Header="通道8"     Width="60"/>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

@@ -22,5 +22,10 @@ namespace FBGEMSystem.LiveDataShow
                 this.listView1.Columns.Add(ColumnsName);
             }
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

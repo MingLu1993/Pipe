@@ -51,7 +51,7 @@ namespace FBGEMSystem
             receiver.TCPClient_Initi();
             storer.GetConfig();
             storer.InitiTb();
-
+            
             for (int i = 0; i < threRecvs.Length; i++)
             {
                 threRecvs[i] = new Thread(new ThreadStart(receiver.Recv_Electric));
