@@ -41,7 +41,7 @@ namespace FBGEMSystem
         public static HoldIntegerSynchronizedElc sharedLocationEle = new HoldIntegerSynchronizedElc(buffer_capacity);//存储缓冲 
         public static HoldIntegerSynchronizedElc sharedLocation1Ele = new HoldIntegerSynchronizedElc(buffer_capacity);//绘图缓冲  
         public static HoldIntegerSynchronizedElc process_all_msgEle = new HoldIntegerSynchronizedElc(buffer_capacity);//分析缓冲
-
+        public static Message_Electric msgDatashow = new Message_Electric();
         //string[] bufferArray_eddyCurrent = new string[Data.numPerPack_eddyCurrent];
 
         //Message msg = new Message(); 原有的
@@ -132,7 +132,8 @@ namespace FBGEMSystem
                     if (bytes2 != null)
                     {
                         msgEle = ConvertTool.ByteToStructure<Message_Electric>(bytes2);
-
+                        msg2Ele.CH1 = msgEle.CH1;
+                        msgDatashow.CH1 = msgEle.CH1;
                         if (sharedLocationEle.isFull == false)
                         {
                             sharedLocationEle.Buffer = msgEle;

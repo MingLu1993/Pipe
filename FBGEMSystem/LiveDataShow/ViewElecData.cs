@@ -10,14 +10,13 @@ namespace FBGEMSystem.LiveDataShow
 {
     public class ViewElecData : INotifyPropertyChanged
     {
-        Random rdm_temp = new Random(Guid.NewGuid().GetHashCode());
-
-        Random rdm_pres = new Random(Guid.NewGuid().GetHashCode());
-
-        Random rdm_acce = new Random(Guid.NewGuid().GetHashCode());
-
+       
+        float[] TempdataExist = new float[Data.num_Sensor];//存放温度传感器数据
+        float[] PresdataExist = new float[Data.num_Sensor];//存放压力传感器数据
+        float[] vibratedataExist=new float[Data.num_Sensor];//存放振动传感器数据
+        
         private List<Temp> _temp;
-        public List<Temp> Temp1
+        public List<Temp> Tempshow
         {
             get { return _temp; }
             set { _temp = value; NotifyPropertyChanged("Temp"); }
@@ -31,7 +30,7 @@ namespace FBGEMSystem.LiveDataShow
         }
 
         private List<Pres> _pres;
-        public List<Pres> Pres1
+        public List<Pres> Presshow
         {
             get { return _pres; }
             set { _pres = value; NotifyPropertyChanged("Pres"); }
@@ -43,18 +42,18 @@ namespace FBGEMSystem.LiveDataShow
             set { _pres_bind = value; NotifyPropertyChanged("Pres_bind"); }
         }
 
-        private List<Acce> _acce;
-        public List<Acce> Acce1
+        private List<Vibrate> _vibrate;
+        public List<Vibrate> vibrateshow
         {
-            get { return _acce; }
-            set { _acce = value; NotifyPropertyChanged("Acce"); }
+            get { return _vibrate; }
+            set { _vibrate = value; NotifyPropertyChanged("Vibrate"); }
         }
 
-        private List<Acce> _acce_bind;
-        public List<Acce> Acce_bind
+        private List<Vibrate> _vibrate_bind;
+        public List<Vibrate> Vibrate_bind
         {
-            get { return _acce_bind; }
-            set { _acce_bind = value; NotifyPropertyChanged("Acce_bind"); }
+            get { return _vibrate_bind; }
+            set { _vibrate_bind = value; NotifyPropertyChanged("Vibrate_bind"); }
         }
 
 
@@ -74,96 +73,104 @@ namespace FBGEMSystem.LiveDataShow
 
         public ViewElecData()
         {
+           // msg = Receiver.sharedLocation.Buffer;
             _temp = new List<Temp>();
             _pres = new List<Pres>();
-            _acce = new List<Acce>();
-            Thread temp_thread = new Thread(new ThreadStart(tempDataShow));
-            temp_thread.Start();
-            Thread pres_thread = new Thread(new ThreadStart(presDataShow));
-            pres_thread.Start();
-            Thread acce_thread = new Thread(new ThreadStart(acceDataShow));
-            acce_thread.Start();
+            _vibrate = new List<Vibrate>();
+            Thread datathread = new Thread(new ThreadStart(DataShow));
+            datathread.Start();
+            //Thread pres_thread = new Thread(new ThreadStart(presDataShow));
+            //pres_thread.Start();
+            //Thread acce_thread = new Thread(new ThreadStart(acceDataShow));
+            //acce_thread.Start();
         }
-        private void tempDataShow()
+        private void DataShow()
         {
             while (true)
             {
-                Temp1.Add(new Temp
-                {
-                    Temp1 = Math.Round(rdm_temp.NextDouble() + 1, 2),
-                    Temp2 = Math.Round(rdm_temp.NextDouble() + 1, 2),
-                    Temp3 = Math.Round(rdm_temp.NextDouble() + 1, 2),
-                    Temp4 = Math.Round(rdm_temp.NextDouble() + 1, 2),
-                    Temp5 = Math.Round(rdm_temp.NextDouble() + 1, 2),
-                    Temp6 = Math.Round(rdm_temp.NextDouble() + 1, 2),
-                    Temp7 = Math.Round(rdm_temp.NextDouble() + 1, 2),
-                    Temp8 = Math.Round(rdm_temp.NextDouble() + 1, 2),
-                });
-                Temp_bind = Temp1.ToList();
-                Thread.Sleep(500);
                 tempDataDelete();
-                Thread.Sleep(300);
+                presDataDelete();
+                acceDataDelete(); 
+                for (int i = 0; i < Data.num_Sensor; i++)
+                {
+                    if (Data.Temperature[i].is_Choose == true)
+                        TempdataExist[i] = Receiver.msgDatashow.CH1[i];
+                    else
+                        TempdataExist[i] = 0;
+
+                    if (Data.Pressure[i].is_Choose == true)
+                        PresdataExist[i] = Receiver.msgDatashow.CH1[i + 8];
+                    else
+                        PresdataExist[i] = 0;
+
+                    if (Data.Vibration[i].is_Choose == true)
+                        vibratedataExist[i] = Receiver.msgDatashow.CH1[i + 16];
+                    else
+                        vibratedataExist[i] = 0;
+                }
+                Tempshow.Add(new Temp
+                {
+
+                    Temp1 = TempdataExist[0],
+                    Temp2 = TempdataExist[1],
+                    Temp3 = TempdataExist[2],
+                    Temp4 = TempdataExist[3],
+                    Temp5 = TempdataExist[4],
+                    Temp6 = TempdataExist[5],
+                    Temp7 = TempdataExist[6],
+                    Temp8 = TempdataExist[7],
+                });
+               
+        
+                Presshow.Add(new Pres
+                {
+                    Pres1 = PresdataExist[0],
+                    Pres2 = PresdataExist[1],
+                    Pres3 = PresdataExist[2],
+                    Pres4 = PresdataExist[3],
+                    Pres5 = PresdataExist[4],
+                    Pres6 = PresdataExist[5],
+                    Pres7 = PresdataExist[6],
+                    Pres8 = PresdataExist[7],
+                });
+               
+                vibrateshow.Add(new Vibrate
+                {
+                    vibrate1 = vibratedataExist[0],
+                    vibrate2 = vibratedataExist[1],
+                    vibrate3 = vibratedataExist[2],
+                    vibrate4 = vibratedataExist[3],
+                    vibrate5 = vibratedataExist[4],
+                    vibrate6 = vibratedataExist[5],
+                    vibrate7 = vibratedataExist[6],
+                    vibrate8 = vibratedataExist[7],
+                });
+
+                Temp_bind = Tempshow.ToList();
+                Pres_bind = Presshow.ToList();
+                Vibrate_bind = vibrateshow.ToList();
+             
+                Thread.Sleep(1000);
+              
             }
         }
         private void tempDataDelete()
         {
-            Temp1.Clear();
-            Temp_bind = Temp1.ToList();
+            Tempshow.Clear();
+            Temp_bind = Tempshow.ToList();
         }
 
-        private void presDataShow()
-        {
-            while (true)
-            {
-                Pres1.Add(new Pres
-                {
-                    Pres1 = Math.Round(rdm_pres.NextDouble() + 1, 2),
-                    Pres2 = Math.Round(rdm_pres.NextDouble() + 1, 2),
-                    Pres3 = Math.Round(rdm_pres.NextDouble() + 1, 2),
-                    Pres4 = Math.Round(rdm_pres.NextDouble() + 1, 2),
-                    Pres5 = Math.Round(rdm_pres.NextDouble() + 1, 2),
-                    Pres6 = Math.Round(rdm_pres.NextDouble() + 1, 2),
-                    Pres7 = Math.Round(rdm_pres.NextDouble() + 1, 2),
-                    Pres8 = Math.Round(rdm_pres.NextDouble() + 1, 2),
-                });
-                Pres_bind = Pres1.ToList();
-                Thread.Sleep(500);
-                presDataDelete();
-                Thread.Sleep(300);
-            }
-        }
+    
         private void presDataDelete()
         {
-            Pres1.Clear();
-            Pres_bind = Pres1.ToList();
+            Presshow.Clear();
+            Pres_bind = Presshow.ToList();
         }
-        private void acceDataShow()
-        {
-            while (true)
-            {
-                Acce1.Add(new Acce
-                {
-                    Acce1 = Math.Round(rdm_acce.NextDouble() + 1, 2),
-                    Acce2 = Math.Round(rdm_acce.NextDouble() + 1, 2),
-                    Acce3 = Math.Round(rdm_acce.NextDouble() + 1, 2),
-                    Acce4 = Math.Round(rdm_acce.NextDouble() + 1, 2),
-                    Acce5 = Math.Round(rdm_acce.NextDouble() + 1, 2),
-                    Acce6 = Math.Round(rdm_acce.NextDouble() + 1, 2),
-                    Acce7 = Math.Round(rdm_acce.NextDouble() + 1, 2),
-                    Acce8 = Math.Round(rdm_acce.NextDouble() + 1, 2),
-                });
 
-                Acce_bind = Acce1.ToList();
-                Thread.Sleep(500);
-                acceDataDelete(); ;
-                Thread.Sleep(300);
-            }
-
-        }
         private void acceDataDelete()
         {
-            Acce1.Clear();
-            Acce_bind = Acce1.ToList();
+            vibrateshow.Clear();
+            Vibrate_bind = vibrateshow.ToList();
         }
         public class Temp
         {
@@ -187,16 +194,16 @@ namespace FBGEMSystem.LiveDataShow
             public double Pres7 { get; set; }
             public double Pres8 { get; set; }
         }
-        public class Acce
+        public class Vibrate
         {
-            public double Acce1 { get; set; }
-            public double Acce2 { get; set; }
-            public double Acce3 { get; set; }
-            public double Acce4 { get; set; }
-            public double Acce5 { get; set; }
-            public double Acce6 { get; set; }
-            public double Acce7 { get; set; }
-            public double Acce8 { get; set; }
+            public double vibrate1 { get; set; }
+            public double vibrate2 { get; set; }
+            public double vibrate3 { get; set; }
+            public double vibrate4 { get; set; }
+            public double vibrate5 { get; set; }
+            public double vibrate6 { get; set; }
+            public double vibrate7 { get; set; }
+            public double vibrate8 { get; set; }
         }
     }
 }
