@@ -72,6 +72,7 @@ namespace FBGEMSystem.RealtimeStatus
             {
                 while (Receiver.sharedLocation1.BufferSize > 0)
                 {
+                    
                     ProcessDataEle();
                     //Thread.Sleep(1);
                 }
@@ -113,6 +114,7 @@ namespace FBGEMSystem.RealtimeStatus
 
         private void OnTimedEvent(object sender, EventArgs e)
         {
+            Title =  "画图缓存" + Receiver.sharedLocation1.BufferSize.ToString();
             OnDraw(que, ds, SingleAx);
         }
 

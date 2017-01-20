@@ -17,7 +17,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Web;
 using System.Windows.Forms;
-using System.Windows.Controls;
+
 
 namespace FBGEMSystem.LiveDataShow
 {

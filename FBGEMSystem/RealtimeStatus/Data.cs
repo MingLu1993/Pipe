@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace FBGEMSystem
@@ -15,9 +16,13 @@ namespace FBGEMSystem
 
     class Data
     {
+        
+        public static IPAddress remoteIP;
+        public static int UDPPort = 8;
+        public static int TCPPort = 7;
         //端口数
         public static int port = 8001;
-        public static int port_eddyCurrent = 2001;
+        //public static int port_eddyCurrent = 2001;
 
         //电类传感器类型数
         public const int  type_Sensor= 3;       //add
@@ -34,7 +39,7 @@ namespace FBGEMSystem
         public static List<int> TemperatureIndex = new List<int>();       //使用的温度传感器的通道索引
         public static List<int> VibrationIndex = new List<int>();         //使用的振动传感器的通道索引
 
-        public static bool isSetting = false;
+        public static bool isChannelSetting = false;
 
         //后添加的FBG所在点数
         public static int point_eddyCurrent = 7;

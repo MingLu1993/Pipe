@@ -7,3 +7,8 @@
 20170105 修正实时显示波形界面，根据选择的通道设置通道下拉菜单，未设置通道提示先设置并弹出设置界面；
 20170105 多人测试LM
 20170105 在Receiver.cs文件中，加入解包线程，从解包缓存sharedDecodeEle中读取Message_Electric,解包成Message,放入绘图缓存sharedLocation1中
+20170120 添加GlobalMembersFBG类，为FBG接收解析类（如何取出解析之后的数据还需设计）
+	 在Receiver.cs文件中，去掉解包线程，删除解包缓存sharedDecodeEle，改为接一包解一包到绘图缓存sharedLocation1中；
+	 设置界面改为tabControl控件分页，加入通信设置页面；主界面加入连接、开始、停止按钮；
+	 连接按钮完成TCP连接至解析配置数据过程；开始按钮tcp发送“Z\n”并开启TCP、UDP接收线程；停止按钮还未实现；
+	 Receiver类中加入Recv_FBG()函数，用于TCP接收线程。

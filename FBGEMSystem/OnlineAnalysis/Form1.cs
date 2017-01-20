@@ -1368,7 +1368,7 @@ namespace FBGEMSystem
             }
         }
 
-        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)  //通道选择下拉框
         {
             if (comboBox9.SelectedItem != null)
             {

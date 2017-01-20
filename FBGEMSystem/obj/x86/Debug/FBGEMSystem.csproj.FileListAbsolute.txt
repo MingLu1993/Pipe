@@ -3189,7 +3189,6 @@ G:\pipe\Pipe\FBGEMSystem\bin\Debug\FBGEMSystem.exe.manifest
 G:\pipe\Pipe\FBGEMSystem\bin\Debug\FBGEMSystem.application
 G:\pipe\Pipe\FBGEMSystem\bin\Debug\FBGEMSystem.exe
 G:\pipe\Pipe\FBGEMSystem\bin\Debug\FBGEMSystem.pdb
-G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.csprojResolveAssemblyReference.cache
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\LiveDataShow\ElecSensorData.baml
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\LiveDataShow\FBGData.baml
 G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\MainWindow.baml
@@ -3259,3 +3258,7 @@ F:\GitHub\Pipe\Pipe_yf\FBGEMSystem\obj\x86\Debug\FBGEMSystem.Properties.Resource
 F:\GitHub\Pipe\Pipe_yf\FBGEMSystem\obj\x86\Debug\FBGEMSystem.csproj.GenerateResource.Cache
 F:\GitHub\Pipe\Pipe_yf\FBGEMSystem\obj\x86\Debug\FBGEMSystem.exe.manifest
 F:\GitHub\Pipe\Pipe_yf\FBGEMSystem\obj\x86\Debug\FBGEMSystem.application
+G:\pipe\Pipe\FBGEMSystem\bin\Debug\getip.dll
+G:\pipe\Pipe\FBGEMSystem\bin\Debug\preprocess.dll
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.Analysis.resources
+G:\pipe\Pipe\FBGEMSystem\obj\x86\Debug\FBGEMSystem.csprojResolveAssemblyReference.cache

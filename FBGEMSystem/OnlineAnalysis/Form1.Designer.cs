@@ -128,6 +128,7 @@
             this.zedGraphControl7 = new ZedGraph.ZedGraphControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
             this.tabPage3.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -1000,7 +1001,7 @@
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(1452, 887);
+            this.tabPage4.Size = new System.Drawing.Size(1452, 891);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "时域分析";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1323,7 +1324,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1460, 920);
+            this.tabControl1.Size = new System.Drawing.Size(1460, 924);
             this.tabControl1.TabIndex = 14;
             // 
             // toolTip1
@@ -1467,6 +1468,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.ComboBox comboBox9;
-
+        private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
     }
 }

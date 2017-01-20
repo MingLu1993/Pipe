@@ -50,7 +50,7 @@
 
         <Border Grid.Row="1" BorderBrush="Silver" BorderThickness="1"  HorizontalAlignment="Stretch" Name="HeadLine" VerticalAlignment="Top" >
             <Grid Width="Auto">
-                <Menu Name="Title" Margin="5,5,5,5" Background="AliceBlue" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                <Menu Name="Titles" Margin="5,5,5,5" Background="AliceBlue" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
                     <MenuItem Header="实时监测" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
                         <MenuItem.Icon>
                             <Image Source="/FBGEMSystem;component/Image/Chart32.png"/>
@@ -87,6 +87,11 @@
                                 <Image Source="/FBGEMSystem;component/Image/2.ico"/>
                             </MenuItem.Icon>
                         </MenuItem>
+                        <MenuItem Header="瞬时相位分析" Style="{StaticResource MLB_MenuItem}" Click="MenuItemIP_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </MenuItem>
 
                     <!--<MenuItem Header="3D演示" Style="{StaticResource MLB_MenuItem}" Click="MenuItem3DSimulation_Click"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
@@ -95,7 +100,7 @@
                         </MenuItem.Icon>
                     </MenuItem>-->
 
-                    <MenuItem Header="系统设置" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
+                    <!--<MenuItem Header="系统设置" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
                         <MenuItem.Icon>
                             <Image Source="/FBGEMSystem;component/Image/gear.png"/>
                         </MenuItem.Icon>
@@ -114,23 +119,7 @@
                                 <Image Source="/FBGEMSystem;component/Image/2.ico"/>
                             </MenuItem.Icon>
                         </MenuItem>
-                    </MenuItem>
-
-                    <MenuItem Header="帮助" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
-                        <MenuItem.Icon>
-                            <Image Source="/FBGEMSystem;component/Image/book SH.png"/>
-                        </MenuItem.Icon>
-                        <MenuItem Header="系统帮助" Style="{StaticResource MLB_MenuItem}" Click="MenuItemSysHelp_Click" Foreground="Black">
-                            <MenuItem.Icon>
-                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="关于" Style="{StaticResource MLB_MenuItem}" Click="MenuItemAbout_Click" Foreground="Black">
-                            <MenuItem.Icon>
-                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
-                            </MenuItem.Icon>
-                        </MenuItem>
-                    </MenuItem>
+                    </MenuItem>-->
 
                     <MenuItem Header="实时数据" Style="{StaticResource MLB_MenuItem}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
                         <MenuItem.Icon>
@@ -155,8 +144,38 @@
 
                     <MenuItem Header="设置" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemChoosePicture_Click" Foreground="Black">
                         <MenuItem.Icon>
-                            <Image Source="/FBGEMSystem;component/Image/PictureTasks32.png"/>
+                            <Image Source="/FBGEMSystem;component/Image/gear.png"/>
                         </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="连接" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemConnect_Click" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/36.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="开始" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemStart_Click" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/36.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="停止" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemStop_Click" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/36.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="帮助" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/book SH.png"/>
+                        </MenuItem.Icon>
+                        <MenuItem Header="系统帮助" Style="{StaticResource MLB_MenuItem}" Click="MenuItemSysHelp_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="关于" Style="{StaticResource MLB_MenuItem}" Click="MenuItemAbout_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </MenuItem>
                 </Menu>
             </Grid>
