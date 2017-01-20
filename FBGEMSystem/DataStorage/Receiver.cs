@@ -24,12 +24,12 @@ namespace FBGEMSystem
 {
     class Receiver
     {
-        //用于FBG
+        //用于FBG TCP
         private TcpClient TcpFBG ;
         public NetworkStream streamtoserver=null;
         private GlobalMembersFBG gmFBG = new GlobalMembersFBG();
 
-        //用于电类
+        //用于电类UDP
         private UdpClient udpEle;
         private static IPAddress IP = IPAddress.Parse("127.0.0.1");
         private IPEndPoint UdpEleIEP = null;
@@ -38,28 +38,26 @@ namespace FBGEMSystem
 
         public static int index = 0;
         public static int buffer_capacity = 4000;
-        //原有的
-        public static HoldIntegerSynchronized sharedLocation = new HoldIntegerSynchronized(buffer_capacity);//存储缓冲 
-        public static HoldIntegerSynchronized sharedLocation1 = new HoldIntegerSynchronized(buffer_capacity);//绘图缓冲  
-        public static HoldIntegerSynchronized process_all_msg = new HoldIntegerSynchronized(buffer_capacity);//分析缓冲
+        //FBG数据缓存
+        public static HoldIntegerSynchronizedFBG sharedLocation_FBG = new HoldIntegerSynchronizedFBG(buffer_capacity);//存储缓冲
+        public static HoldIntegerSynchronizedFBG sharedLocation1_FBG = new HoldIntegerSynchronizedFBG(buffer_capacity);//绘图缓冲 
+        public static HoldIntegerSynchronizedFBG process_all_msg_FBG = new HoldIntegerSynchronizedFBG(buffer_capacity);//分析缓冲
+        //电类数据缓存
+        public static HoldIntegerSynchronizedEle sharedLocation_Ele = new HoldIntegerSynchronizedEle(buffer_capacity);//存储缓冲 
+        public static HoldIntegerSynchronizedEle sharedLocation1_Ele = new HoldIntegerSynchronizedEle(buffer_capacity);//绘图缓冲  
+        public static HoldIntegerSynchronizedEle process_all_msg_Ele = new HoldIntegerSynchronizedEle(buffer_capacity);//分析缓冲
 
-        //电类传感器缓冲
-        //public static HoldIntegerSynchronizedElc sharedDecodeEle = new HoldIntegerSynchronizedElc(buffer_capacity);//解包缓冲 
-        //public static HoldIntegerSynchronizedElc sharedLocation1Ele = new HoldIntegerSynchronizedElc(buffer_capacity);//绘图缓冲  
-        //public static HoldIntegerSynchronizedElc process_all_msgEle = new HoldIntegerSynchronizedElc(buffer_capacity);//分析缓冲
-        public static Message_Electric msgDatashow = new Message_Electric(); //表格界面中显示实时数值从这里取值
+        //表格界面中显示实时数值从这里取值
+        public static Message_Electric msgDatashow = new Message_Electric(); 
         //string[] bufferArray_eddyCurrent = new string[Data.numPerPack_eddyCurrent];
-
-        //Message msg = new Message(); 原有的
-        //Message msg2 = new Message();
         
         //用于接收电类传感器数据
-        Message_Electric msgEle = new Message_Electric();
-        Message msgEleDecode = new Message();
+        Message_Electric msgEle = new Message_Electric();   //接收到的电类数据，一个数组
+        Message_EleDecoded msgEleDecode = new Message_EleDecoded();   //解包后，3个数组
 
-        byte[] bytesFBG = new byte[1000];
-        int nrecvFBG = 0;
-        byte[] bytesEle = new byte[50000];
+        byte[] bytesFBG = new byte[1000];    //接收FBG数据
+        int nrecvFBG = 0;                    //接收FBG数据的长度
+        byte[] bytesEle = new byte[50000];   //接收电类数据
 
         public void Client_Initi()
         {
@@ -172,15 +170,15 @@ namespace FBGEMSystem
                         //{
                         //    sharedDecodeEle.Buffer = msgEle;  //放入解包缓存
                         //}不需要解包缓存
+
                         //接一包解一包
                         msgEleDecode = decode_Electric(msgEle);
-
                         //如果画波形界面打开，则缓存进绘图缓存
                         if (Data.IsControl2 == true)
                         {
-                            if (sharedLocation1.isFull == false)
+                            if (sharedLocation1_Ele.isFull == false)
                             {
-                                sharedLocation1.Buffer = msgEleDecode;
+                                sharedLocation1_Ele.Buffer = msgEleDecode;
                             }
                         }
                         //if (process_all_msgEle.isFull == false)
@@ -219,14 +217,14 @@ namespace FBGEMSystem
 
         //XXXX解包线程，从解包缓存sharedDecodeEle中读取Message_Electric,解包成Message,放入绘图缓存sharedLocation1中X
         //去掉线程，改为接一包解一包20170120
-        public Message decode_Electric(Message_Electric msgele)
+        public Message_EleDecoded decode_Electric(Message_Electric msgele)
         {
             float[] CH1 = new float[Data.num_Sensor * Data.num_Package];
             float[] CH2 = new float[Data.num_Sensor * Data.num_Package];
             float[] CH3 = new float[Data.num_Sensor * Data.num_Package];
             Message_Electric msg = new Message_Electric();
-            Message msg_decode = new Message();
-            msg = msgele;s
+            Message_EleDecoded msg_decode = new Message_EleDecoded();
+            msg = msgele;
             for (int i = 0; i < Data.num_Package; i++)
             {
                 for (int j = 0; j < Data.num_Sensor; j++)

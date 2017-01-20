@@ -30,6 +30,8 @@ namespace FBGEMSystem
         public const int num_Sensor = 8;        //add
         //电类传感器包数
         public const int num_Package = 40;      //add  
+        //FBG一包数据个数
+        public const int FBG_numPackage = 40;   //待定！！！！！！！！！！
 
         public static Electric_sensor[] Pressure = new Electric_sensor[num_Sensor];
         public static Electric_sensor[] Temperature = new Electric_sensor[num_Sensor];
@@ -40,6 +42,8 @@ namespace FBGEMSystem
         public static List<int> VibrationIndex = new List<int>();         //使用的振动传感器的通道索引
 
         public static bool isChannelSetting = false;
+
+        
 
         //后添加的FBG所在点数
         public static int point_eddyCurrent = 7;
@@ -158,8 +162,9 @@ namespace FBGEMSystem
 
         }
 
-        private static Message mesg=new Message();
-        public static Message Mesg
+        private static Message_EleDecoded mesg=new Message_EleDecoded();
+
+        public static Message_EleDecoded Mesg
         {
             get { return Data.mesg; }
             set { Data.mesg = value; }

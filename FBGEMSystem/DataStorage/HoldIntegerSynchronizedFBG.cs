@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 using System.Threading;
 using FBGEMSystem;
 
+
 namespace FBGEMSystem
 {
-  
-    public class HoldIntegerSynchronized
-    { 
+    public class HoldIntegerSynchronizedFBG
+    {
         #region
-        private Queue<Message> buffer;//缓冲区  
-         
-        public HoldIntegerSynchronized(int capacity)
+        private Queue<Message_FBG> buffer;//缓冲区  
+        
+        public HoldIntegerSynchronizedFBG(int capacity)
         {
-            buffer = new Queue<Message>(capacity); 
+            buffer = new Queue<Message_FBG>(capacity);
         }
 
         public int BufferSize
@@ -33,24 +33,24 @@ namespace FBGEMSystem
             }
         }
 
-        public Message Buffer
+        public Message_FBG Buffer
         {
 
             get
             {
-                Message msg = new Message();
+                Message_FBG msgFBG = new Message_FBG();
                 // 加锁
                 lock (this)
                 {
-                    while (buffer.Count==0)
+                    while (buffer.Count == 0)
                     {
-                        Monitor.Wait(this); 
+                        Monitor.Wait(this);
                     }
-                    msg = buffer.Dequeue();  
+                    msgFBG = buffer.Dequeue();
                     Monitor.PulseAll(this);
                     // 释放锁
                 }//lock
-                return msg;//返回值
+                return msgFBG;//返回值
             }
 
             set
@@ -58,18 +58,16 @@ namespace FBGEMSystem
                 // 加锁
                 lock (this)
                 {
-                    while (buffer.Count==Receiver.buffer_capacity)//缓冲区已满
+                    while (buffer.Count == Receiver.buffer_capacity)//缓冲区已满
                     {
-                        Monitor.Wait(this); 
-                    } 
-                    buffer.Enqueue(value);   
+                        Monitor.Wait(this);
+                    }
+                    buffer.Enqueue(value);
                     Monitor.PulseAll(this);
                     // 释放锁
                 }
             }
         }
-         #endregion 
-    } 
-   
+        #endregion
+    }
 }
- 

@@ -12,3 +12,5 @@
 	 设置界面改为tabControl控件分页，加入通信设置页面；主界面加入连接、开始、停止按钮；
 	 连接按钮完成TCP连接至解析配置数据过程；开始按钮tcp发送“Z\n”并开启TCP、UDP接收线程；停止按钮还未实现；
 	 Receiver类中加入Recv_FBG()函数，用于TCP接收线程。
+20170120 在Message.cs中添加Message_FBG结构体，与原有系统中Message相同；
+	 重命名与电类相关的Message结构体名字为Message_Electric（用于接收，一个数组），Message_EleDecoded（解包后保存，三个数组）

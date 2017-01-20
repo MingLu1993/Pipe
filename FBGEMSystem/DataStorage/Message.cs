@@ -15,7 +15,7 @@ namespace FBGEMSystem
         [Serializable]
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
     
-        public struct Message
+        public struct Message_EleDecoded
         {
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = Data.num_Sensor * Data.num_Package)]
             public float[] CH1_Press;
@@ -36,4 +36,18 @@ namespace FBGEMSystem
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 25)]
             public string dataTime;
         }
+
+        public struct Message_FBG
+        {
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64 * Data.FBG_numPackage)]
+            public float[] CH1;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64 * Data.FBG_numPackage)]
+            public float[] CH2;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64 * Data.FBG_numPackage)]
+            public float[] CH3;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64 * Data.FBG_numPackage)]
+            public float[] CH4;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 25)]
+            public string dataTime;
+    }
 }

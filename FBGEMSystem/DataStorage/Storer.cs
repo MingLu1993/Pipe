@@ -89,13 +89,13 @@ namespace FBGEMSystem
             DataTable dt2 = CreateDataTable(1);
             DataTable dt3 = CreateDataTable(2);
          //   DataTable dt4 = CreateDataTable(3);
-            Message msg = new Message();
+            Message_EleDecoded msg = new Message_EleDecoded();
             while (true)
             {
                 try
                 {
 
-                    msg = Receiver.sharedLocation.Buffer;
+                    msg = Receiver.sharedLocation_Ele.Buffer;
                     CH1 = msg.CH1_Press;
                     CH2 = msg.CH2_Temp;
                     CH3 = msg.CH3_Vibration;
@@ -119,7 +119,7 @@ namespace FBGEMSystem
                   //  InsertRows(3, dt4);
 
 
-                    if (RowsCount == 80000 || (Receiver.sharedLocation.BufferSize == 0 && dt1 != null && dt2 != null && dt3 != null))// && dt4 != null
+                    if (RowsCount == 80000 || (Receiver.sharedLocation_Ele.BufferSize == 0 && dt1 != null && dt2 != null && dt3 != null))// && dt4 != null
                     {
                         lock (this)
                         {

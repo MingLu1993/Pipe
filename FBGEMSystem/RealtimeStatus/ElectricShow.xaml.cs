@@ -15,7 +15,7 @@ namespace FBGEMSystem.RealtimeStatus
     {
         private Queue<float> que = new Queue<float>();
         //Message_Electric msg = new Message_Electric();
-        Message msg = new Message();
+        Message_EleDecoded msg = new Message_EleDecoded();
         private int k = 1500;
         int channel1 = 0;
         string type = "";
@@ -70,7 +70,7 @@ namespace FBGEMSystem.RealtimeStatus
         {
             while (true)
             {
-                while (Receiver.sharedLocation1.BufferSize > 0)
+                while (Receiver.sharedLocation1_Ele.BufferSize > 0)
                 {
                     
                     ProcessDataEle();
@@ -81,7 +81,7 @@ namespace FBGEMSystem.RealtimeStatus
 
         private void ProcessDataEle()
         {
-            msg = Receiver.sharedLocation1.Buffer;
+            msg = Receiver.sharedLocation1_Ele.Buffer;
 
             try
             {
@@ -114,7 +114,7 @@ namespace FBGEMSystem.RealtimeStatus
 
         private void OnTimedEvent(object sender, EventArgs e)
         {
-            Title =  "画图缓存" + Receiver.sharedLocation1.BufferSize.ToString();
+            //Title =  "画图缓存" + Receiver.sharedLocation1.BufferSize.ToString();
             OnDraw(que, ds, SingleAx);
         }
 

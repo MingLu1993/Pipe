@@ -215,7 +215,7 @@ namespace FBGEMSystem
             while (true&&isSelectmy)
             {
                 //while (global.all_msg.Count > winsize / 40)
-                while ((Receiver.process_all_msg.BufferSize > winsize / 40) && (channel_show > 0))
+                while ((Receiver.process_all_msg_FBG.BufferSize > winsize / Data.FBG_numPackage) && (channel_show > 0))
                 {
                     global.decode_fun(); //解析包，并填充一个滑动窗口，入队
                     System.Console.WriteLine();
@@ -1132,7 +1132,7 @@ namespace FBGEMSystem
 
         private void showcnt_handler(object sender, ElapsedEventArgs e)
         {
-            string temp = Receiver.sharedLocation.BufferSize.ToString() + "-" + Receiver.sharedLocation1.BufferSize.ToString() + "-" + Receiver.process_all_msg.BufferSize.ToString() + "-" + Receiver.index.ToString();
+            string temp = Receiver.sharedLocation_FBG.BufferSize.ToString() + "-" + Receiver.sharedLocation1_FBG.BufferSize.ToString() + "-" + Receiver.process_all_msg_FBG.BufferSize.ToString() + "-" + Receiver.index.ToString();
         }
 
         //界面下拉框等初始设置
