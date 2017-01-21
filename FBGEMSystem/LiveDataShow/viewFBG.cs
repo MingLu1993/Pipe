@@ -55,20 +55,18 @@ namespace FBGEMSystem.LiveDataShow
         }
         #endregion
         public Thread thread1;
+        public bool isThreadRun = true;
         public viewFBG()
         {
             _allfbg = new List<AllFBG>();
             thread1 = new Thread(new ThreadStart(datashow));
             thread1.IsBackground = true;
             //thread1.Start();
-           // mwindow1.label1.Foreground =new SolidColorBrush(Colors.Blue);
-            //Thread thread2 = new Thread(new ThreadStart(datadelete));
-            //thread2.Start();
             
         }
         public void datashow()
         {
-            while (true)
+            while (isThreadRun)
             {
                 datadelete();
                 AllFBG.Add(new AllFBG { FBG1 =Math.Round(rdm.NextDouble()+1,2), FBG2 = 1.22, FBG3 = 1.22, FBG4 = 1.22, FBG5 = 1.22, FBG6 = 1.22, FBG7 = 1.22, FBG8 = 1.22 });

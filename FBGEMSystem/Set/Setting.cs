@@ -97,6 +97,7 @@ namespace FBGEMSystem
                 }
             }
             Data.isChannelSetting = true;
+            MessageBox.Show("通道设置完毕");
         }
 
         //选择各类传感器的通道号
@@ -307,6 +308,7 @@ namespace FBGEMSystem
             }
             Data.UDPPort = int.Parse(textBox_UDPPort.Text);
             Data.TCPPort = int.Parse(textBox_TCPPort.Text);
+            MessageBox.Show("通信设置完毕");
         }
 
         #region  //设置传感器textbox中只能输  "-",数字,"." 

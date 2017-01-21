@@ -15,3 +15,6 @@
 20170120 在Message.cs中添加Message_FBG结构体，与原有系统中Message相同；
 	 重命名与电类相关的Message结构体名字为Message_Electric（用于接收，一个数组），Message_EleDecoded（解包后保存，三个数组）
 20170121 线程均改为IsBackground = true;FBG和电类的数据显示界面中修改，防止重复开线程。
+20170121 17:28 电类波形显示、FBG和电类的数据显示界面中修改线程关闭方式，使用设置标志位的方式使线程函数跳出while执行完毕
+	      （不使用Abort函数（通过引发线程异常来终止线程））；
+	       未开启接收线程并接收到数据的时候，点开电类的数据显示界面，Receiver.msgDatashow.CH1为空引发异常，修改加入判断是否为空再赋值。

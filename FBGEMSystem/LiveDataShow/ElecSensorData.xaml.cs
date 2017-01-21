@@ -39,7 +39,9 @@ namespace FBGEMSystem.LiveDataShow
         public void ESDClosed(object sender, EventArgs e)
         {
             //线程关，避免重复开线程
-            EltecticData.datathread.Abort();
+            //EltecticData.datathread.Abort();
+            //线程中while（isrunning），改变标志位使线程执行完毕，不使用Abort().
+            EltecticData.isThreadRun = false;
         }
         
     }

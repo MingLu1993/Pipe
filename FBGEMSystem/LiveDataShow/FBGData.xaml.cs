@@ -36,7 +36,9 @@ namespace FBGEMSystem.LiveDataShow
       
         private void FDClosed(object sender, EventArgs e)
         {
-            fbgdata.thread1.Abort();
+            //fbgdata.thread1.Abort();
+            //使用标志位使线程执行完毕
+            fbgdata.isThreadRun = false;
         }
 
 

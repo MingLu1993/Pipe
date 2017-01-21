@@ -26,6 +26,7 @@ namespace FBGEMSystem.RealtimeStatus
         string Eletime = "";
 
         Thread thread;
+        bool isThreadRun = true;
         public ElectricShow()
         {
                 InitializeComponent();
@@ -42,6 +43,16 @@ namespace FBGEMSystem.RealtimeStatus
                 dispatcherTimer.Tick += new EventHandler(OnTimedEvent);
                 dispatcherTimer.Start();
 
+        }
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            //thread.Abort();   //终止线程，尽量不要使用，应使用标志位，
+            //在线程函数里面while(标志位)，改变标志位让while自动退出
+            isThreadRun = false;
+            Data.IsControl2 = false;
+            que.Clear();
+            dispatcherTimer.Stop();
+            ds.DataPoints.Clear();
         }
 
         private void Initial()
@@ -68,7 +79,7 @@ namespace FBGEMSystem.RealtimeStatus
 
         private void decodeEle_thread()
         {
-            while (true)
+            while (isThreadRun)
             {
                 while (Receiver.sharedLocation1_Ele.BufferSize > 0)
                 {
@@ -186,15 +197,7 @@ namespace FBGEMSystem.RealtimeStatus
             GC.Collect();
         }
 
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            thread.Abort();   //终止线程，尽量不要使用，应使用标志位，
-                              //在线程函数里面while(标志位)，改变标志位让while自动退出
-            Data.IsControl2 = false;
-            que.Clear();
-            dispatcherTimer.Stop();
-            ds.DataPoints.Clear();
-        }
+        
 
         private void CHNum_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

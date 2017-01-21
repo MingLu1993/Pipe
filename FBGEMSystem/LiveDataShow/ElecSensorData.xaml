@@ -8,23 +8,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <TextBlock Text=" 温度传感器数据" Foreground="Blue" TextAlignment="Center" Width="100" Margin="213,12,-148,253"/>
-        <ListView Name="listview1" Grid.Row="0" ItemsSource="{Binding Temp_bind}" Margin="0,35,-371,193">
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn DisplayMemberBinding="{Binding Temp1}" Header="通道1"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Temp2}" Header="通道2"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Temp3}" Header="通道3"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Temp4}" Header="通道4"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Temp5}" Header="通道5"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Temp6}" Header="通道6"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Temp7}" Header="通道7"     Width="60"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Temp8}" Header="通道8"     Width="60"/>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
-        </ListView>
         <TextBlock Text=" 压力传感器数据" Foreground="Blue" TextAlignment="Center"  Width="100" Margin="216,124,-151,139"/>
         <ListView Grid.Row="0" ItemsSource="{Binding Pres_bind}" Margin="0,160,-371,46">
             <ListView.View>
@@ -38,6 +21,23 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Pres6}" Header="通道6"     Width="60"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Pres7}" Header="通道7"     Width="60"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Pres8}" Header="通道8"     Width="60"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Text=" 温度传感器数据" Foreground="Blue" TextAlignment="Center" Width="100" Margin="213,12,-148,253"/>
+        <ListView Name="listview1" Grid.Row="0" ItemsSource="{Binding Temp_bind}" Margin="0,35,-371,193">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn DisplayMemberBinding="{Binding Temp1}" Header="通道1"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Temp2}" Header="通道2"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Temp3}" Header="通道3"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Temp4}" Header="通道4"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Temp5}" Header="通道5"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Temp6}" Header="通道6"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Temp7}" Header="通道7"     Width="60"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Temp8}" Header="通道8"     Width="60"/>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
