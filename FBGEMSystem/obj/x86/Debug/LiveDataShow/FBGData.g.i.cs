@@ -68,6 +68,17 @@ namespace FBGEMSystem.LiveDataShow {
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
         void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {
+            switch (connectionId)
+            {
+            case 1:
+            
+            #line 6 "..\..\..\..\LiveDataShow\FBGData.xaml"
+            ((FBGEMSystem.LiveDataShow.FBGData)(target)).Closed += new System.EventHandler(this.FDClosed);
+            
+            #line default
+            #line hidden
+            return;
+            }
             this._contentLoaded = true;
         }
     }

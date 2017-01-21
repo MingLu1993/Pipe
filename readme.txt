@@ -14,3 +14,4 @@
 	 Receiver类中加入Recv_FBG()函数，用于TCP接收线程。
 20170120 在Message.cs中添加Message_FBG结构体，与原有系统中Message相同；
 	 重命名与电类相关的Message结构体名字为Message_Electric（用于接收，一个数组），Message_EleDecoded（解包后保存，三个数组）
+20170121 线程均改为IsBackground = true;FBG和电类的数据显示界面中修改，防止重复开线程。

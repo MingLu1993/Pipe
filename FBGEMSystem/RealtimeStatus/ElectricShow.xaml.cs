@@ -188,7 +188,8 @@ namespace FBGEMSystem.RealtimeStatus
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            thread.Abort();
+            thread.Abort();   //终止线程，尽量不要使用，应使用标志位，
+                              //在线程函数里面while(标志位)，改变标志位让while自动退出
             Data.IsControl2 = false;
             que.Clear();
             dispatcherTimer.Stop();

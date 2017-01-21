@@ -1,7 +1,7 @@
 ﻿<Window x:Class="FBGEMSystem.LiveDataShow.ElecSensorData"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="电类传感器数据" Height="483" MaxHeight="483" MinHeight="483" Width="538.5" MaxWidth="538.5" MinWidth="538.5">
+        Title="电类传感器数据" Height="483" MaxHeight="483" MinHeight="483" Width="538.5" MaxWidth="538.5" MinWidth="538.5" Closed="ESDClosed">
     <Grid Margin="0,0,365,134">
 
         <Grid.RowDefinitions>

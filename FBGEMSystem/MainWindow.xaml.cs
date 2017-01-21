@@ -110,10 +110,10 @@ namespace FBGEMSystem
             f2.Visible = true;
         }
 
-        private void MenuItemIP_Click(object sender, RoutedEventArgs e)
+        private void MenuItemAnalysis_Click(object sender, RoutedEventArgs e)
         {
-            Analysis IP = new Analysis();
-            IP.ShowDialog();
+            Analysis analysis = new Analysis();
+            analysis.ShowDialog();
         }
 
         private void MenuItemQXPL_Click(object sender, RoutedEventArgs e)
@@ -295,13 +295,11 @@ namespace FBGEMSystem
                 receiver.SocketStart();
                 if(isrecvThreadInit==false)
                 {
-
-                    //thredecode = new Thread(new ThreadStart(receiver.decode_Electric));不需要电类解包缓存
-                    //thredecode.Start();
-
                     //开启接收线程
                     threRecvsFBG = new Thread(new ThreadStart(receiver.Recv_FBG));
                     threRecvsEle = new Thread(new ThreadStart(receiver.Recv_Electric));
+                    threRecvsFBG.IsBackground = true;
+                    threRecvsEle.IsBackground = true;
                     threRecvsFBG.Start();
                     threRecvsEle.Start();
                     isrecvThreadInit = true;
@@ -313,6 +311,7 @@ namespace FBGEMSystem
                 System.Windows.MessageBox.Show("请先建立连接！", "警告");
                 //调试udp
                 threRecvsEle = new Thread(new ThreadStart(receiver.Recv_Electric));
+                threRecvsEle.IsBackground = true;
                 threRecvsEle.Start();
                 //调试udp   end
                 return;

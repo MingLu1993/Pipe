@@ -108,7 +108,7 @@ namespace FBGEMSystem
                 isSelectCH = true;
                 if(isThreadRunning==false)  //如果已经开启，则不执行
                 {
-
+                    //加入开启处理线程代码
                     isThreadRunning = true;
                 }
 

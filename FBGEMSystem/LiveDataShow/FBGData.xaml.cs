@@ -29,19 +29,17 @@ namespace FBGEMSystem.LiveDataShow
         public FBGData()
         {
             InitializeComponent();
+            fbgdata.thread1.Start();
             this.DataContext = fbgdata;
-            //FBGshow[0] = new Thread(new ThreadStart(fbgdata.datafresh));
-            //FBGshow[0].Start();
 
-            //FBGshow[1] = new Thread(new ThreadStart(fbgdata.datadelete));
-            //FBGshow[1].Start();
         }
-        //public void datashow(object source, System.Timers.ElapsedEventArgs e)
-        //{
-        //    System.Windows.Forms.MessageBox.Show("Test"); 
-        //}
       
-       
+        private void FDClosed(object sender, EventArgs e)
+        {
+            fbgdata.thread1.Abort();
+        }
+
+
     }
   
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FBGEMSystem.LiveDataShow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -43,7 +44,6 @@ namespace FBGEMSystem
 
         public static bool isChannelSetting = false;
 
-        
 
         //后添加的FBG所在点数
         public static int point_eddyCurrent = 7;
@@ -136,7 +136,7 @@ namespace FBGEMSystem
             set { Data.isControl1 = value; }
         }
 
-        //控制曲线的启动
+        //控制电类传感器画图曲线的启动
         private static bool isControl2 = false;
         public static bool IsControl2
         {

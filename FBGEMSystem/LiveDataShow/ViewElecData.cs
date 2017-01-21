@@ -71,18 +71,16 @@ namespace FBGEMSystem.LiveDataShow
         }
         #endregion
 
+        public Thread datathread;
         public ViewElecData()
         {
            // msg = Receiver.sharedLocation.Buffer;
             _temp = new List<Temp>();
             _pres = new List<Pres>();
             _vibrate = new List<Vibrate>();
-            Thread datathread = new Thread(new ThreadStart(DataShow));
-            datathread.Start();
-            //Thread pres_thread = new Thread(new ThreadStart(presDataShow));
-            //pres_thread.Start();
-            //Thread acce_thread = new Thread(new ThreadStart(acceDataShow));
-            //acce_thread.Start();
+            datathread = new Thread(new ThreadStart(DataShow));
+            datathread.IsBackground = true;
+            //datathread.Start();
         }
         private void DataShow()
         {
