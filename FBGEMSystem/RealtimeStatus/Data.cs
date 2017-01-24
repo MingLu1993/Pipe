@@ -25,6 +25,8 @@ namespace FBGEMSystem
         public static int port = 8001;
         //public static int port_eddyCurrent = 2001;
 
+        public static int SamplingRate_FBG = 2000;
+
         //电类传感器类型数
         public const int  type_Sensor= 3;       //add
         //电类传感器个数

@@ -28,6 +28,8 @@ using FBGEMSystem.DataStorage;
 using FBGEMSystem.LiveDataShow;
 using FBGEMSystem.Set;
 using System.Net;
+using getip;
+using preprocess;
 
 namespace FBGEMSystem
 {
@@ -36,6 +38,10 @@ namespace FBGEMSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        Cgetip iptmp = new Cgetip();
+        Cpreprocess pretmp = new Cpreprocess();
+
+
         //只使用了一个线程
         private bool isrecvThreadInit = false;
         Thread threRecvsFBG;
@@ -50,7 +56,8 @@ namespace FBGEMSystem
 
         public MainWindow()
         {
-            
+            iptmp = null;
+            pretmp = null;
 
             pCurrentWin = this;   //子窗口可以使用MainWindow.pCurrenWin    来访问主窗口变量及方法
             IPAddress.TryParse("192.168.1.10", out Data.remoteIP);  //remoteIP赋初值

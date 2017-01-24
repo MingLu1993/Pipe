@@ -34,9 +34,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.zedGraph_IPCurve = new ZedGraph.ZedGraphControl();
             this.zedGraph_IPScatter = new ZedGraph.ZedGraphControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -60,6 +60,7 @@
             this.comboBox_Point.Name = "comboBox_Point";
             this.comboBox_Point.Size = new System.Drawing.Size(121, 24);
             this.comboBox_Point.TabIndex = 0;
+            this.comboBox_Point.SelectedIndexChanged += new System.EventHandler(this.comboBox_Point_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -81,6 +82,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1353, 611);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -95,20 +97,10 @@
             this.tabPage1.Text = "   瞬时相位分析   ";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1345, 585);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // zedGraph_IPCurve
             // 
             this.zedGraph_IPCurve.Location = new System.Drawing.Point(38, 90);
-            this.zedGraph_IPCurve.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zedGraph_IPCurve.Margin = new System.Windows.Forms.Padding(4);
             this.zedGraph_IPCurve.Name = "zedGraph_IPCurve";
             this.zedGraph_IPCurve.ScrollGrace = 0D;
             this.zedGraph_IPCurve.ScrollMaxX = 0D;
@@ -117,13 +109,13 @@
             this.zedGraph_IPCurve.ScrollMinX = 0D;
             this.zedGraph_IPCurve.ScrollMinY = 0D;
             this.zedGraph_IPCurve.ScrollMinY2 = 0D;
-            this.zedGraph_IPCurve.Size = new System.Drawing.Size(626, 396);
+            this.zedGraph_IPCurve.Size = new System.Drawing.Size(591, 396);
             this.zedGraph_IPCurve.TabIndex = 1;
             // 
             // zedGraph_IPScatter
             // 
             this.zedGraph_IPScatter.Location = new System.Drawing.Point(734, 90);
-            this.zedGraph_IPScatter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zedGraph_IPScatter.Margin = new System.Windows.Forms.Padding(4);
             this.zedGraph_IPScatter.Name = "zedGraph_IPScatter";
             this.zedGraph_IPScatter.ScrollGrace = 0D;
             this.zedGraph_IPScatter.ScrollMaxX = 0D;
@@ -134,6 +126,16 @@
             this.zedGraph_IPScatter.ScrollMinY2 = 0D;
             this.zedGraph_IPScatter.Size = new System.Drawing.Size(574, 396);
             this.zedGraph_IPScatter.TabIndex = 2;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1345, 585);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -157,8 +159,9 @@
             this.Controls.Add(this.comboBox_CH);
             this.Name = "Analysis";
             this.Text = "信号分析";
-            this.Load += new System.EventHandler(this.InstantaneousPhase_Load);
-            this.ResizeBegin += new System.EventHandler(this.InstantaneousPhase_ResizeBegin);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Analysis_FormClosed);
+            this.Load += new System.EventHandler(this.Analysis_Load);
+            this.ResizeBegin += new System.EventHandler(this.Analysis_ResizeBegin);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
