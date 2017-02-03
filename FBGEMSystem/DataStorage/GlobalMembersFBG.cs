@@ -161,9 +161,9 @@ namespace FBGEMSystem
         //4:个数，通道3。。。
         //5:个数，通道4。。。
 
-        public static byte[,,] uchPosPeaks = new byte[2000, 6, 64];  //写文件   用于取全部数据          还在编写！！！！
-        public static float[,,] fPeaksAllf = new float[200, 6, 64];  //用于取全部数据,        还在编写！！！！
-        public static ushort[,,] usiPeaksAll = new ushort[2000, 6, 6]; //用于取全部数据       还在编写！！！！
+        public static byte[,,] uchPosPeaks = new byte[40, 6, 64];  //写文件   用于取全部数据          还在编写！！！！
+        public static float[,,] fPeaksAllf = new float[40, 6, 64];  //用于取全部数据,        还在编写！！！！
+        public static ushort[,,] usiPeaksAll = new ushort[40, 6, 6]; //用于取全部数据       还在编写！！！！
 
         public static DEVICECONFIG g_DeviceConfigPara = new DEVICECONFIG();
         public static DEVICESTATUS g_DeviceStatusPara = new DEVICESTATUS();
@@ -197,6 +197,10 @@ namespace FBGEMSystem
         public StreamWriter sw1;
         public bool iswriting = false;
         public bool isfileClosed = true;
+
+        //记录存进msgFBG的数据的个数，达到40个存入缓存并清零
+        int MessageIndex = 0;
+        Message_FBG msgFBG = new Message_FBG();
 
         //用于取byte数组的子数组，
         //allByte数组
@@ -306,19 +310,51 @@ namespace FBGEMSystem
             return 0;
         }
 
-        //解析后的完整数据，还未写完
+        
+        //解析后的完整数据，需测试
         private void decodeDataToArray(int tIndex)
         {
-            for(int i=0;i<64;i++)
+            for (int j = 2; j < 6; j++)//取FBG四个通道
             {
-                for(int j=0;j<64;j++)
+                int numChX = gPosPeaks[tIndex, j, 0];
+                if (numChX < 64)
                 {
-                    uchPosPeaks[tIndex, i, j] = gPosPeaks[tIndex, i, j];
-                    fPeaksAllf[tIndex, i, j] = gPeaksAllf[tIndex, i, j];
-                    usiPeaksAll[tIndex, i, j] = gPeaksAll[tIndex, i, j];
+                    //gPeeks1T[j, 0] = gPosPeaks[tIndex, j, 0];
+                    for (int i = 1; i <= numChX; i++)
+                    {
+                        int pos = gPosPeaks[tIndex, j, i];
+                        //gPeeks1T[j, i] = gPeaksAllf[tIndex, j, pos];
+                        switch (j)
+                        {
+                            case 2:
+                                msgFBG.CH1[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                break;
+                            case 3:
+                                msgFBG.CH2[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                break;
+                            case 4:
+                                msgFBG.CH3[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                break;
+                            case 5:
+                                msgFBG.CH4[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                break;
+                            default:break;
+                        }
+                    }
                 }
             }
-
+            MessageIndex++;
+            if(MessageIndex > 39)
+            {
+                //存入存储缓冲
+                Receiver.sharedLocation_FBG.Buffer = msgFBG;
+                if(Data.IsControlFBG == true)
+                {
+                    Receiver.process_all_msg_FBG.Buffer = msgFBG;
+                }
+                MessageIndex = 0;
+                msgFBG = new Message_FBG();
+            }
         }
 
         //解析后的显示数据//测试用
@@ -354,7 +390,6 @@ namespace FBGEMSystem
                     }
                 }
             }
-
             if(iswriting == true)
             {
                 sw1 = new StreamWriter(fs1);
@@ -775,7 +810,7 @@ namespace FBGEMSystem
             /////////////////////////////UDPDataProcess(tIndex);
 
 
-            //decodeDataToArray(tIndex);??????????????????????
+            decodeDataToArray(tIndex);//??????????????????????
 
             gPeaksAll[1000, 0, 0] = (ushort)tIndex; //save the time index
             tIndex++;

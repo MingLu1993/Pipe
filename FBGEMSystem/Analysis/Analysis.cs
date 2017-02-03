@@ -37,6 +37,7 @@ namespace FBGEMSystem
         {
             InitializeComponent();
             init();
+            Data.IsControlFBG = true;
         }
 
         private void init()
@@ -66,6 +67,7 @@ namespace FBGEMSystem
         {
             //使线程跳出while循环
             isThreadRunning = false;
+            Data.IsControlFBG = false;
         }
 
         //tabcontrol控件页面切换，页面Text放入AnalysisMethod，用于判断使用哪种分析方法  

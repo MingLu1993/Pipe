@@ -21,3 +21,5 @@
 20170124 添加decode线程，根据通道和测点从Receiver.process_all_msg_FBG中获取相应的数据（double[]），放入队列analysis_signal中；通道和测点变换时，队列清空；
 	 添加process线程，根据所在方法的界面选择相应的处理方法，从analysis_signal获取数据处理；
 	 process线程中，加入瞬时相位（IP）的实现，画出曲线图和散点图。
+20170203 在GlobalMembersFBG类中，decodeDataToArray函数添加FBG数据存入缓存Receiver.process_all_msg_FBG；
+	 Data中加入isControlFBG，FBG信号分析标志位；
