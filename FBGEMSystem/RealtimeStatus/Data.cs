@@ -146,6 +146,14 @@ namespace FBGEMSystem
             set { Data.isControl2 = value; }
         }
 
+        //控制FBG传感器信号分析曲线的启动
+        private static bool isControlFBG = false;
+        public static bool IsControlFBG
+        {
+            get { return Data.isControlFBG; }
+            set { Data.isControlFBG = value; }
+        }
+
         //发送端的时间
         private static string strTime;
         public static string StrTime
