@@ -17,7 +17,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Web;
 using System.Windows.Forms;
-using System.Windows.Controls;
+
 
 namespace FBGEMSystem.LiveDataShow
 {
@@ -26,12 +26,22 @@ namespace FBGEMSystem.LiveDataShow
     /// </summary>
     public partial class ElecSensorData : Window
     {
+
         ViewElecData EltecticData = new ViewElecData();
         public ElecSensorData()
         {
             InitializeComponent();
-            
+            //线程开
+            EltecticData.datathread.Start();
             this.DataContext = EltecticData;
+        }
+
+        public void ESDClosed(object sender, EventArgs e)
+        {
+            //线程关，避免重复开线程
+            //EltecticData.datathread.Abort();
+            //线程中while（isrunning），改变标志位使线程执行完毕，不使用Abort().
+            EltecticData.isThreadRun = false;
         }
         
     }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
 
@@ -16,6 +17,9 @@ namespace FBGEMSystem
         {
             InitializeComponent();
             Initialize();
+            textBox_IP.Text = "192.168.1.10";
+            textBox_UDPPort.Text = "8";
+            textBox_TCPPort.Text = "7";
         }
 
         private void Initialize()
@@ -58,6 +62,7 @@ namespace FBGEMSystem
             //    this.Close();
         }
 
+        //传感器设置确定
         private void Sure_Button_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < Data.num_Sensor; i++)
@@ -69,7 +74,7 @@ namespace FBGEMSystem
             Data.PressureIndex.Clear();
             Data.TemperatureIndex.Clear();
             Data.VibrationIndex.Clear();
-            Data.isSetting = false;
+            Data.isChannelSetting = false;
 
             CheckSensor();
             GetSensitivity();
@@ -91,8 +96,8 @@ namespace FBGEMSystem
                     Data.VibrationIndex.Add(i);
                 }
             }
-            Data.isSetting = true;
-            this.Close();
+            Data.isChannelSetting = true;
+            MessageBox.Show("通道设置完毕");
         }
 
         //选择各类传感器的通道号
@@ -287,9 +292,26 @@ namespace FBGEMSystem
             Data.Vibration[7].range_high = float.Parse(VibrationRange_high8.Text);
         }
 
+        //通信设置确定
+        private void button_SocketSure_Click(object sender, EventArgs e)
+        {
+            string IPstr = textBox_IP.Text;
+            IPAddress ip;
+            if (IPAddress.TryParse(IPstr, out ip))
+            {
+                Data.remoteIP = ip;
+            }
+            else
+            {
+                textBox_IP.Text = "192.168.1.10";
+                MessageBox.Show("请输入合法的IP地址");
+            }
+            Data.UDPPort = int.Parse(textBox_UDPPort.Text);
+            Data.TCPPort = int.Parse(textBox_TCPPort.Text);
+            MessageBox.Show("通信设置完毕");
+        }
 
-
-        #region  //设置textbox中只能输  "-",数字,"." 
+        #region  //设置传感器textbox中只能输  "-",数字,"." 
         private void TextboxLimit(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 13 && e.KeyChar != 45 && e.KeyChar != 46)
@@ -1032,5 +1054,32 @@ namespace FBGEMSystem
             TextBox_MouseDown(sender, e);
         }
         #endregion  //设置textbox点击时若text为"0"，则清空
+
+
+
+        //端口号textbox只能输入数字
+        private void textBox_UDPPort_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 13)
+            {
+                e.Handled = true;
+            }
+        }
+        //端口号textbox只能输入数字
+        private void textBox_TCPPort_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 13)
+            {
+                e.Handled = true;
+            }
+        }
+        //IPtextbox只能输入数字和.
+        private void textBox_IP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 13 &&  e.KeyChar != 46)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

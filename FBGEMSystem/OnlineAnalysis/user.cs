@@ -76,13 +76,13 @@ namespace FBGEMSystem
         private static object[,] sync_ch_point_denoise = new object[CH_NUM, MAX_POINT];//对应的同步操作对象
 
 
-        public Queue<Message> all_msg = new Queue<Message>(); //接收数据帧缓存队列
+        public Queue<Message_FBG> all_msg = new Queue<Message_FBG>(); //接收数据帧缓存队列
         private static object sync_all_msg = new object(); //对应的同步操作对象
 
         //recvbytes用于接收udp字节数据，之后转化成temp_msg结构体入队。
-        public Message temp_msg = new Message();
+        public Message_FBG temp_msg = new Message_FBG();
 
-        public Message pre_msg = new Message();//出队等待处理
+        public Message_FBG pre_msg = new Message_FBG();//出队等待处理
 
         private bool _isfull;
         public bool isfull { get { return _isfull; } set { _isfull = value; } } //接收缓存溢出标志属性
@@ -165,7 +165,7 @@ namespace FBGEMSystem
          * 输出：
          *      无
          */
-        public void save_msg(Message msg)
+        public void save_msg(Message_FBG msg)
         {
             lock (sync_all_msg)
             {
@@ -185,10 +185,10 @@ namespace FBGEMSystem
          * 输出：
          *      返回待处理的数据帧
          */
-        public Message del_msg()
+        public Message_FBG del_msg()
         {
-            Message msg = new Message();
-            msg = Receiver.process_all_msg.Buffer;
+            Message_FBG msg = new Message_FBG();
+            msg = Receiver.process_all_msg_FBG.Buffer;
             return msg;
         }
         public void process(int channel, int point, ref double[] result)
@@ -679,13 +679,13 @@ namespace FBGEMSystem
             }
             for (int i = 0; i < count; i++)  //清空缓存区，缓存区向前滑动
             {
-                if (Receiver.process_all_msg.BufferSize >= WINSIZE / 40)
+                if (Receiver.process_all_msg_FBG.BufferSize >= WINSIZE / Data.FBG_numPackage)
                 {
                     del_msg();
                     pro_cnt++;
                 }
             }
-            for (int j = 0; j < WINSIZE / 40; j++) //填充滑动窗口
+            for (int j = 0; j < WINSIZE / Data.FBG_numPackage; j++) //填充滑动窗口
             {
                 pre_msg = del_msg();
                 decode_process(pre_msg, j);
@@ -920,16 +920,16 @@ namespace FBGEMSystem
          * 输出：
          *      无
          */
-        private void decode_process(Message msg, int j)
+        private void decode_process(Message_FBG msg, int j)
         {
             for (int k = 0; k < MAX_POINT; k++)
             {
-                for (int i = 0; i < Data.num_Package; i++)
+                for (int i = 0; i < Data.FBG_numPackage; i++)
                 {
-                    temp_ch1_point_signal[k, j * Data.num_Package + i] = msg.CH1_Press[i * Data.num_Sensor + k];
-                    temp_ch2_point_signal[k, j * Data.num_Package + i] = msg.CH2_Temp[i * Data.num_Sensor + k];
-                    temp_ch3_point_signal[k, j * Data.num_Package + i] = msg.CH3_Vibration[i * Data.num_Sensor + k];
-                    //temp_ch4_point_signal[k, j * Data.num_Package + i] = msg.CH4[i * Data.num_Sensor + k];
+                    temp_ch1_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH1[i * Data.FBG_numPackage + k];
+                    temp_ch2_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH2[i * Data.FBG_numPackage + k];
+                    temp_ch3_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH3[i * Data.FBG_numPackage + k];
+                    temp_ch4_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH4[i * Data.FBG_numPackage + k];
                 }
             }
         }

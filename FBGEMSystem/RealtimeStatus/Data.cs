@@ -1,6 +1,8 @@
-﻿using System;
+﻿using FBGEMSystem.LiveDataShow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace FBGEMSystem
@@ -15,9 +17,15 @@ namespace FBGEMSystem
 
     class Data
     {
+        
+        public static IPAddress remoteIP;
+        public static int UDPPort = 8;
+        public static int TCPPort = 7;
         //端口数
         public static int port = 8001;
-        public static int port_eddyCurrent = 2001;
+        //public static int port_eddyCurrent = 2001;
+
+        public static int SamplingRate_FBG = 2000;
 
         //电类传感器类型数
         public const int  type_Sensor= 3;       //add
@@ -25,6 +33,8 @@ namespace FBGEMSystem
         public const int num_Sensor = 8;        //add
         //电类传感器包数
         public const int num_Package = 40;      //add  
+        //FBG一包数据个数
+        public const int FBG_numPackage = 40;   //待定！！！！！！！！！！
 
         public static Electric_sensor[] Pressure = new Electric_sensor[num_Sensor];
         public static Electric_sensor[] Temperature = new Electric_sensor[num_Sensor];
@@ -34,7 +44,8 @@ namespace FBGEMSystem
         public static List<int> TemperatureIndex = new List<int>();       //使用的温度传感器的通道索引
         public static List<int> VibrationIndex = new List<int>();         //使用的振动传感器的通道索引
 
-        public static bool isSetting = false;
+        public static bool isChannelSetting = false;
+
 
         //后添加的FBG所在点数
         public static int point_eddyCurrent = 7;
@@ -127,12 +138,20 @@ namespace FBGEMSystem
             set { Data.isControl1 = value; }
         }
 
-        //控制曲线的启动
+        //控制电类传感器画图曲线的启动
         private static bool isControl2 = false;
         public static bool IsControl2
         {
             get { return Data.isControl2; }
             set { Data.isControl2 = value; }
+        }
+
+        //控制FBG传感器信号分析曲线的启动
+        private static bool isControlFBG = false;
+        public static bool IsControlFBG
+        {
+            get { return Data.isControlFBG; }
+            set { Data.isControlFBG = value; }
         }
 
         //发送端的时间
@@ -153,8 +172,9 @@ namespace FBGEMSystem
 
         }
 
-        private static Message mesg=new Message();
-        public static Message Mesg
+        private static Message_EleDecoded mesg=new Message_EleDecoded();
+
+        public static Message_EleDecoded Mesg
         {
             get { return Data.mesg; }
             set { Data.mesg = value; }

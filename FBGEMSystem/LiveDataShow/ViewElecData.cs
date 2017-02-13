@@ -71,43 +71,46 @@ namespace FBGEMSystem.LiveDataShow
         }
         #endregion
 
+        public Thread datathread;
+        public bool isThreadRun = true;
         public ViewElecData()
         {
            // msg = Receiver.sharedLocation.Buffer;
             _temp = new List<Temp>();
             _pres = new List<Pres>();
             _vibrate = new List<Vibrate>();
-            Thread datathread = new Thread(new ThreadStart(DataShow));
-            datathread.Start();
-            //Thread pres_thread = new Thread(new ThreadStart(presDataShow));
-            //pres_thread.Start();
-            //Thread acce_thread = new Thread(new ThreadStart(acceDataShow));
-            //acce_thread.Start();
+            datathread = new Thread(new ThreadStart(DataShow));
+            datathread.IsBackground = true;
+            //datathread.Start();
         }
         private void DataShow()
         {
-            while (true)
+            while (isThreadRun)
             {
                 tempDataDelete();
                 presDataDelete();
                 acceDataDelete(); 
-                for (int i = 0; i < Data.num_Sensor; i++)
+                if(Receiver.msgDatashow.CH1 != null)
                 {
-                    if (Data.Temperature[i].is_Choose == true)
-                        TempdataExist[i] = Receiver.msgDatashow.CH1[i];
-                    else
-                        TempdataExist[i] = 0;
+                    for (int i = 0; i < Data.num_Sensor; i++)
+                    {
+                        if (Data.Temperature[i].is_Choose == true)
+                            TempdataExist[i] = Receiver.msgDatashow.CH1[i];
+                        else
+                            TempdataExist[i] = 0;
 
-                    if (Data.Pressure[i].is_Choose == true)
-                        PresdataExist[i] = Receiver.msgDatashow.CH1[i + 8];
-                    else
-                        PresdataExist[i] = 0;
+                        if (Data.Pressure[i].is_Choose == true)
+                            PresdataExist[i] = Receiver.msgDatashow.CH1[i + 8];
+                        else
+                            PresdataExist[i] = 0;
 
-                    if (Data.Vibration[i].is_Choose == true)
-                        vibratedataExist[i] = Receiver.msgDatashow.CH1[i + 16];
-                    else
-                        vibratedataExist[i] = 0;
+                        if (Data.Vibration[i].is_Choose == true)
+                            vibratedataExist[i] = Receiver.msgDatashow.CH1[i + 16];
+                        else
+                            vibratedataExist[i] = 0;
+                    }
                 }
+                
                 Tempshow.Add(new Temp
                 {
 

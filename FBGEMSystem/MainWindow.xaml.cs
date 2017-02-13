@@ -27,7 +27,9 @@ using FBGEMSystem.SystemSetting;
 using FBGEMSystem.DataStorage;
 using FBGEMSystem.LiveDataShow;
 using FBGEMSystem.Set;
-
+using System.Net;
+using getip;
+using preprocess;
 
 namespace FBGEMSystem
 {
@@ -36,34 +38,48 @@ namespace FBGEMSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        Cgetip iptmp = new Cgetip();
+        Cpreprocess pretmp = new Cpreprocess();
+
+
         //只使用了一个线程
-        
-        Thread[] threRecvs = new Thread[1];
+        private bool isrecvThreadInit = false;
+        Thread threRecvsFBG;
+        Thread threRecvsEle;
         Thread[] threStor = new Thread[1];
-        
+        //Thread thredecode;不需要电类解包缓存
+
+
         public static MainWindow pCurrentWin = null;
+        Storer storer;
+        Receiver receiver;
 
         public MainWindow()
         {
-            pCurrentWin = this;   //子窗口可以使用MainWindow.pCurrenWin    来访问主窗口变量及方法
+            iptmp = null;
+            pretmp = null;
 
-            Storer storer = new Storer();
-            Receiver receiver = new Receiver();
-            receiver.TCPClient_Initi();
+            pCurrentWin = this;   //子窗口可以使用MainWindow.pCurrenWin    来访问主窗口变量及方法
+            IPAddress.TryParse("192.168.1.10", out Data.remoteIP);  //remoteIP赋初值
+
+            storer = new Storer();
+            receiver = new Receiver();
+            receiver.Client_Initi();
             storer.GetConfig();
             storer.InitiTb();
 
-            Thread thredecode = new Thread(new ThreadStart(receiver.decode_Electric));
+            //thredecode = new Thread(new ThreadStart(receiver.decode_Electric));
 
-            for (int i = 0; i < threRecvs.Length; i++)
-            {
-                threRecvs[i] = new Thread(new ThreadStart(receiver.Recv_Electric));
-            }
-            for (int i = 0; i < threRecvs.Length; i++)
-            {
-                threRecvs[i].Start();
-            }
-            thredecode.Start();
+            //for (int i = 0; i < threRecvs.Length; i++)
+            //{
+            //    threRecvs[i] = new Thread(new ThreadStart(receiver.Recv_Electric));
+            //}
+            //for (int i = 0; i < threRecvs.Length; i++)
+            //{
+            //    threRecvs[i].Start();
+            //}
+            //thredecode.Start();
+
             //for (int j = 0; j < threStor.Length; j++)
             //{
 
@@ -101,6 +117,11 @@ namespace FBGEMSystem
             f2.Visible = true;
         }
 
+        private void MenuItemAnalysis_Click(object sender, RoutedEventArgs e)
+        {
+            Analysis analysis = new Analysis();
+            analysis.ShowDialog();
+        }
 
         private void MenuItemQXPL_Click(object sender, RoutedEventArgs e)
         {
@@ -179,7 +200,7 @@ namespace FBGEMSystem
         private void MenuItemEle_Click(object sender, RoutedEventArgs e)
         {
             //如果未进行通道设置，提示先设置通道
-            if (Data.isSetting == false)
+            if (Data.isChannelSetting == false)
             {
                 Data.IsControl2 = false;
                 System.Windows.Forms.MessageBox.Show("请先设置通道", "帮助");
@@ -269,6 +290,43 @@ namespace FBGEMSystem
             Canvas.SetLeft(LabelInfo, X);
             Canvas.SetTop(LabelInfo, Y);
         }
+    
+        private void MenuItemConnect_Click(object sender, RoutedEventArgs e)
+        {
+            receiver.SocketConnect();
+        }
+        private void MenuItemStart_Click(object sender, RoutedEventArgs e)
+        {
+            if (receiver.streamtoserver != null)      //必须先连接才能初始化receiver.streamtoserver
+            {
+                receiver.SocketStart();
+                if(isrecvThreadInit==false)
+                {
+                    //开启接收线程
+                    threRecvsFBG = new Thread(new ThreadStart(receiver.Recv_FBG));
+                    threRecvsEle = new Thread(new ThreadStart(receiver.Recv_Electric));
+                    threRecvsFBG.IsBackground = true;
+                    threRecvsEle.IsBackground = true;
+                    threRecvsFBG.Start();
+                    threRecvsEle.Start();
+                    isrecvThreadInit = true;
+                }
+            }
+            else
+            {
 
+                System.Windows.MessageBox.Show("请先建立连接！", "警告");
+                //调试udp
+                threRecvsEle = new Thread(new ThreadStart(receiver.Recv_Electric));
+                threRecvsEle.IsBackground = true;
+                threRecvsEle.Start();
+                //调试udp   end
+                return;
+            }
+        }
+        private void MenuItemStop_Click(object sender, RoutedEventArgs e)
+        {
+            //还需加入
+        }
     }
 }
