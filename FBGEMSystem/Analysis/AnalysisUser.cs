@@ -75,10 +75,10 @@ namespace FBGEMSystem
             {
                 for (int i = 0; i < Data.FBG_numPackage; i++)
                 {
-                    temp_ch1_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH1[i * Data.FBG_numPackage + k];
-                    temp_ch2_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH2[i * Data.FBG_numPackage + k];
-                    temp_ch3_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH3[i * Data.FBG_numPackage + k];
-                    temp_ch4_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH4[i * Data.FBG_numPackage + k];
+                    temp_ch1_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH1[i * 64 + k];
+                    temp_ch2_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH2[i * 64 + k];
+                    temp_ch3_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH3[i * 64 + k];
+                    temp_ch4_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH4[i * 64 + k];
                 }
             }
         }
@@ -126,9 +126,9 @@ namespace FBGEMSystem
                     {
                         continue;
                     }
-                    if (ch_point_signal[i, j].Count > MAX_CH_POINT_LEN)
+                    if (analysis_signal.Count > MAX_CH_POINT_LEN)
                     {
-                        while (ch_point_signal[i, j].Count > MAX_CH_POINT_LEN) //4个通道，每个通道40个点，每个点滑动窗口400个数据，每个点缓存为10
+                        while (analysis_signal.Count > MAX_CH_POINT_LEN) //4个通道，每个通道40个点，每个点滑动窗口400个数据，每个点缓存为10
                         //个窗口，当缓存满了，等待process线程处理数据，直至缓存有余量
                         {
                             Thread.Sleep(5);

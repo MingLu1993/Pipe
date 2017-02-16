@@ -308,7 +308,7 @@ namespace FBGEMSystem
                     threRecvsFBG.IsBackground = true;
                     threRecvsEle.IsBackground = true;
                     threRecvsFBG.Start();
-                    threRecvsEle.Start();
+                    //threRecvsEle.Start();
                     isrecvThreadInit = true;
                 }
             }
