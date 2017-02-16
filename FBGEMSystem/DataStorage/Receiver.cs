@@ -55,7 +55,7 @@ namespace FBGEMSystem
         Message_Electric msgEle = new Message_Electric();   //接收到的电类数据，一个数组
         Message_EleDecoded msgEleDecode = new Message_EleDecoded();   //解包后，3个数组
 
-        byte[] bytesFBG = new byte[1000];    //接收FBG数据
+        byte[] bytesFBG = new byte[10000];    //接收FBG数据
         int nrecvFBG = 0;                    //接收FBG数据的长度
         byte[] bytesEle = new byte[50000];   //接收电类数据
 
@@ -104,11 +104,12 @@ namespace FBGEMSystem
                 }
                 gmFBG.DecodeFPGAFlashConfig(config_nRecv, byte1);
                 MessageBox.Show("解析config完毕");
-                //发送"C\n"至下位机，便于下位机获取本机ip及端口号
-                udpEle.Send(bytetest,bytetest.Length,UdpEleIEP);
-                Array.Clear(byte1, 0, byte1.Length);
-                bytesEle = udpEle.Receive(ref remote);
-                MessageBox.Show("TCP、UDP连接完毕");
+                
+                //udp发送"C\n"至下位机，便于下位机获取本机ip及端口号
+                //udpEle.Send(bytetest,bytetest.Length,UdpEleIEP);
+                //Array.Clear(byte1, 0, byte1.Length);
+                //bytesEle = udpEle.Receive(ref remote);
+                //MessageBox.Show("TCP、UDP连接完毕");
             }
          }
         //tcp发送"Z\n"，开始指令

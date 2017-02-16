@@ -38,8 +38,11 @@
             this.zedGraph_IPScatter = new ZedGraph.ZedGraphControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.zedGraph_Time = new ZedGraph.ZedGraphControl();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox_CH
@@ -74,6 +77,7 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -99,7 +103,7 @@
             // 
             // zedGraph_IPCurve
             // 
-            this.zedGraph_IPCurve.Location = new System.Drawing.Point(38, 90);
+            this.zedGraph_IPCurve.Location = new System.Drawing.Point(38, 69);
             this.zedGraph_IPCurve.Margin = new System.Windows.Forms.Padding(4);
             this.zedGraph_IPCurve.Name = "zedGraph_IPCurve";
             this.zedGraph_IPCurve.ScrollGrace = 0D;
@@ -109,12 +113,12 @@
             this.zedGraph_IPCurve.ScrollMinX = 0D;
             this.zedGraph_IPCurve.ScrollMinY = 0D;
             this.zedGraph_IPCurve.ScrollMinY2 = 0D;
-            this.zedGraph_IPCurve.Size = new System.Drawing.Size(591, 396);
+            this.zedGraph_IPCurve.Size = new System.Drawing.Size(606, 417);
             this.zedGraph_IPCurve.TabIndex = 1;
             // 
             // zedGraph_IPScatter
             // 
-            this.zedGraph_IPScatter.Location = new System.Drawing.Point(734, 90);
+            this.zedGraph_IPScatter.Location = new System.Drawing.Point(729, 69);
             this.zedGraph_IPScatter.Margin = new System.Windows.Forms.Padding(4);
             this.zedGraph_IPScatter.Name = "zedGraph_IPScatter";
             this.zedGraph_IPScatter.ScrollGrace = 0D;
@@ -124,7 +128,7 @@
             this.zedGraph_IPScatter.ScrollMinX = 0D;
             this.zedGraph_IPScatter.ScrollMinY = 0D;
             this.zedGraph_IPScatter.ScrollMinY2 = 0D;
-            this.zedGraph_IPScatter.Size = new System.Drawing.Size(574, 396);
+            this.zedGraph_IPScatter.Size = new System.Drawing.Size(579, 417);
             this.zedGraph_IPScatter.TabIndex = 2;
             // 
             // tabPage2
@@ -147,6 +151,30 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "选择通道：";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.zedGraph_Time);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1345, 585);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "时域波形";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // zedGraph_Time
+            // 
+            this.zedGraph_Time.Location = new System.Drawing.Point(163, 39);
+            this.zedGraph_Time.Name = "zedGraph_Time";
+            this.zedGraph_Time.ScrollGrace = 0D;
+            this.zedGraph_Time.ScrollMaxX = 0D;
+            this.zedGraph_Time.ScrollMaxY = 0D;
+            this.zedGraph_Time.ScrollMaxY2 = 0D;
+            this.zedGraph_Time.ScrollMinX = 0D;
+            this.zedGraph_Time.ScrollMinY = 0D;
+            this.zedGraph_Time.ScrollMinY2 = 0D;
+            this.zedGraph_Time.Size = new System.Drawing.Size(1008, 501);
+            this.zedGraph_Time.TabIndex = 0;
+            // 
             // Analysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -164,6 +192,7 @@
             this.ResizeBegin += new System.EventHandler(this.Analysis_ResizeBegin);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,5 +209,7 @@
         private ZedGraph.ZedGraphControl zedGraph_IPCurve;
         private ZedGraph.ZedGraphControl zedGraph_IPScatter;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private ZedGraph.ZedGraphControl zedGraph_Time;
     }
 }

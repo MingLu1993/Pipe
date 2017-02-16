@@ -52,15 +52,19 @@ namespace FBGEMSystem
                 comboBox_Point.Items.Add(i.ToString());
             }
 
-            PaneIPCurve = zedGraph_IPCurve.GraphPane;
-            PaneIPCurve.Title.Text = "瞬时相位";        //标题
-            PaneIPCurve.XAxis.Title.Text = "Time(s)";   //横坐标
-            PaneIPCurve.YAxis.Title.Text = "Phase";     //纵坐标
+            zedGraph_Time.GraphPane.Title.Text = "时域波形";
+            zedGraph_Time.GraphPane.XAxis.Title.Text = "点";   //横坐标
+            zedGraph_Time.GraphPane.YAxis.Title.Text = "波长";     //纵坐标
 
-            PaneIPScatter = zedGraph_IPScatter.GraphPane;
-            PaneIPScatter.Title.Text = "瞬时相位自相关散点图";          //标题
-            PaneIPScatter.XAxis.Title.Text = "IP(n)";                   //横坐标
-            PaneIPScatter.YAxis.Title.Text = "IP(n+1)";                 //纵坐标
+            //PaneIPCurve = zedGraph_IPCurve.GraphPane;
+            zedGraph_IPCurve.GraphPane.Title.Text = "瞬时相位";        //标题
+            zedGraph_IPCurve.GraphPane.XAxis.Title.Text = "Time(s)";   //横坐标
+            zedGraph_IPCurve.GraphPane.YAxis.Title.Text = "Phase";     //纵坐标
+
+            //PaneIPScatter = zedGraph_IPScatter.GraphPane;
+            zedGraph_IPScatter.GraphPane.Title.Text = "瞬时相位自相关散点图";          //标题
+            zedGraph_IPScatter.GraphPane.XAxis.Title.Text = "IP(n)";                   //横坐标
+            zedGraph_IPScatter.GraphPane.YAxis.Title.Text = "IP(n+1)";                 //纵坐标
         }
 
         private void Analysis_FormClosed(object sender, FormClosedEventArgs e)
@@ -142,7 +146,7 @@ namespace FBGEMSystem
                 global.analysis_signal.Clear();
 
                 global.currentChannel = currentChannel;
-                AnalysisMethod = "瞬时相位分析";
+                AnalysisMethod = "时域波形";
                 if (isThreadRunning == false)  //如果已经开启，则不执行
                 {
                     isThreadRunning = true;
@@ -202,6 +206,8 @@ namespace FBGEMSystem
 
                     switch(AnalysisMethod)
                     {
+                        case "时域波形":     TimeDomain(process_signal);
+                                             break;
                         case "瞬时相位分析": IP(process_signal);
                                              break;
                         default:break;
@@ -209,6 +215,22 @@ namespace FBGEMSystem
                     
                 }
             }
+        }
+
+        //显示时域波形，可加入时序特征显示
+        private void TimeDomain(double[] input)
+        {
+            double x1, y1;
+            PointPairList list = new PointPairList();
+            //画原始曲线
+            for (int i = 0; i < input.Length; i++)
+            {
+                x1 = i;
+                y1 = input[i];
+                list.Add(x1, y1);
+            }
+            PaintDraw(list,zedGraph_Time, "时域波形图", "曲线图");
+
         }
         //瞬时相位处理，输入待处理的数据，得到横纵坐标，画图
         private void IP(double[] input)
@@ -225,7 +247,14 @@ namespace FBGEMSystem
                 y1 = th[i];
                 listCurve.Add(x1, y1);
             }
-            PaintDraw(listCurve, PaneIPCurve, "瞬时相位曲线图", "曲线图");
+            //画原始曲线
+            //for (int i = 0; i < input.Length; i++)
+            //{
+            //    x1 = i;
+            //    y1 = input[i];
+            //    listCurve.Add(x1, y1);
+            //}
+            PaintDraw(listCurve,zedGraph_IPCurve,"瞬时相位曲线图", "曲线图");
 
             //画散点图
             double[] th_1 = new double[th.Length - 1];
@@ -243,34 +272,36 @@ namespace FBGEMSystem
                 y2 = th_2[i];
                 listScatter.Add(x2, y2);
             }
-            PaintDraw(listScatter, PaneIPScatter, "瞬时相位散点图", "散点图");
+            PaintDraw(listScatter,zedGraph_IPScatter, "瞬时相位散点图", "散点图");
         }
 
         //画图函数
         //pList:画图数据；
-        //gPane:控件的GraphPane；
+        //zed:控件名
         //label:标签；
-        //mode:模式，曲线or散点。
-        private void PaintDraw(PointPairList pList, GraphPane gPane,string label,string mode)
+        //mode:模式，曲线图or散点图。
+        private void PaintDraw(PointPairList pList, ZedGraph.ZedGraphControl zed,string label,string mode)
         {
             LineItem myCurve;
             switch (mode)
             {
-                case ("曲线图"):gPane.CurveList.Clear();//清空曲线
+                case ("曲线图"):zed.GraphPane.CurveList.Clear();//清空曲线
                                 //创建曲线
-                                myCurve = gPane.AddCurve( label , pList, Color.Black, SymbolType.None);
+                                myCurve = zed.GraphPane.AddCurve( label , pList, Color.Black, SymbolType.None);
                                 //zedGraph1.IsShowPointValues = true;//当鼠标经过时，显示点的坐标。
-                                gPane.AxisChange();  // 在数据变化时绘制图形;
-                                break;
-                case ("散点图"):gPane.CurveList.Clear();//清空曲线
+                                zed.GraphPane.AxisChange();  // 在数据变化时绘制图形;
+                                zed.Invalidate();//刷新
+                    break;
+                case ("散点图"):zed.GraphPane.CurveList.Clear();//清空曲线
                                 //创建曲线
-                                myCurve = gPane.AddCurve(label, pList, Color.Black, SymbolType.Circle);
+                                myCurve = zed.GraphPane.AddCurve(label, pList, Color.Black, SymbolType.Circle);
                                 myCurve.Symbol.Size = 3.0f;
                                 myCurve.Symbol.Fill = new Fill(Color.Black);
                                 myCurve.Line.IsVisible = false;
                                 //zedGraph1.IsShowPointValues = true;//当鼠标经过时，显示点的坐标。
-                                gPane.AxisChange();  // 在数据变化时绘制图形;
-                                break;
+                                zed.GraphPane.AxisChange();  // 在数据变化时绘制图形;
+                                zed.Invalidate();
+                    break;
                 default: break;
             }
         }

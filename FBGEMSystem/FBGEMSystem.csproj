@@ -114,7 +114,6 @@
       <DependentUpon>Analysis.cs</DependentUpon>
     </Compile>
     <Compile Include="Analysis\AnalysisUser.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="DataStorage\GlobalMembersFBG.cs" />
     <Compile Include="DataStorage\HoldIntegerSynchronizedFBG.cs" />
     <Compile Include="RealtimeStatus\ElectricShow.xaml.cs">

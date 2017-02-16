@@ -23,3 +23,6 @@
 	 process线程中，加入瞬时相位（IP）的实现，画出曲线图和散点图。
 20170203 在GlobalMembersFBG类中，decodeDataToArray函数添加FBG数据存入缓存Receiver.process_all_msg_FBG；
 	 Data中加入isControlFBG，FBG信号分析标志位；
+20170216 修改user.cs和AnalysisUser.cs中的错误，Analysis.cs中加入画图刷新；
+         Analysis加入时域显示。
+	 bin文件夹中加入dll文件及说明。

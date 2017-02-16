@@ -310,7 +310,10 @@ namespace FBGEMSystem
             return 0;
         }
 
-        
+        float[] CH1 = new float[64 * 40];
+        float[] CH2 = new float[64 * 40];
+        float[] CH3 = new float[64 * 40];
+        float[] CH4 = new float[64 * 40];
         //解析后的完整数据，需测试
         private void decodeDataToArray(int tIndex)
         {
@@ -327,16 +330,20 @@ namespace FBGEMSystem
                         switch (j)
                         {
                             case 2:
-                                msgFBG.CH1[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                CH1[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                // msgFBG.CH1[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
                                 break;
                             case 3:
-                                msgFBG.CH2[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                CH2[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                //msgFBG.CH2[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
                                 break;
                             case 4:
-                                msgFBG.CH3[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                CH3[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                //msgFBG.CH3[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
                                 break;
                             case 5:
-                                msgFBG.CH4[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                CH4[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+                                //msgFBG.CH4[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
                                 break;
                             default:break;
                         }
@@ -346,14 +353,22 @@ namespace FBGEMSystem
             MessageIndex++;
             if(MessageIndex > 39)
             {
+                msgFBG.CH1 = CH1;
+                msgFBG.CH2 = CH2;
+                msgFBG.CH3 = CH3;
+                msgFBG.CH4 = CH4;
                 //存入存储缓冲
-                Receiver.sharedLocation_FBG.Buffer = msgFBG;
+                //Receiver.sharedLocation_FBG.Buffer = msgFBG;
                 if(Data.IsControlFBG == true)
                 {
                     Receiver.process_all_msg_FBG.Buffer = msgFBG;
                 }
                 MessageIndex = 0;
                 msgFBG = new Message_FBG();
+                CH1 = new float[64 * 40];
+                CH2 = new float[64 * 40];
+                CH3 = new float[64 * 40];
+                CH4 = new float[64 * 40];
             }
         }
 

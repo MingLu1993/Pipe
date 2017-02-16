@@ -926,10 +926,10 @@ namespace FBGEMSystem
             {
                 for (int i = 0; i < Data.FBG_numPackage; i++)
                 {
-                    temp_ch1_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH1[i * Data.FBG_numPackage + k];
-                    temp_ch2_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH2[i * Data.FBG_numPackage + k];
-                    temp_ch3_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH3[i * Data.FBG_numPackage + k];
-                    temp_ch4_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH4[i * Data.FBG_numPackage + k];
+                    temp_ch1_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH1[i * 64 + k];
+                    temp_ch2_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH2[i * 64 + k];
+                    temp_ch3_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH3[i * 64 + k];
+                    temp_ch4_point_signal[k, j * Data.FBG_numPackage + i] = msg.CH4[i * 64 + k];
                 }
             }
         }
