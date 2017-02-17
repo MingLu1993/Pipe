@@ -20,8 +20,8 @@ namespace FBGEMSystem
         float XWidth;           //用于控件随窗口变化自动缩放，窗体的宽度
         float YHeight;          //用于控件随窗口变化自动缩放，窗体的高度
 
-        GraphPane PaneIPCurve;    //用于瞬时相位分析波形图
-        GraphPane PaneIPScatter;  //用于瞬时相位分析散点图
+        //GraphPane PaneIPCurve;    //用于瞬时相位分析波形图
+        //GraphPane PaneIPScatter;  //用于瞬时相位分析散点图
 
         int channelshow = 0;      //第几通道
         int currentChannel = -1;  //通道的索引
