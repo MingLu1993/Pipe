@@ -1,0 +1,47 @@
+﻿<Window x:Class="FBGEMSystem.RealtimeStatus.ElectricShow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FBGEMSystem.RealtimeStatus"
+        xmlns:vc="clr-namespace:Visifire.Charts;assembly=WPFVisifire.Charts"
+        mc:Ignorable="d"
+        Title="电类传感器单点曲线" Height="554" Width="976.5" Closed="Window_Closed" Icon="/FBGEMSystem;component/Image/Globe32.png">
+    <Grid Margin="0,10,2,0" Height="509" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="101*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Background="LightGray"  RenderTransformOrigin="0.5,0.467" HorizontalAlignment="Stretch" Margin="-1,2,1,1">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.233"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.93"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Label x:Name="lbl_Elc" Content="类型选择" FontSize="16"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="91,23,0,0" Height="36" Width="79" RenderTransformOrigin="0.425,2.556"   />
+            <ComboBox x:Name="comboBox_typeNum"   HorizontalAlignment="Right" Margin="0,23,75,0" VerticalAlignment="Top" Width="109"    SelectionChanged="Type_SelectionChanged" Height="22" RenderTransformOrigin="0.557,3.073"  />
+            <Label x:Name="lbl_channel1" Content="通道选择" FontSize="16" VerticalAlignment="Top" Margin="91,18,89,0" Height="36"   />
+            <ComboBox x:Name="comboBox_CHNum"   HorizontalAlignment="Right" Margin="0,23,75,0" VerticalAlignment="Top" Width="109"    SelectionChanged="CHNum_SelectionChanged" Height="22" RenderTransformOrigin="0.557,3.073"  />
+
+        </StackPanel>
+        <Grid x:Name="LayoutRoot" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <vc:Chart x:Name="chart"    Grid.Column="0" Grid.Row="0" Background="AliceBlue"   CornerRadius="10,10,10,10" Theme="Theme1" ShadowEnabled="True" ScrollingEnabled="True" AllowDrop="True" Margin="0,10,10.4,1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
+                <vc:Chart.AxesY >
+                    <vc:Axis x:Name="SingleAy"  Title=""   TitleFontColor="MediumBlue" TitleFontSize="18">
+                    </vc:Axis>
+                </vc:Chart.AxesY>
+                <vc:Chart.AxesX>
+                    <vc:Axis x:Name="SingleAx"  ClosestPlotDistance="0"  Title="" TitleFontSize="18" Interval="1000" >
+                    </vc:Axis>
+                </vc:Chart.AxesX>
+                <vc:Chart.Series>
+                    <vc:DataSeries x:Name="ds"  RenderAs="QuickLine"  Bevel="True" VerticalContentAlignment="Stretch"  AutoFitToPlotArea="True"  Color="Blue" ShadowEnabled="True" SnapsToDevicePixels="False" AllowDrop="True" />
+                </vc:Chart.Series>
+            </vc:Chart>
+
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,199 @@
+﻿<Window x:Class="FBGEMSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        Title="FBGEMS" Height="600"  Width="1000"  WindowState="Normal"  Icon="Image/Globe32.png" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterScreen" WindowStyle="None">
+
+    <Window.Background>
+        <ImageBrush ImageSource="Image/GroundBack1.jpg"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style x:Key="MLB_MenuItem" TargetType="{x:Type MenuItem}">
+            <Setter Property="Foreground" Value="#999999" />
+        </Style>
+
+        <Style x:Key="MLB_Separator" TargetType="{x:Type Separator}">
+            <Setter Property="Margin" Value="0,3,0,3" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Separator}">
+                        <Grid>
+                            <Rectangle Height="1" Stroke="#efefef" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="565*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" BorderThickness="1" CornerRadius="3" SnapsToDevicePixels="True"  BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"  Padding="5,3"  VerticalAlignment="Top" >
+            <Canvas Grid.Row="0" Height="28" VerticalAlignment="Top" >
+                <Label x:Name="window" PreviewMouseLeftButtonDown="BackGround_MouseMove" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="1120" Height="22"/>
+                <TextBlock  Text="液压管路故障诊断系统" VerticalAlignment="Center"  Margin="8,0,0,0" FontFamily="Arial" FontSize="20" FontWeight="Bold" Foreground="#FF34DB00"/>
+                <Button Width="18" Opacity="0.5" Background="AliceBlue"  Content="-" Canvas.Right="26" Canvas.Top="0" Click="ButtonMin_Click" />
+                <!--<Button Width="18"  Content="□" Canvas.Right="26"  Canvas.Top="0" Click="ButtonMax_Click">
+                    <Button.Background>
+                        <SolidColorBrush Color="Aqua" Opacity="0"/>
+                    </Button.Background>
+                </Button>-->
+                <Button  Background="AliceBlue" Width="18" Content="X" Canvas.Right="8" Canvas.Top="0" Click="ButtonQuit_Click" />
+            </Canvas>
+        </Border>
+
+        <Border Grid.Row="1" BorderBrush="Silver" BorderThickness="1"  HorizontalAlignment="Stretch" Name="HeadLine" VerticalAlignment="Top" >
+            <Grid Width="Auto">
+                <Menu Name="Titles" Margin="5,5,5,5" Background="AliceBlue" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                    <MenuItem Header="实时监测" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/Chart32.png"/>
+                        </MenuItem.Icon>
+                        <MenuItem Header="电类信号曲线" Style="{StaticResource MLB_MenuItem}" Click="MenuItemEle_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="全部测点曲线" Style="{StaticResource MLB_MenuItem}" Click="MenuItemZTQS_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="全部测点柱状图" Style="{StaticResource MLB_MenuItem}" Click="MenuItemZZT_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+
+                    </MenuItem>
+
+                    <MenuItem Header="信号处理" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/Globe32.png"/>
+                        </MenuItem.Icon>
+                        <!--<MenuItem Header="实时FFT分析" Style="{StaticResource MLB_MenuItem}" Click="MenuItemFFT_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>-->
+                        <MenuItem Header="信号处理与分析" Style="{StaticResource MLB_MenuItem}" Click="MenuItemXB_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="信号分析" Style="{StaticResource MLB_MenuItem}" Click="MenuItemAnalysis_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+
+                    <!--<MenuItem Header="3D演示" Style="{StaticResource MLB_MenuItem}" Click="MenuItem3DSimulation_Click"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/42.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>-->
+
+                    <!--<MenuItem Header="系统设置" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/gear.png"/>
+                        </MenuItem.Icon>
+                        <MenuItem Header="坐标范围" Style="{StaticResource MLB_MenuItem}" Click="MenuItemQXPL_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="通信设置" Style="{StaticResource MLB_MenuItem}" Click="MenuItemTXSZ_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="数据库设置" Style="{StaticResource MLB_MenuItem}" Click="MenuItemDataSet_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>-->
+
+                    <MenuItem Header="实时数据" Style="{StaticResource MLB_MenuItem}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/46.jpg"/>
+                        </MenuItem.Icon>
+                        <MenuItem Header="电类传感器" Style="{StaticResource MLB_MenuItem}" Click="MenuItemCiucitSensor_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="FBG数据" Style="{StaticResource MLB_MenuItem}" Click="MenuItemFBGSensor_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="FBG数据2" Style="{StaticResource MLB_MenuItem}" Click="MenuItemFBGSensor1_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+
+                    <MenuItem Header="设置" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemChoosePicture_Click" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/gear.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="连接" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemConnect_Click" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/36.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="开始" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemStart_Click" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/36.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="停止" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemStop_Click" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/36.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="帮助" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/book SH.png"/>
+                        </MenuItem.Icon>
+                        <MenuItem Header="系统帮助" Style="{StaticResource MLB_MenuItem}" Click="MenuItemSysHelp_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="关于" Style="{StaticResource MLB_MenuItem}" Click="MenuItemAbout_Click" Foreground="Black">
+                            <MenuItem.Icon>
+                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+        </Border>
+
+        <!--<Border Grid.Row="2" BorderThickness="1"  HorizontalAlignment="Stretch" Name="border1" VerticalAlignment="Stretch" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"  Margin="1,1,1,1">
+            <Border.Background>
+                <ImageBrush ImageSource="Image/界面.jpg"/>
+            </Border.Background>
+        </Border>-->
+
+        <Border BorderBrush="Silver" BorderThickness="1" Grid.Row="3" HorizontalAlignment="Center" Name="border2" VerticalAlignment="Stretch"  FocusManager.IsFocusScope="True">
+            <TextBlock Text="" FontFamily="YouYuan" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="35" FontWeight="Bold" />
+        </Border>
+
+        <!--<Image x:Name="image" HorizontalAlignment="Left" Height="487" Grid.Row="2" VerticalAlignment="Top" Width="992" MouseDown="Image_MouseDown"/>-->
+
+        <Canvas Name="canvas"  Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  MouseDown="Image_MouseDown" Margin="-10,0,0,0"/>
+
+    </Grid>
+</Window>
