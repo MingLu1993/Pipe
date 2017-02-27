@@ -33,16 +33,17 @@
             this.comboBox_Point = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.zedGraph_FFT = new ZedGraph.ZedGraphControl();
+            this.zedGraph_Time = new ZedGraph.ZedGraphControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.zedGraph_IPCurve = new ZedGraph.ZedGraphControl();
             this.zedGraph_IPScatter = new ZedGraph.ZedGraphControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.zedGraph_Time = new ZedGraph.ZedGraphControl();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox_CH
@@ -87,6 +88,45 @@
             this.tabControl1.Size = new System.Drawing.Size(1353, 611);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.zedGraph_FFT);
+            this.tabPage3.Controls.Add(this.zedGraph_Time);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1345, 585);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "时频域波形";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // zedGraph_FFT
+            // 
+            this.zedGraph_FFT.Location = new System.Drawing.Point(654, 70);
+            this.zedGraph_FFT.Name = "zedGraph_FFT";
+            this.zedGraph_FFT.ScrollGrace = 0D;
+            this.zedGraph_FFT.ScrollMaxX = 0D;
+            this.zedGraph_FFT.ScrollMaxY = 0D;
+            this.zedGraph_FFT.ScrollMaxY2 = 0D;
+            this.zedGraph_FFT.ScrollMinX = 0D;
+            this.zedGraph_FFT.ScrollMinY = 0D;
+            this.zedGraph_FFT.ScrollMinY2 = 0D;
+            this.zedGraph_FFT.Size = new System.Drawing.Size(561, 405);
+            this.zedGraph_FFT.TabIndex = 1;
+            // 
+            // zedGraph_Time
+            // 
+            this.zedGraph_Time.Location = new System.Drawing.Point(58, 70);
+            this.zedGraph_Time.Name = "zedGraph_Time";
+            this.zedGraph_Time.ScrollGrace = 0D;
+            this.zedGraph_Time.ScrollMaxX = 0D;
+            this.zedGraph_Time.ScrollMaxY = 0D;
+            this.zedGraph_Time.ScrollMaxY2 = 0D;
+            this.zedGraph_Time.ScrollMinX = 0D;
+            this.zedGraph_Time.ScrollMinY = 0D;
+            this.zedGraph_Time.ScrollMinY2 = 0D;
+            this.zedGraph_Time.Size = new System.Drawing.Size(560, 405);
+            this.zedGraph_Time.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -151,35 +191,11 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "选择通道：";
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.zedGraph_Time);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1345, 585);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "时域波形";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // zedGraph_Time
-            // 
-            this.zedGraph_Time.Location = new System.Drawing.Point(163, 39);
-            this.zedGraph_Time.Name = "zedGraph_Time";
-            this.zedGraph_Time.ScrollGrace = 0D;
-            this.zedGraph_Time.ScrollMaxX = 0D;
-            this.zedGraph_Time.ScrollMaxY = 0D;
-            this.zedGraph_Time.ScrollMaxY2 = 0D;
-            this.zedGraph_Time.ScrollMinX = 0D;
-            this.zedGraph_Time.ScrollMinY = 0D;
-            this.zedGraph_Time.ScrollMinY2 = 0D;
-            this.zedGraph_Time.Size = new System.Drawing.Size(1008, 501);
-            this.zedGraph_Time.TabIndex = 0;
-            // 
             // Analysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1377, 697);
+            this.ClientSize = new System.Drawing.Size(1370, 697);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox_Point);
@@ -191,8 +207,8 @@
             this.Load += new System.EventHandler(this.Analysis_Load);
             this.ResizeBegin += new System.EventHandler(this.Analysis_ResizeBegin);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,5 +227,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage3;
         private ZedGraph.ZedGraphControl zedGraph_Time;
+        private ZedGraph.ZedGraphControl zedGraph_FFT;
     }
 }
