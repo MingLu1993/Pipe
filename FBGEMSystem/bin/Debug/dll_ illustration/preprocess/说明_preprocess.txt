@@ -1,0 +1,5 @@
+命名空间：preprocess
+类名：Cpreprocess
+方法：output=preprocess(input)。输入——n维数组，输出——n维数组
+
+功能：对FBG传感器数据进行预处理：求应变响应
