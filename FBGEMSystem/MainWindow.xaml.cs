@@ -30,6 +30,7 @@ using FBGEMSystem.Set;
 using System.Net;
 using getip;
 using preprocess;
+using plotfft;  //求FFTdll
 
 namespace FBGEMSystem
 {
@@ -40,8 +41,7 @@ namespace FBGEMSystem
     {
         Cgetip iptmp = new Cgetip();
         Cpreprocess pretmp = new Cpreprocess();
-
-
+        Cplotfft plotfft = new Cplotfft();
         //只使用了一个线程
         private bool isrecvThreadInit = false;
         Thread threRecvsFBG;
@@ -62,11 +62,11 @@ namespace FBGEMSystem
             pCurrentWin = this;   //子窗口可以使用MainWindow.pCurrenWin    来访问主窗口变量及方法
             IPAddress.TryParse("192.168.1.10", out Data.remoteIP);  //remoteIP赋初值
 
-            storer = new Storer();
+            //storer = new Storer();
             receiver = new Receiver();
             receiver.Client_Initi();
-            storer.GetConfig();
-            storer.InitiTb();
+            //storer.GetConfig();
+            //storer.InitiTb();
 
             //thredecode = new Thread(new ThreadStart(receiver.decode_Electric));
 

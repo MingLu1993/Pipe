@@ -56,6 +56,10 @@ namespace FBGEMSystem
             zedGraph_Time.GraphPane.XAxis.Title.Text = "点";   //横坐标
             zedGraph_Time.GraphPane.YAxis.Title.Text = "波长";     //纵坐标
 
+            zedGraph_FFT.GraphPane.Title.Text = "频谱";
+            zedGraph_FFT.GraphPane.XAxis.Title.Text = "频率（Hz）";   //横坐标
+            zedGraph_FFT.GraphPane.YAxis.Title.Text = "幅值";     //纵坐标
+
             //PaneIPCurve = zedGraph_IPCurve.GraphPane;
             zedGraph_IPCurve.GraphPane.Title.Text = "瞬时相位";        //标题
             zedGraph_IPCurve.GraphPane.XAxis.Title.Text = "Time(s)";   //横坐标
@@ -206,7 +210,7 @@ namespace FBGEMSystem
 
                     switch(AnalysisMethod)
                     {
-                        case "时域波形":     TimeDomain(process_signal);
+                        case "时频域波形":     TimeDomain(process_signal);
                                              break;
                         case "瞬时相位分析": IP(process_signal);
                                              break;
@@ -230,6 +234,21 @@ namespace FBGEMSystem
                 list.Add(x1, y1);
             }
             PaintDraw(list,zedGraph_Time, "时域波形图", "曲线图");
+
+            // 画频谱
+            double[] f = new double[0];  //横坐标
+            double[] fftdata = new double[0]; //纵坐标
+            global.FFT_Process(input, ref f, ref fftdata);
+            double x2, y2;
+            PointPairList listFFT = new PointPairList();
+            //画原始曲线
+            for (int i = 0; i < f.Length; i++)
+            {
+                x2 = f[i];
+                y2 = fftdata[i];
+                listFFT.Add(x2, y2);
+            }
+            PaintDraw(listFFT, zedGraph_FFT, "频谱", "曲线图");
 
         }
         //瞬时相位处理，输入待处理的数据，得到横纵坐标，画图
