@@ -32,7 +32,9 @@ namespace FBGEMSystem
         //电类传感器个数
         public const int num_Sensor = 8;        //add
         //电类传感器包数
-        public const int num_Package = 40;      //add  
+        public const int num_Package = 40;      //add
+        //光栅通道数
+        public const int FBG_Channel_Num = 4;  
         //FBG一包数据个数
         public const int FBG_numPackage = 40;   //待定！！！！！！！！！！
 
@@ -40,9 +42,12 @@ namespace FBGEMSystem
         public static Electric_sensor[] Temperature = new Electric_sensor[num_Sensor];
         public static Electric_sensor[] Vibration = new Electric_sensor[num_Sensor];
 
+
         public static List<int> PressureIndex = new List<int>();          //使用的压力传感器的通道索引
         public static List<int> TemperatureIndex = new List<int>();       //使用的温度传感器的通道索引
         public static List<int> VibrationIndex = new List<int>();         //使用的振动传感器的通道索引
+
+        public static List<int> FBGChannelIndex = new List<int>();        //使用的光栅通道索引
 
         public static bool isChannelSetting = false;
 
@@ -86,7 +91,34 @@ namespace FBGEMSystem
             get { return chnum4; }
             set { chnum4 = value; }
         }
-
+        //光纤光栅通道1
+        private static int fbgCH1 = 0;
+        public static int FBGCH1
+        {
+            get { return fbgCH1; }
+            set { fbgCH1 = value; }
+        }
+        //光纤光栅通道2
+        private static int fbgCH2 = 0;
+        public static int FBGCH2
+        {
+            get { return fbgCH2; }
+            set { fbgCH2 = value; }
+        }
+        //光纤光栅通道1
+        private static int fbgCH3 = 0;
+        public static int FBGCH3
+        {
+            get { return fbgCH3; }
+            set { fbgCH3 = value; }
+        }
+        //光纤光栅通道1
+        private static int fbgCH4 = 0;
+        public static int FBGCH4
+        {
+            get { return fbgCH4; }
+            set { fbgCH4 = value; }
+        }
         private static float[] ch1 = new float[num_Sensor*num_Package];
         public static float[] Ch1
         {

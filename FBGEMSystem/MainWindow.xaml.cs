@@ -42,11 +42,13 @@ namespace FBGEMSystem
         Cgetip iptmp = new Cgetip();
         Cpreprocess pretmp = new Cpreprocess();
         Cplotfft plotfft = new Cplotfft();
+
+
         //只使用了一个线程
         private bool isrecvThreadInit = false;
         Thread threRecvsFBG;
         Thread threRecvsEle;
-        Thread[] threStor = new Thread[1];
+        Thread threStor;
         //Thread thredecode;不需要电类解包缓存
 
 
@@ -62,11 +64,10 @@ namespace FBGEMSystem
             pCurrentWin = this;   //子窗口可以使用MainWindow.pCurrenWin    来访问主窗口变量及方法
             IPAddress.TryParse("192.168.1.10", out Data.remoteIP);  //remoteIP赋初值
 
-            //storer = new Storer();
+           
             receiver = new Receiver();
             receiver.Client_Initi();
-            //storer.GetConfig();
-            //storer.InitiTb();
+            
 
             //thredecode = new Thread(new ThreadStart(receiver.decode_Electric));
 
@@ -297,11 +298,20 @@ namespace FBGEMSystem
         }
         private void MenuItemStart_Click(object sender, RoutedEventArgs e)
         {
+            
             if (receiver.streamtoserver != null)      //必须先连接才能初始化receiver.streamtoserver
             {
                 receiver.SocketStart();
-                if(isrecvThreadInit==false)
+                if (isrecvThreadInit == false)
                 {
+                    storer = new Storer();
+                    storer.GetConfig();
+                    storer.InitiTb();
+                    threStor = new Thread(new ThreadStart(storer.Stor));
+                    // storer.Stor();
+                    threStor.Start();
+                    threStor.IsBackground = true;
+
                     //开启接收线程
                     threRecvsFBG = new Thread(new ThreadStart(receiver.Recv_FBG));
                     threRecvsEle = new Thread(new ThreadStart(receiver.Recv_Electric));
@@ -310,10 +320,19 @@ namespace FBGEMSystem
                     threRecvsFBG.Start();
                     //threRecvsEle.Start();
                     isrecvThreadInit = true;
+
                 }
             }
             else
             {
+              
+                storer = new Storer();
+                storer.GetConfig();
+                storer.InitiTb();
+                threStor = new Thread(new ThreadStart(storer.Stor));
+                // storer.Stor();
+                threStor.Start();
+                threStor.IsBackground = true;
 
                 System.Windows.MessageBox.Show("请先建立连接！", "警告");
                 //调试udp

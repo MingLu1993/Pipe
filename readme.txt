@@ -27,3 +27,5 @@
          Analysis加入时域显示。
 	 bin文件夹中加入dll文件及说明。
 20170227 Analysis.cs中加入FFT图。
+20170228：Store.cs中添加FBG存储内容；setting.cs中添加FBG与电类通道选择赋值；Mainwindow.cs中添加Srore.stor存储线程
+20170228 Store.cs修改数据表名格式
