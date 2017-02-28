@@ -71,6 +71,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\MWArray.dll</HintPath>
     </Reference>
+    <Reference Include="plotfft">
+      <HintPath>F:\matlab\管路系统\plotfft\for_redistribution_files_only\plotfft.dll</HintPath>
+    </Reference>
     <Reference Include="preprocess">
       <HintPath>..\..\..\c#\WinForm_test2_LL\WinForm_test2\WinForm_test2\bin\preprocess.dll</HintPath>
     </Reference>

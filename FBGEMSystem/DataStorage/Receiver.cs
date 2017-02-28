@@ -124,6 +124,7 @@ namespace FBGEMSystem
                 }         
             
         }
+        //光纤光栅数据接收
         public void Recv_FBG()
         {
             try
@@ -152,6 +153,7 @@ namespace FBGEMSystem
             }
         }
 
+        //电类数据接收
         public void Recv_Electric()
         {
             try
@@ -181,6 +183,10 @@ namespace FBGEMSystem
                             {
                                 sharedLocation1_Ele.Buffer = msgEleDecode;
                             }
+                        }
+                        if (sharedLocation_Ele.isFull == false)
+                        {
+                            sharedLocation_Ele.Buffer = msgEleDecode;
                         }
                         //if (process_all_msgEle.isFull == false)
                         //{

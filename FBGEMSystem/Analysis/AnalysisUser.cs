@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using MathWorks.MATLAB.NET.Arrays;
 using MathWorks.MATLAB.NET.Utility;
+using plotfft;  //求FFTdll
 using getip;   //瞬时相位分析dll
 using preprocess;   //预处理dll
 
@@ -45,6 +46,7 @@ namespace FBGEMSystem
         public int sample = 0; //采样间隔点
 
         Cpreprocess prepro = new Cpreprocess();   //预处理
+        Cplotfft fft_process = new Cplotfft();           //频谱
         Cgetip ip_process = new Cgetip();           //瞬时相位
 
         /*
@@ -198,6 +200,24 @@ namespace FBGEMSystem
             MWNumericArray th_temp = result_IP[1] as MWNumericArray;   //第二个输出为瞬时相位th，
             t = (double[])t_temp.ToVector(MWArrayComponent.Real);      
             th = (double[])th_temp.ToVector(MWArrayComponent.Real);
+        }
+
+        public void FFT_Process(double[] processSignal, ref double[] f, ref double[] fftdata)
+        {
+            double[] result = new double[0];
+            //double[] IP_Input = new double[0];
+            //预处理数据
+            MWNumericArray pre = new MWNumericArray(processSignal);
+            MWNumericArray FFT_Input = (MWNumericArray)prepro.preprocess(pre);
+
+            MWArray[] result_FFT = new MWArray[2];               //存放输出的数据数组，有两个输出数据
+            //瞬时相位分析函数
+            result_FFT = fft_process.plotfft(2, FFT_Input, Data.SamplingRate_FBG);
+
+            MWNumericArray f_temp = result_FFT[0] as MWNumericArray;   //第一个输出为频率f，
+            MWNumericArray fftdata_temp = result_FFT[1] as MWNumericArray;   //第二个输出为幅值fftdata，
+            f = (double[])f_temp.ToVector(MWArrayComponent.Real);
+            fftdata = (double[])fftdata_temp.ToVector(MWArrayComponent.Real);
         }
 
     }
