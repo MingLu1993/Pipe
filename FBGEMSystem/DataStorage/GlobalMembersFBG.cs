@@ -161,9 +161,7 @@ namespace FBGEMSystem
         //4:个数，通道3。。。
         //5:个数，通道4。。。
 
-        public static byte[,,] uchPosPeaks = new byte[40, 6, 64];  //写文件   用于取全部数据          还在编写！！！！
-        public static float[,,] fPeaksAllf = new float[40, 6, 64];  //用于取全部数据,        还在编写！！！！
-        public static ushort[,,] usiPeaksAll = new ushort[40, 6, 6]; //用于取全部数据       还在编写！！！！
+
 
         public static DEVICECONFIG g_DeviceConfigPara = new DEVICECONFIG();
         public static DEVICESTATUS g_DeviceStatusPara = new DEVICESTATUS();
@@ -320,6 +318,7 @@ namespace FBGEMSystem
             for (int j = 2; j < 6; j++)//取FBG四个通道
             {
                 int numChX = gPosPeaks[tIndex, j, 0];
+
                 if (numChX < 64)
                 {
                     //gPeeks1T[j, 0] = gPosPeaks[tIndex, j, 0];
@@ -331,6 +330,7 @@ namespace FBGEMSystem
                         {
                             case 2:
                                 CH1[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
+
                                 // msgFBG.CH1[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
                                 break;
                             case 3:
@@ -358,7 +358,7 @@ namespace FBGEMSystem
                 msgFBG.CH3 = CH3;
                 msgFBG.CH4 = CH4;
                 //存入存储缓冲
-                //Receiver.sharedLocation_FBG.Buffer = msgFBG;
+                Receiver.sharedLocation_FBG.Buffer = msgFBG;
                 if(Data.IsControlFBG == true)
                 {
                     Receiver.process_all_msg_FBG.Buffer = msgFBG;
