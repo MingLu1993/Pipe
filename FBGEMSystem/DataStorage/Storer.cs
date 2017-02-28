@@ -124,16 +124,16 @@ namespace FBGEMSystem
                 try
                 {
                     msg_Ele = Receiver.sharedLocation_Ele.Buffer;
-                    msg_FBG = Receiver.sharedLocation_FBG.Buffer;
+                    //msg_FBG = Receiver.sharedLocation_FBG.Buffer;
 
                     CH1_Pres = msg_Ele.CH1_Press;
                     CH2_Temp = msg_Ele.CH2_Temp;
                     CH3_Vibration = msg_Ele.CH3_Vibration;
 
-                    CH1_FBG = msg_FBG.CH1;
-                    CH2_FBG = msg_FBG.CH2;
-                    CH3_FBG = msg_FBG.CH3;
-                    CH4_FBG = msg_FBG.CH4;
+                    //CH1_FBG = msg_FBG.CH1;
+                    //CH2_FBG = msg_FBG.CH2;
+                    //CH3_FBG = msg_FBG.CH3;
+                    //CH4_FBG = msg_FBG.CH4;
 
                     dateTime = msg_Ele.dataTime;
                     RowsCount_Ele = InsertRows_Ele(0, dt_Pres);
@@ -196,7 +196,7 @@ namespace FBGEMSystem
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.ToString());
+                    //MessageBox.Show(e.ToString());
                 }
             }
 
@@ -360,22 +360,23 @@ namespace FBGEMSystem
       
                 string[] AllsqlStr = new string[4];
                 string[] tableName = new string[4];
-                
+                string timenow = System.DateTime.Now.ToLongTimeString().ToString();
+                string[] splitTime = timenow.Split(':');
                 string NowTime = DateTime.Now.Year.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Day.ToString()+"_"
-                                + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString();
+                                +splitTime[0]+splitTime[1]+splitTime[2];
                 
                 for (int i = 0; i < Data.type_Sensor; i++)
                 {
                     switch (i)
                     {
                         case 0:
-                            tableName[i] =  NowTime+ "Pressure";
+                            tableName[i] = "Pipe" + NowTime + "Pressure";
                             break;
                         case 1:
-                            tableName[i] =  NowTime+ "Temperature";
+                            tableName[i] = "Pipe" + NowTime + "Temperature";
                             break;
                         case 2:
-                            tableName[i] = NowTime+ "Vibration";
+                            tableName[i] = "Pipe" + NowTime + "Vibration";
                             break;
                         default:
                             break;
@@ -436,7 +437,7 @@ namespace FBGEMSystem
                 //    }
                 //}
                 //AllsqlStr[0] += ")";
-               tableName[3]=  NowTime+ "FBG";
+               tableName[3]= "Pipe"+ NowTime+ "FBG";
                 AllsqlStr[3] = sqlStr + tableName[3] + "( " + "ID numeric identity(1,1) primary key,"
                                  + "Time varchar(20),";
 
