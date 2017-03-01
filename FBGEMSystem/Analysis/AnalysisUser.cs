@@ -8,6 +8,7 @@ using MathWorks.MATLAB.NET.Utility;
 using plotfft;  //求FFTdll
 using getip;   //瞬时相位分析dll
 using preprocess;   //预处理dll
+using mfdfa;    //MFDFA_dll
 
 namespace FBGEMSystem
 {
@@ -48,6 +49,7 @@ namespace FBGEMSystem
         Cpreprocess prepro = new Cpreprocess();   //预处理
         Cplotfft fft_process = new Cplotfft();           //频谱
         Cgetip ip_process = new Cgetip();           //瞬时相位
+        Cmfdfa mfdfa_process = new Cmfdfa();               //MFDFA
 
         /*
          * 删除数据帧队列，同步操作，返回出队数据帧
@@ -218,6 +220,29 @@ namespace FBGEMSystem
             MWNumericArray fftdata_temp = result_FFT[1] as MWNumericArray;   //第二个输出为幅值fftdata，
             f = (double[])f_temp.ToVector(MWArrayComponent.Real);
             fftdata = (double[])fftdata_temp.ToVector(MWArrayComponent.Real);
+        }
+        public void MFDFA_Process(double[] processSignal, ref double[] Hq, ref double[] tq, ref double[] alpha, ref double[] f, ref double[] q)
+        {
+            double[] result = new double[0];
+            //double[] IP_Input = new double[0];
+            //预处理数据
+            MWNumericArray pre = new MWNumericArray(processSignal);
+            MWNumericArray MFDFA_Input = (MWNumericArray)prepro.preprocess(pre);
+
+            MWArray[] result_MFDFA = new MWArray[5];               //存放输出的数据数组，有5个输出数据
+            //瞬时相位分析函数
+            result_MFDFA = mfdfa_process.mfdfa(5, MFDFA_Input);
+
+            MWNumericArray Hq_temp = result_MFDFA[0] as MWNumericArray;
+            MWNumericArray tq_temp = result_MFDFA[1] as MWNumericArray;
+            MWNumericArray alpha_temp = result_MFDFA[2] as MWNumericArray;
+            MWNumericArray f_temp = result_MFDFA[3] as MWNumericArray;
+            MWNumericArray q_temp = result_MFDFA[4] as MWNumericArray;
+            Hq = (double[])Hq_temp.ToVector(MWArrayComponent.Real);
+            tq = (double[])tq_temp.ToVector(MWArrayComponent.Real);
+            alpha = (double[])alpha_temp.ToVector(MWArrayComponent.Real);
+            f = (double[])f_temp.ToVector(MWArrayComponent.Real);
+            q = (double[])q_temp.ToVector(MWArrayComponent.Real);
         }
 
     }

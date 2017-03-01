@@ -31,6 +31,7 @@ using System.Net;
 using getip;
 using preprocess;
 using plotfft;  //求FFTdll
+using mfdfa;    //MFDFA_dll
 
 namespace FBGEMSystem
 {
@@ -42,6 +43,7 @@ namespace FBGEMSystem
         Cgetip iptmp = new Cgetip();
         Cpreprocess pretmp = new Cpreprocess();
         Cplotfft plotfft = new Cplotfft();
+        Cmfdfa mf = new Cmfdfa();
 
 
         //只使用了一个线程
