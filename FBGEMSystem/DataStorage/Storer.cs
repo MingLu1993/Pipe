@@ -34,6 +34,7 @@ namespace FBGEMSystem
 
         //public float[] CH4 = new float[64 * 40];
         public string dateTime = "";
+        public string FBGTime = "";
         private SqlConnection conn;
         //更改为电类传感器类型的三张数据表
         public IDataParameter[] parameters = new IDataParameter[Data.type_Sensor];
@@ -100,7 +101,7 @@ namespace FBGEMSystem
                 CHNum_FBG[1] = Data.FBGCH2;
                 CHNum_FBG[2] = Data.FBGCH3;
                 CHNum_FBG[3] = Data.FBGCH4;
-
+                
                 // Data.Chnum4 = CHNum[3];
 
             }
@@ -144,6 +145,7 @@ namespace FBGEMSystem
                         CH2_FBG = msg_FBG.CH2;
                         CH3_FBG = msg_FBG.CH3;
                         CH4_FBG = msg_FBG.CH4;
+                        FBGTime = msg_FBG.dataTime;
                         RowsCount_FBG = InsertRows_FBG(dt_FBG);
                     }
                     
@@ -296,7 +298,7 @@ namespace FBGEMSystem
             {
 
             DataRow row_FBG = FBGdt.NewRow();
-            row_FBG["Time"] = nowTime;
+            row_FBG["Time"] = FBGTime;
 
             for(int k=0;k<Data.FBG_numPackage;k++)
             {
