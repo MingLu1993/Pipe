@@ -205,7 +205,7 @@
             // textBox_d_f
             // 
             this.textBox_d_f.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox_d_f.Location = new System.Drawing.Point(843, 447);
+            this.textBox_d_f.Location = new System.Drawing.Point(758, 447);
             this.textBox_d_f.Name = "textBox_d_f";
             this.textBox_d_f.Size = new System.Drawing.Size(83, 29);
             this.textBox_d_f.TabIndex = 10;
@@ -213,7 +213,7 @@
             // textBox_d_alpha
             // 
             this.textBox_d_alpha.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox_d_alpha.Location = new System.Drawing.Point(699, 447);
+            this.textBox_d_alpha.Location = new System.Drawing.Point(602, 447);
             this.textBox_d_alpha.Name = "textBox_d_alpha";
             this.textBox_d_alpha.Size = new System.Drawing.Size(83, 29);
             this.textBox_d_alpha.TabIndex = 9;
@@ -221,7 +221,7 @@
             // textBox_alpha0
             // 
             this.textBox_alpha0.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox_alpha0.Location = new System.Drawing.Point(547, 447);
+            this.textBox_alpha0.Location = new System.Drawing.Point(445, 447);
             this.textBox_alpha0.Name = "textBox_alpha0";
             this.textBox_alpha0.Size = new System.Drawing.Size(83, 29);
             this.textBox_alpha0.TabIndex = 8;
@@ -230,7 +230,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(399, 450);
+            this.label3.Location = new System.Drawing.Point(291, 450);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 19);
             this.label3.TabIndex = 7;
@@ -239,30 +239,30 @@
             // label_d_f
             // 
             this.label_d_f.AutoSize = true;
-            this.label_d_f.Font = new System.Drawing.Font("Cambria Math", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_d_f.Location = new System.Drawing.Point(797, 416);
+            this.label_d_f.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_d_f.Location = new System.Drawing.Point(713, 450);
             this.label_d_f.Name = "label_d_f";
-            this.label_d_f.Size = new System.Drawing.Size(65, 89);
+            this.label_d_f.Size = new System.Drawing.Size(39, 21);
             this.label_d_f.TabIndex = 6;
             this.label_d_f.Text = "Δf=";
             // 
             // label_d_alpha
             // 
             this.label_d_alpha.AutoSize = true;
-            this.label_d_alpha.Font = new System.Drawing.Font("Cambria Math", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_d_alpha.Location = new System.Drawing.Point(647, 416);
+            this.label_d_alpha.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_d_alpha.Location = new System.Drawing.Point(553, 450);
             this.label_d_alpha.Name = "label_d_alpha";
-            this.label_d_alpha.Size = new System.Drawing.Size(69, 89);
+            this.label_d_alpha.Size = new System.Drawing.Size(43, 21);
             this.label_d_alpha.TabIndex = 5;
             this.label_d_alpha.Text = "Δα=";
             // 
             // label_alpha0
             // 
             this.label_alpha0.AutoSize = true;
-            this.label_alpha0.Font = new System.Drawing.Font("Cambria Math", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_alpha0.Location = new System.Drawing.Point(497, 416);
+            this.label_alpha0.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_alpha0.Location = new System.Drawing.Point(399, 450);
             this.label_alpha0.Name = "label_alpha0";
-            this.label_alpha0.Size = new System.Drawing.Size(68, 89);
+            this.label_alpha0.Size = new System.Drawing.Size(40, 21);
             this.label_alpha0.TabIndex = 4;
             this.label_alpha0.Text = "α0=";
             // 
