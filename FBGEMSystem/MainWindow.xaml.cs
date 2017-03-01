@@ -287,7 +287,7 @@ namespace FBGEMSystem
             LabelInfo.Width = 50;
             LabelInfo.Height = 30;
             LabelInfo.Foreground = Brushes.Red;
-            LabelInfo.FontSize = 20;
+            LabelInfo.FontSize = 12;
 
             canvas.Children.Add(LabelInfo);
             Canvas.SetLeft(LabelInfo, X);
