@@ -291,7 +291,12 @@ namespace FBGEMSystem
             Canvas.SetLeft(LabelInfo, X);
             Canvas.SetTop(LabelInfo, Y);
         }
-    
+
+        private void MenuItemDiagnosis_Click(object sender, RoutedEventArgs e)
+        {
+            ;
+        }
+
         private void MenuItemConnect_Click(object sender, RoutedEventArgs e)
         {
             receiver.SocketConnect();

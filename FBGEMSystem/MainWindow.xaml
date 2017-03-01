@@ -141,7 +141,11 @@
                             </MenuItem.Icon>
                         </MenuItem>
                     </MenuItem>
-
+                    <MenuItem Header="故障诊断" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemDiagnosis_Click" Foreground="Black">
+                        <MenuItem.Icon>
+                            <Image Source="/FBGEMSystem;component/Image/40.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <MenuItem Header="设置" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemChoosePicture_Click" Foreground="Black">
                         <MenuItem.Icon>
                             <Image Source="/FBGEMSystem;component/Image/gear.png"/>
@@ -154,12 +158,12 @@
                     </MenuItem>
                     <MenuItem Header="开始" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemStart_Click" Foreground="Black">
                         <MenuItem.Icon>
-                            <Image Source="/FBGEMSystem;component/Image/36.png"/>
+                            <Image Source="/FBGEMSystem;component/Image/开始.jpg"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="停止" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Click="MenuItemStop_Click" Foreground="Black">
                         <MenuItem.Icon>
-                            <Image Source="/FBGEMSystem;component/Image/36.png"/>
+                            <Image Source="/FBGEMSystem;component/Image/停止.jpg"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="帮助" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">
