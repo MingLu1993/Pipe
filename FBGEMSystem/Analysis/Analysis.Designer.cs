@@ -40,10 +40,21 @@
             this.zedGraph_IPCurve = new ZedGraph.ZedGraphControl();
             this.zedGraph_IPScatter = new ZedGraph.ZedGraphControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox_d_f = new System.Windows.Forms.TextBox();
+            this.textBox_d_alpha = new System.Windows.Forms.TextBox();
+            this.textBox_alpha0 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label_d_f = new System.Windows.Forms.Label();
+            this.label_d_alpha = new System.Windows.Forms.Label();
+            this.label_alpha0 = new System.Windows.Forms.Label();
+            this.zedGraph_f = new ZedGraph.ZedGraphControl();
+            this.zedGraph_tq = new ZedGraph.ZedGraphControl();
+            this.zedGraph_Hq = new ZedGraph.ZedGraphControl();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox_CH
@@ -173,13 +184,129 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.textBox_d_f);
+            this.tabPage2.Controls.Add(this.textBox_d_alpha);
+            this.tabPage2.Controls.Add(this.textBox_alpha0);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.label_d_f);
+            this.tabPage2.Controls.Add(this.label_d_alpha);
+            this.tabPage2.Controls.Add(this.label_alpha0);
+            this.tabPage2.Controls.Add(this.zedGraph_f);
+            this.tabPage2.Controls.Add(this.zedGraph_tq);
+            this.tabPage2.Controls.Add(this.zedGraph_Hq);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1345, 585);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "MFDFA";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // textBox_d_f
+            // 
+            this.textBox_d_f.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_d_f.Location = new System.Drawing.Point(758, 447);
+            this.textBox_d_f.Name = "textBox_d_f";
+            this.textBox_d_f.Size = new System.Drawing.Size(83, 29);
+            this.textBox_d_f.TabIndex = 10;
+            // 
+            // textBox_d_alpha
+            // 
+            this.textBox_d_alpha.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_d_alpha.Location = new System.Drawing.Point(602, 447);
+            this.textBox_d_alpha.Name = "textBox_d_alpha";
+            this.textBox_d_alpha.Size = new System.Drawing.Size(83, 29);
+            this.textBox_d_alpha.TabIndex = 9;
+            // 
+            // textBox_alpha0
+            // 
+            this.textBox_alpha0.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_alpha0.Location = new System.Drawing.Point(445, 447);
+            this.textBox_alpha0.Name = "textBox_alpha0";
+            this.textBox_alpha0.Size = new System.Drawing.Size(83, 29);
+            this.textBox_alpha0.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(291, 450);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(104, 19);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "特征参数：";
+            // 
+            // label_d_f
+            // 
+            this.label_d_f.AutoSize = true;
+            this.label_d_f.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_d_f.Location = new System.Drawing.Point(713, 450);
+            this.label_d_f.Name = "label_d_f";
+            this.label_d_f.Size = new System.Drawing.Size(39, 21);
+            this.label_d_f.TabIndex = 6;
+            this.label_d_f.Text = "Δf=";
+            // 
+            // label_d_alpha
+            // 
+            this.label_d_alpha.AutoSize = true;
+            this.label_d_alpha.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_d_alpha.Location = new System.Drawing.Point(553, 450);
+            this.label_d_alpha.Name = "label_d_alpha";
+            this.label_d_alpha.Size = new System.Drawing.Size(43, 21);
+            this.label_d_alpha.TabIndex = 5;
+            this.label_d_alpha.Text = "Δα=";
+            // 
+            // label_alpha0
+            // 
+            this.label_alpha0.AutoSize = true;
+            this.label_alpha0.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_alpha0.Location = new System.Drawing.Point(399, 450);
+            this.label_alpha0.Name = "label_alpha0";
+            this.label_alpha0.Size = new System.Drawing.Size(40, 21);
+            this.label_alpha0.TabIndex = 4;
+            this.label_alpha0.Text = "α0=";
+            // 
+            // zedGraph_f
+            // 
+            this.zedGraph_f.Location = new System.Drawing.Point(886, 83);
+            this.zedGraph_f.Name = "zedGraph_f";
+            this.zedGraph_f.ScrollGrace = 0D;
+            this.zedGraph_f.ScrollMaxX = 0D;
+            this.zedGraph_f.ScrollMaxY = 0D;
+            this.zedGraph_f.ScrollMaxY2 = 0D;
+            this.zedGraph_f.ScrollMinX = 0D;
+            this.zedGraph_f.ScrollMinY = 0D;
+            this.zedGraph_f.ScrollMinY2 = 0D;
+            this.zedGraph_f.Size = new System.Drawing.Size(404, 310);
+            this.zedGraph_f.TabIndex = 2;
+            // 
+            // zedGraph_tq
+            // 
+            this.zedGraph_tq.Location = new System.Drawing.Point(464, 83);
+            this.zedGraph_tq.Name = "zedGraph_tq";
+            this.zedGraph_tq.ScrollGrace = 0D;
+            this.zedGraph_tq.ScrollMaxX = 0D;
+            this.zedGraph_tq.ScrollMaxY = 0D;
+            this.zedGraph_tq.ScrollMaxY2 = 0D;
+            this.zedGraph_tq.ScrollMinX = 0D;
+            this.zedGraph_tq.ScrollMinY = 0D;
+            this.zedGraph_tq.ScrollMinY2 = 0D;
+            this.zedGraph_tq.Size = new System.Drawing.Size(404, 310);
+            this.zedGraph_tq.TabIndex = 1;
+            // 
+            // zedGraph_Hq
+            // 
+            this.zedGraph_Hq.Location = new System.Drawing.Point(44, 83);
+            this.zedGraph_Hq.Name = "zedGraph_Hq";
+            this.zedGraph_Hq.ScrollGrace = 0D;
+            this.zedGraph_Hq.ScrollMaxX = 0D;
+            this.zedGraph_Hq.ScrollMaxY = 0D;
+            this.zedGraph_Hq.ScrollMaxY2 = 0D;
+            this.zedGraph_Hq.ScrollMinX = 0D;
+            this.zedGraph_Hq.ScrollMinY = 0D;
+            this.zedGraph_Hq.ScrollMinY2 = 0D;
+            this.zedGraph_Hq.Size = new System.Drawing.Size(404, 310);
+            this.zedGraph_Hq.TabIndex = 0;
             // 
             // label1
             // 
@@ -209,6 +336,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,5 +357,15 @@
         private System.Windows.Forms.TabPage tabPage3;
         private ZedGraph.ZedGraphControl zedGraph_Time;
         private ZedGraph.ZedGraphControl zedGraph_FFT;
+        private ZedGraph.ZedGraphControl zedGraph_f;
+        private ZedGraph.ZedGraphControl zedGraph_tq;
+        private ZedGraph.ZedGraphControl zedGraph_Hq;
+        private System.Windows.Forms.Label label_d_f;
+        private System.Windows.Forms.Label label_d_alpha;
+        private System.Windows.Forms.Label label_alpha0;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox_d_f;
+        private System.Windows.Forms.TextBox textBox_d_alpha;
+        private System.Windows.Forms.TextBox textBox_alpha0;
     }
 }

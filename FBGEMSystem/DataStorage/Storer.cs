@@ -116,31 +116,37 @@ namespace FBGEMSystem
             DataTable dt_Vibration = CreateDataTableEle(2);
             //创建FBG内存表
             DataTable dt_FBG = CreateDataTableFBG();
-            //   DataTable dt4 = CreateDataTable(3);
+            //DataTable dt4 = CreateDataTable(3);
             Message_EleDecoded msg_Ele = new Message_EleDecoded();
             Message_FBG msg_FBG = new Message_FBG();
             while (true)
             {
                 try
                 {
-                    msg_Ele = Receiver.sharedLocation_Ele.Buffer;
-                    //msg_FBG = Receiver.sharedLocation_FBG.Buffer;
+                    if(Receiver.sharedLocation_Ele.BufferSize>0)
+                    {
+                        msg_Ele = Receiver.sharedLocation_Ele.Buffer;
 
-                    CH1_Pres = msg_Ele.CH1_Press;
-                    CH2_Temp = msg_Ele.CH2_Temp;
-                    CH3_Vibration = msg_Ele.CH3_Vibration;
+                        CH1_Pres = msg_Ele.CH1_Press;
+                        CH2_Temp = msg_Ele.CH2_Temp;
+                        CH3_Vibration = msg_Ele.CH3_Vibration;
+                        dateTime = msg_Ele.dataTime;
 
-                    //CH1_FBG = msg_FBG.CH1;
-                    //CH2_FBG = msg_FBG.CH2;
-                    //CH3_FBG = msg_FBG.CH3;
-                    //CH4_FBG = msg_FBG.CH4;
+                        RowsCount_Ele = InsertRows_Ele(0, dt_Pres);
+                        InsertRows_Ele(1, dt_Temp);
+                        InsertRows_Ele(2, dt_Vibration);
+                    }
 
-                    dateTime = msg_Ele.dataTime;
-                    RowsCount_Ele = InsertRows_Ele(0, dt_Pres);
-                    InsertRows_Ele(1, dt_Temp);
-                    InsertRows_Ele(2, dt_Vibration);
-
-                    RowsCount_FBG = InsertRows_FBG(dt_FBG);
+                    if (Receiver.sharedLocation_Ele.BufferSize > 0)
+                    {
+                        msg_FBG = Receiver.sharedLocation_FBG.Buffer;
+                        CH1_FBG = msg_FBG.CH1;
+                        CH2_FBG = msg_FBG.CH2;
+                        CH3_FBG = msg_FBG.CH3;
+                        CH4_FBG = msg_FBG.CH4;
+                        RowsCount_FBG = InsertRows_FBG(dt_FBG);
+                    }
+                    
                     //插入光栅datatable
                     //  InsertRows_FBG(FBGdt);
                     //  InsertRows(3, dt4);

@@ -29,3 +29,5 @@
 20170227 Analysis.cs中加入FFT图。
 20170228：Store.cs中添加FBG存储内容；setting.cs中添加FBG与电类通道选择赋值；Mainwindow.cs中添加Srore.stor存储线程
 20170228 Store.cs修改数据表名格式
+20170301 Analysis.cs中加入MFDFA图。
+20170301 Store.cs中修改取数据，加入取数据条件判断。

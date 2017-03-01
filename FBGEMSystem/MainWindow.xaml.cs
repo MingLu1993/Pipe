@@ -31,6 +31,7 @@ using System.Net;
 using getip;
 using preprocess;
 using plotfft;  //求FFTdll
+using mfdfa;    //MFDFA_dll
 
 namespace FBGEMSystem
 {
@@ -42,6 +43,7 @@ namespace FBGEMSystem
         Cgetip iptmp = new Cgetip();
         Cpreprocess pretmp = new Cpreprocess();
         Cplotfft plotfft = new Cplotfft();
+        Cmfdfa mf = new Cmfdfa();
 
 
         //只使用了一个线程
@@ -285,13 +287,18 @@ namespace FBGEMSystem
             LabelInfo.Width = 50;
             LabelInfo.Height = 30;
             LabelInfo.Foreground = Brushes.Red;
-            LabelInfo.FontSize = 20;
+            LabelInfo.FontSize = 12;
 
             canvas.Children.Add(LabelInfo);
             Canvas.SetLeft(LabelInfo, X);
             Canvas.SetTop(LabelInfo, Y);
         }
-    
+
+        private void MenuItemDiagnosis_Click(object sender, RoutedEventArgs e)
+        {
+            ;
+        }
+
         private void MenuItemConnect_Click(object sender, RoutedEventArgs e)
         {
             receiver.SocketConnect();
