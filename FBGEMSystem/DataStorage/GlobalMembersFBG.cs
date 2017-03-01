@@ -357,6 +357,11 @@ namespace FBGEMSystem
                 msgFBG.CH2 = CH2;
                 msgFBG.CH3 = CH3;
                 msgFBG.CH4 = CH4;
+
+                string timenow = System.DateTime.Now.ToLongTimeString().ToString();
+                string NowTime = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + 
+                                 DateTime.Now.Day.ToString() + "-"+ timenow;
+                msgFBG.dataTime = NowTime;
                 //存入存储缓冲
                 Receiver.sharedLocation_FBG.Buffer = msgFBG;
                 if(Data.IsControlFBG == true)
