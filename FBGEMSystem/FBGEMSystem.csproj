@@ -94,6 +94,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="wavelet_S">
+      <HintPath>..\..\matlab2015a\bin\wavelet_S\for_redistribution_files_only\wavelet_S.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

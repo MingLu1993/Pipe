@@ -9,6 +9,7 @@ using plotfft;  //求FFTdll
 using getip;   //瞬时相位分析dll
 using preprocess;   //预处理dll
 using mfdfa;    //MFDFA_dll
+using wavelet_S;//小波分析_dll
 
 namespace FBGEMSystem
 {
@@ -50,6 +51,7 @@ namespace FBGEMSystem
         Cplotfft fft_process = new Cplotfft();           //频谱
         Cgetip ip_process = new Cgetip();           //瞬时相位
         Cmfdfa mfdfa_process = new Cmfdfa();               //MFDFA
+        Cwavelet wave_process = new Cwavelet();         //小波
 
         /*
          * 删除数据帧队列，同步操作，返回出队数据帧
@@ -187,7 +189,7 @@ namespace FBGEMSystem
 
         public void IP_Process(double[] processSignal,ref double[] t ,ref double[] th)
         {
-            double[] result = new double[0];
+            //double[] result = new double[0];
             //double[] IP_Input = new double[0];
             //预处理数据
             MWNumericArray pre = new MWNumericArray(processSignal);
@@ -206,7 +208,7 @@ namespace FBGEMSystem
 
         public void FFT_Process(double[] processSignal, ref double[] f, ref double[] fftdata)
         {
-            double[] result = new double[0];
+            //double[] result = new double[0];
             //double[] IP_Input = new double[0];
             //预处理数据
             MWNumericArray pre = new MWNumericArray(processSignal);
@@ -223,7 +225,7 @@ namespace FBGEMSystem
         }
         public void MFDFA_Process(double[] processSignal, ref double[] Hq, ref double[] tq, ref double[] alpha, ref double[] f, ref double[] q)
         {
-            double[] result = new double[0];
+            //double[] result = new double[0];
             //double[] IP_Input = new double[0];
             //预处理数据
             MWNumericArray pre = new MWNumericArray(processSignal);
@@ -243,6 +245,52 @@ namespace FBGEMSystem
             alpha = (double[])alpha_temp.ToVector(MWArrayComponent.Real);
             f = (double[])f_temp.ToVector(MWArrayComponent.Real);
             q = (double[])q_temp.ToVector(MWArrayComponent.Real);
+        }
+        public void WAVE_Process(double[] processSignal, int let_c,ref double[] a1, ref double[] a2, 
+                                    ref double[] a3, ref double[] a4,ref double[] a5, ref double[] a6,
+                                    ref double[] a7, ref double[] d1, ref double[] d2, ref double[] d3, 
+                                    ref double[] d4, ref double[] d5, ref double[] d6, ref double[] d7 )
+        {
+            //double[] result = new double[0];
+            //预处理数据
+            MWNumericArray pre = new MWNumericArray(processSignal);
+            MWNumericArray let = new MWNumericArray(let_c);
+            MWNumericArray wave_Input = (MWNumericArray)prepro.preprocess(pre);
+            MWArray[] input = new MWArray[] { wave_Input, let };
+            MWArray[] agrsOut_wave = new MWArray[14];               //存放输出的数据数组，有两个输出数据
+            //瞬时相位分析函数
+            wave_process.wavelet_S(14, ref agrsOut_wave, input);
+
+            MWNumericArray a1_temp = agrsOut_wave[0] as MWNumericArray;   // 
+            MWNumericArray a2_temp = agrsOut_wave[1] as MWNumericArray;   //
+            MWNumericArray a3_temp = agrsOut_wave[2] as MWNumericArray;
+            MWNumericArray a4_temp = agrsOut_wave[3] as MWNumericArray;
+            MWNumericArray a5_temp = agrsOut_wave[4] as MWNumericArray;
+            MWNumericArray d1_temp = agrsOut_wave[5] as MWNumericArray;   //
+            MWNumericArray d2_temp = agrsOut_wave[6] as MWNumericArray;   //
+            MWNumericArray d3_temp = agrsOut_wave[7] as MWNumericArray;
+            MWNumericArray d4_temp = agrsOut_wave[8] as MWNumericArray;
+            MWNumericArray d5_temp = agrsOut_wave[9] as MWNumericArray;
+            MWNumericArray a6_temp = agrsOut_wave[10] as MWNumericArray;
+            MWNumericArray a7_temp = agrsOut_wave[11] as MWNumericArray;
+            MWNumericArray d6_temp = agrsOut_wave[12] as MWNumericArray;
+            MWNumericArray d7_temp = agrsOut_wave[13] as MWNumericArray;
+
+
+            a1 = (double[])a1_temp.ToVector(MWArrayComponent.Real);      //转为一维数组用ToVector，转为二维数组用ToArray
+            a2 = (double[])a2_temp.ToVector(MWArrayComponent.Real);
+            a3 = (double[])a3_temp.ToVector(MWArrayComponent.Real);
+            a4 = (double[])a4_temp.ToVector(MWArrayComponent.Real);
+            a5 = (double[])a5_temp.ToVector(MWArrayComponent.Real);
+            d1 = (double[])d1_temp.ToVector(MWArrayComponent.Real);
+            d2 = (double[])d2_temp.ToVector(MWArrayComponent.Real);
+            d3 = (double[])d3_temp.ToVector(MWArrayComponent.Real);
+            d4 = (double[])d4_temp.ToVector(MWArrayComponent.Real);
+            d5 = (double[])d5_temp.ToVector(MWArrayComponent.Real);
+            a6 = (double[])a6_temp.ToVector(MWArrayComponent.Real);
+            a7 = (double[])a7_temp.ToVector(MWArrayComponent.Real);
+            d6 = (double[])d6_temp.ToVector(MWArrayComponent.Real);
+            d7 = (double[])d7_temp.ToVector(MWArrayComponent.Real);
         }
 
     }

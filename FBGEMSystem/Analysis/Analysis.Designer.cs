@@ -50,11 +50,25 @@
             this.zedGraph_f = new ZedGraph.ZedGraphControl();
             this.zedGraph_tq = new ZedGraph.ZedGraphControl();
             this.zedGraph_Hq = new ZedGraph.ZedGraphControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.comboBox_db = new System.Windows.Forms.ComboBox();
+            this.comboBox_wavelet = new System.Windows.Forms.ComboBox();
+            this.设置小波基 = new System.Windows.Forms.Label();
+            this.zedGraph_a7 = new ZedGraph.ZedGraphControl();
+            this.zedGraph_a6 = new ZedGraph.ZedGraphControl();
+            this.zedGraph_a5 = new ZedGraph.ZedGraphControl();
+            this.zedGraph_a4 = new ZedGraph.ZedGraphControl();
+            this.zedGraph_a3 = new ZedGraph.ZedGraphControl();
+            this.zedGraph_a2 = new ZedGraph.ZedGraphControl();
+            this.zedGraph_a1 = new ZedGraph.ZedGraphControl();
             this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox_ad = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox_CH
@@ -92,6 +106,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl1.Location = new System.Drawing.Point(12, 58);
             this.tabControl1.Name = "tabControl1";
@@ -308,6 +323,163 @@
             this.zedGraph_Hq.Size = new System.Drawing.Size(404, 310);
             this.zedGraph_Hq.TabIndex = 0;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.comboBox_ad);
+            this.tabPage4.Controls.Add(this.comboBox_db);
+            this.tabPage4.Controls.Add(this.comboBox_wavelet);
+            this.tabPage4.Controls.Add(this.label4);
+            this.tabPage4.Controls.Add(this.设置小波基);
+            this.tabPage4.Controls.Add(this.zedGraph_a7);
+            this.tabPage4.Controls.Add(this.zedGraph_a6);
+            this.tabPage4.Controls.Add(this.zedGraph_a5);
+            this.tabPage4.Controls.Add(this.zedGraph_a4);
+            this.tabPage4.Controls.Add(this.zedGraph_a3);
+            this.tabPage4.Controls.Add(this.zedGraph_a2);
+            this.tabPage4.Controls.Add(this.zedGraph_a1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1345, 585);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "小波分析";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_db
+            // 
+            this.comboBox_db.FormattingEnabled = true;
+            this.comboBox_db.Location = new System.Drawing.Point(233, 79);
+            this.comboBox_db.Name = "comboBox_db";
+            this.comboBox_db.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_db.TabIndex = 16;
+            this.comboBox_db.SelectedIndexChanged += new System.EventHandler(this.comboBox_db_SelectedIndexChanged);
+            // 
+            // comboBox_wavelet
+            // 
+            this.comboBox_wavelet.AutoCompleteCustomSource.AddRange(new string[] {
+            "Daubechies",
+            "Symlets",
+            "haar",
+            "Coiflets"});
+            this.comboBox_wavelet.FormattingEnabled = true;
+            this.comboBox_wavelet.Items.AddRange(new object[] {
+            "Daubechies",
+            "Symlets",
+            "haar",
+            "Coiflets"});
+            this.comboBox_wavelet.Location = new System.Drawing.Point(68, 79);
+            this.comboBox_wavelet.Name = "comboBox_wavelet";
+            this.comboBox_wavelet.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_wavelet.TabIndex = 15;
+            this.comboBox_wavelet.SelectedIndexChanged += new System.EventHandler(this.comboBox1_wavelet_SelectedIndexChanged);
+            // 
+            // 设置小波基
+            // 
+            this.设置小波基.AutoSize = true;
+            this.设置小波基.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.设置小波基.Location = new System.Drawing.Point(64, 48);
+            this.设置小波基.Name = "设置小波基";
+            this.设置小波基.Size = new System.Drawing.Size(104, 19);
+            this.设置小波基.TabIndex = 14;
+            this.设置小波基.Text = "设置小波基";
+            // 
+            // zedGraph_a7
+            // 
+            this.zedGraph_a7.Location = new System.Drawing.Point(1025, 308);
+            this.zedGraph_a7.Name = "zedGraph_a7";
+            this.zedGraph_a7.ScrollGrace = 0D;
+            this.zedGraph_a7.ScrollMaxX = 0D;
+            this.zedGraph_a7.ScrollMaxY = 0D;
+            this.zedGraph_a7.ScrollMaxY2 = 0D;
+            this.zedGraph_a7.ScrollMinX = 0D;
+            this.zedGraph_a7.ScrollMinY = 0D;
+            this.zedGraph_a7.ScrollMinY2 = 0D;
+            this.zedGraph_a7.Size = new System.Drawing.Size(304, 231);
+            this.zedGraph_a7.TabIndex = 11;
+            // 
+            // zedGraph_a6
+            // 
+            this.zedGraph_a6.Location = new System.Drawing.Point(705, 308);
+            this.zedGraph_a6.Name = "zedGraph_a6";
+            this.zedGraph_a6.ScrollGrace = 0D;
+            this.zedGraph_a6.ScrollMaxX = 0D;
+            this.zedGraph_a6.ScrollMaxY = 0D;
+            this.zedGraph_a6.ScrollMaxY2 = 0D;
+            this.zedGraph_a6.ScrollMinX = 0D;
+            this.zedGraph_a6.ScrollMinY = 0D;
+            this.zedGraph_a6.ScrollMinY2 = 0D;
+            this.zedGraph_a6.Size = new System.Drawing.Size(304, 231);
+            this.zedGraph_a6.TabIndex = 10;
+            // 
+            // zedGraph_a5
+            // 
+            this.zedGraph_a5.Location = new System.Drawing.Point(381, 308);
+            this.zedGraph_a5.Name = "zedGraph_a5";
+            this.zedGraph_a5.ScrollGrace = 0D;
+            this.zedGraph_a5.ScrollMaxX = 0D;
+            this.zedGraph_a5.ScrollMaxY = 0D;
+            this.zedGraph_a5.ScrollMaxY2 = 0D;
+            this.zedGraph_a5.ScrollMinX = 0D;
+            this.zedGraph_a5.ScrollMinY = 0D;
+            this.zedGraph_a5.ScrollMinY2 = 0D;
+            this.zedGraph_a5.Size = new System.Drawing.Size(304, 231);
+            this.zedGraph_a5.TabIndex = 4;
+            // 
+            // zedGraph_a4
+            // 
+            this.zedGraph_a4.Location = new System.Drawing.Point(50, 308);
+            this.zedGraph_a4.Name = "zedGraph_a4";
+            this.zedGraph_a4.ScrollGrace = 0D;
+            this.zedGraph_a4.ScrollMaxX = 0D;
+            this.zedGraph_a4.ScrollMaxY = 0D;
+            this.zedGraph_a4.ScrollMaxY2 = 0D;
+            this.zedGraph_a4.ScrollMinX = 0D;
+            this.zedGraph_a4.ScrollMinY = 0D;
+            this.zedGraph_a4.ScrollMinY2 = 0D;
+            this.zedGraph_a4.Size = new System.Drawing.Size(304, 231);
+            this.zedGraph_a4.TabIndex = 3;
+            // 
+            // zedGraph_a3
+            // 
+            this.zedGraph_a3.Location = new System.Drawing.Point(1025, 28);
+            this.zedGraph_a3.Name = "zedGraph_a3";
+            this.zedGraph_a3.ScrollGrace = 0D;
+            this.zedGraph_a3.ScrollMaxX = 0D;
+            this.zedGraph_a3.ScrollMaxY = 0D;
+            this.zedGraph_a3.ScrollMaxY2 = 0D;
+            this.zedGraph_a3.ScrollMinX = 0D;
+            this.zedGraph_a3.ScrollMinY = 0D;
+            this.zedGraph_a3.ScrollMinY2 = 0D;
+            this.zedGraph_a3.Size = new System.Drawing.Size(304, 224);
+            this.zedGraph_a3.TabIndex = 2;
+            // 
+            // zedGraph_a2
+            // 
+            this.zedGraph_a2.Location = new System.Drawing.Point(705, 28);
+            this.zedGraph_a2.Name = "zedGraph_a2";
+            this.zedGraph_a2.ScrollGrace = 0D;
+            this.zedGraph_a2.ScrollMaxX = 0D;
+            this.zedGraph_a2.ScrollMaxY = 0D;
+            this.zedGraph_a2.ScrollMaxY2 = 0D;
+            this.zedGraph_a2.ScrollMinX = 0D;
+            this.zedGraph_a2.ScrollMinY = 0D;
+            this.zedGraph_a2.ScrollMinY2 = 0D;
+            this.zedGraph_a2.Size = new System.Drawing.Size(304, 224);
+            this.zedGraph_a2.TabIndex = 1;
+            // 
+            // zedGraph_a1
+            // 
+            this.zedGraph_a1.Location = new System.Drawing.Point(381, 28);
+            this.zedGraph_a1.Name = "zedGraph_a1";
+            this.zedGraph_a1.ScrollGrace = 0D;
+            this.zedGraph_a1.ScrollMaxX = 0D;
+            this.zedGraph_a1.ScrollMaxY = 0D;
+            this.zedGraph_a1.ScrollMaxY2 = 0D;
+            this.zedGraph_a1.ScrollMinX = 0D;
+            this.zedGraph_a1.ScrollMinY = 0D;
+            this.zedGraph_a1.ScrollMinY2 = 0D;
+            this.zedGraph_a1.Size = new System.Drawing.Size(304, 224);
+            this.zedGraph_a1.TabIndex = 0;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -317,6 +489,28 @@
             this.label1.Size = new System.Drawing.Size(88, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "选择通道：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Location = new System.Drawing.Point(64, 138);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(123, 19);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "选择显示系数";
+            // 
+            // comboBox_ad
+            // 
+            this.comboBox_ad.FormattingEnabled = true;
+            this.comboBox_ad.Items.AddRange(new object[] {
+            "近似系数",
+            "细节系数"});
+            this.comboBox_ad.Location = new System.Drawing.Point(68, 176);
+            this.comboBox_ad.Name = "comboBox_ad";
+            this.comboBox_ad.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_ad.TabIndex = 16;
+            this.comboBox_ad.SelectedIndexChanged += new System.EventHandler(this.comboBox_db_SelectedIndexChanged);
             // 
             // Analysis
             // 
@@ -338,6 +532,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,5 +563,18 @@
         private System.Windows.Forms.TextBox textBox_d_f;
         private System.Windows.Forms.TextBox textBox_d_alpha;
         private System.Windows.Forms.TextBox textBox_alpha0;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label 设置小波基;
+        private ZedGraph.ZedGraphControl zedGraph_a7;
+        private ZedGraph.ZedGraphControl zedGraph_a6;
+        private ZedGraph.ZedGraphControl zedGraph_a5;
+        private ZedGraph.ZedGraphControl zedGraph_a4;
+        private ZedGraph.ZedGraphControl zedGraph_a3;
+        private ZedGraph.ZedGraphControl zedGraph_a2;
+        private ZedGraph.ZedGraphControl zedGraph_a1;
+        private System.Windows.Forms.ComboBox comboBox_wavelet;
+        private System.Windows.Forms.ComboBox comboBox_db;
+        private System.Windows.Forms.ComboBox comboBox_ad;
+        private System.Windows.Forms.Label label4;
     }
 }

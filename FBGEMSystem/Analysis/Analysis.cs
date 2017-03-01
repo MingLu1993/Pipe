@@ -33,6 +33,9 @@ namespace FBGEMSystem
         string AnalysisMethod = "";        //选择的tabcontrol控件的Text，既选择的方法
         Thread decode;    //decode线程
         Thread process;    //process线程
+
+        int cmb_waveindex = 0;//小波基选择下拉框索引
+        int let_c = 0;         //matlab 小波基选择参数
         public Analysis()
         {
             InitializeComponent();
@@ -47,10 +50,18 @@ namespace FBGEMSystem
             comboBox_CH.Items.Add("3");
             comboBox_CH.Items.Add("4");
 
-            for(int i=1;i < 11;i++)
+            
+            for (int i = 1; i < 11; i++)
             {
                 comboBox_Point.Items.Add(i.ToString());
             }
+
+            comboBox_wavelet.SelectedIndex = 2;   //默认是haar小波基
+            cmb_waveindex = 2;
+            let_c = 18;
+
+            comboBox_ad.SelectedIndex = 0;  //默认近似系数
+
 
             zedGraph_Time.GraphPane.Title.Text = "时域波形";
             zedGraph_Time.GraphPane.XAxis.Title.Text = "点";   //横坐标
@@ -85,6 +96,8 @@ namespace FBGEMSystem
             textBox_alpha0.ReadOnly = true;
             textBox_d_alpha.ReadOnly = true;
             textBox_d_f.ReadOnly = true;
+
+
         }
 
         private void Analysis_FormClosed(object sender, FormClosedEventArgs e)
@@ -187,7 +200,7 @@ namespace FBGEMSystem
         //测点下拉框选择变化
         private void comboBox_Point_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(comboBox_Point.SelectedItem != null)
+            if (comboBox_Point.SelectedItem != null)
             {
                 pointshow = Convert.ToInt32(comboBox_Point.SelectedItem.ToString());
                 //测点改变，清空待处理队列
@@ -197,12 +210,130 @@ namespace FBGEMSystem
         }
 
         //decode后的数据放在AnalysisUser类中的analysis_signal队列的数组中 
-        private void decode_thread()
+        private void comboBox1_wavelet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmb_waveindex = comboBox_wavelet.SelectedIndex;
+            if (comboBox_wavelet.SelectedIndex == 0)
+            {
+                //comboBox_db.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox_db.Items.Clear();
+                comboBox_db.Items.Add("db2");
+                comboBox_db.Items.Add("db3");
+                comboBox_db.Items.Add("db4");
+                comboBox_db.Items.Add("db5");
+                comboBox_db.Items.Add("db6");
+                comboBox_db.Items.Add("db7");
+                comboBox_db.Items.Add("db8");
+                comboBox_db.Items.Add("db9");
+                comboBox_db.Items.Add("db10");
+
+                comboBox_db.SelectedIndex = 0;
+                let_c = 2;
+            }
+            else if (comboBox_wavelet.SelectedIndex == 1)
+            {
+                comboBox_db.Items.Clear();
+                comboBox_db.Items.Add("sym2");
+                comboBox_db.Items.Add("sym3");
+                comboBox_db.Items.Add("sym4");
+                comboBox_db.Items.Add("sym5");
+                comboBox_db.Items.Add("sym6");
+                comboBox_db.Items.Add("sym7");
+                comboBox_db.Items.Add("sym8");
+
+                comboBox_db.SelectedIndex = 0;
+                let_c = 11;
+            }
+            else if (comboBox_wavelet.SelectedIndex == 2)
+            {
+                comboBox_db.Items.Clear();
+                comboBox_db.Text = "";
+                let_c = 18;//选择小波基'haar'
+            }
+            else if (comboBox_wavelet.SelectedIndex == 3)
+            {
+                comboBox_db.Items.Clear();
+                comboBox_db.Items.Add("coif1");
+                comboBox_db.Items.Add("coif2");
+                comboBox_db.Items.Add("coif3");
+                comboBox_db.Items.Add("coif4");
+                comboBox_db.Items.Add("coif5");
+
+                comboBox_db.SelectedIndex = 0;
+                let_c = 20;
+            }
+            else
+            {
+                comboBox_db.Items.Clear();
+            }
+        }
+
+        private void comboBox_db_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmb_waveindex == 0)
+            {
+                if (comboBox_db.SelectedIndex == 0 && cmb_waveindex == 0)
+                { let_c = 2; }//选择小波基db2
+                if (comboBox_db.SelectedIndex == 1 && cmb_waveindex == 0)
+                { let_c = 3; }//选择小波基db3
+                if (comboBox_db.SelectedIndex == 2 && cmb_waveindex == 0)
+                { let_c = 4; }//选择小波基db4
+                if (comboBox_db.SelectedIndex == 3 && cmb_waveindex == 0)
+                { let_c = 5; }//选择小波基db5
+                if (comboBox_db.SelectedIndex == 4 && cmb_waveindex == 0)
+                { let_c = 6; }//选择小波基db6
+                if (comboBox_db.SelectedIndex == 5 && cmb_waveindex == 0)
+                { let_c = 7; }//选择小波基db7
+                if (comboBox_db.SelectedIndex == 6 && cmb_waveindex == 0)
+                { let_c = 8; }//选择小波基db8
+                if (comboBox_db.SelectedIndex == 7 && cmb_waveindex == 0)
+                { let_c = 9; }//选择小波基db9
+                if (comboBox_db.SelectedIndex == 8 && cmb_waveindex == 0)
+                { let_c = 10; }//选择小波基db10
+            }
+            else if (cmb_waveindex == 1)
+            {
+                if (comboBox_db.SelectedIndex == 0 && cmb_waveindex == 1)
+                { let_c = 11; }//选择小波基sym2
+                if (comboBox_db.SelectedIndex == 1 && cmb_waveindex == 1)
+                { let_c = 12; }//选择小波基sym3
+                if (comboBox_db.SelectedIndex == 2 && cmb_waveindex == 1)
+                { let_c = 13; }//选择小波基sym4
+                if (comboBox_db.SelectedIndex == 3 && cmb_waveindex == 1)
+                { let_c = 14; }//选择小波基sym5
+                if (comboBox_db.SelectedIndex == 4 && cmb_waveindex == 1)
+                { let_c = 15; }//选择小波基sym6
+                if (comboBox_db.SelectedIndex == 5 && cmb_waveindex == 1)
+                { let_c = 16; }//选择小波基sym7
+                if (comboBox_db.SelectedIndex == 6 && cmb_waveindex == 1)
+                { let_c = 17; }//选择小波基sym8
+            }
+            else if (cmb_waveindex == 3)
+            {
+                if (comboBox_db.SelectedIndex == 0)
+                { let_c = 20; }//选择小波基'coif1'
+                if (comboBox_db.SelectedIndex == 1)
+                { let_c = 21; }//选择小波基'coif2'
+                if (comboBox_db.SelectedIndex == 2)
+                { let_c = 22; }//选择小波基'coif3'
+                if (comboBox_db.SelectedIndex == 3)
+                { let_c = 23; }//选择小波基'coif4'
+                if (comboBox_db.SelectedIndex == 4)
+                { let_c = 24; }//选择小波基'coif5'
+            }
+            else
+            {
+                comboBox_db.Items.Clear();
+            }
+        }
+ 
+
+    private void decode_thread()
         {
             while (isThreadRunning && isCHSelected)
             {
                 //如果测点已经选择
-                if(pointshow != 0)
+                if (pointshow != 0)
                 {
                     //while (global.all_msg.Count > winsize / 40)
                     while ((Receiver.process_all_msg_FBG.BufferSize > winsize / Data.FBG_numPackage) && (channelshow > 0))
@@ -220,20 +351,26 @@ namespace FBGEMSystem
             double[] process_signal = new double[0];
             while (isThreadRunning && isCHSelected)
             {
-                if(global.analysis_signal.Count>1)
+                if (global.analysis_signal.Count > 1)
                 {
                     process_signal = global.GetProcessSignal();
-                    switch(AnalysisMethod)
+                    switch (AnalysisMethod)
                     {
-                        case "时频域波形": TimeDomain(process_signal);
-                                             break;
-                        case "瞬时相位分析": IP(process_signal);
-                                             break;
-                        case "MFDFA": MFDFA(process_signal);
-                                             break;
-                        default:break;
+                        case "时频域波形":
+                            TimeDomain(process_signal);
+                            break;
+                        case "瞬时相位分析":
+                            IP(process_signal);
+                            break;
+                        case "MFDFA":
+                            MFDFA(process_signal);
+                            break;
+                        case "小波分析":
+                            WAVELET(process_signal);
+                            break;
+                        default: break;
                     }
-                    
+
                 }
             }
         }
@@ -250,7 +387,7 @@ namespace FBGEMSystem
                 y1 = input[i];
                 list.Add(x1, y1);
             }
-            PaintDraw(list,zedGraph_Time, "时域波形图", "曲线图");
+            PaintDraw(list, zedGraph_Time, "时域波形图", "曲线图");
 
             // 画频谱
             double[] f = new double[0];  //横坐标
@@ -273,7 +410,7 @@ namespace FBGEMSystem
         {
             double[] t = new double[0];  //横坐标
             double[] th = new double[0]; //纵坐标
-            global.IP_Process(input,ref t,ref th);
+            global.IP_Process(input, ref t, ref th);
             //画曲线图
             double x1, y1;
             PointPairList listCurve = new PointPairList();
@@ -290,7 +427,7 @@ namespace FBGEMSystem
             //    y1 = input[i];
             //    listCurve.Add(x1, y1);
             //}
-            PaintDraw(listCurve,zedGraph_IPCurve,"瞬时相位曲线图", "曲线图");
+            PaintDraw(listCurve, zedGraph_IPCurve, "瞬时相位曲线图", "曲线图");
 
             //画散点图
             double[] th_1 = new double[th.Length - 1];
@@ -308,16 +445,16 @@ namespace FBGEMSystem
                 y2 = th_2[i];
                 listScatter.Add(x2, y2);
             }
-            PaintDraw(listScatter,zedGraph_IPScatter, "瞬时相位散点图", "散点图");
+            PaintDraw(listScatter, zedGraph_IPScatter, "瞬时相位散点图", "散点图");
         }
         //MFDFA，画图
         private void MFDFA(double[] input)
         {
-            double[] Hq = new double[0]; 
-            double[] tq = new double[0]; 
-            double[] alpha = new double[0]; 
-            double[] f = new double[0]; 
-            double[] q = new double[0]; 
+            double[] Hq = new double[0];
+            double[] tq = new double[0];
+            double[] alpha = new double[0];
+            double[] f = new double[0];
+            double[] q = new double[0];
             global.MFDFA_Process(input, ref Hq, ref tq, ref alpha, ref f, ref q);
             //画曲线图
             double x1, y1;
@@ -355,35 +492,154 @@ namespace FBGEMSystem
             textBox_d_alpha.Text = d_alpha.ToString();
             textBox_d_f.Text = d_f.ToString();
         }
+        //小波分析
+        private void WAVELET(double[] input)
+        {
+
+            double[] a1 = new double[0];
+            double[] a2 = new double[0]; //
+            double[] a3 = new double[0]; //
+            double[] a4 = new double[0]; //
+            double[] a5 = new double[0]; //
+            double[] a6 = new double[0]; //
+            double[] a7 = new double[0]; //
+            double[] d1 = new double[0]; //
+            double[] d2 = new double[0]; //
+            double[] d3 = new double[0]; //
+            double[] d4 = new double[0]; //
+            double[] d5 = new double[0]; //
+            double[] d6 = new double[0];
+            double[] d7 = new double[0];//
+
+            global.WAVE_Process(input,let_c, ref a1, ref a2, ref a3, ref a4, ref a5, ref a6, ref a7, ref d1, ref d2, ref d3, ref d4, ref d5, ref d6, ref d7);
+            //画曲线图
+            if(comboBox_ad.SelectedIndex==0)
+            {
+                zedGraph_a1.GraphPane.Title.Text = "第一层";
+                zedGraph_a1.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a1.GraphPane.YAxis.Title.Text = "a1";     //纵坐标
+
+                zedGraph_a2.GraphPane.Title.Text = "第二层";
+                zedGraph_a2.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a2.GraphPane.YAxis.Title.Text = "a2";     //纵坐标
+
+                zedGraph_a3.GraphPane.Title.Text = "第三层";
+                zedGraph_a3.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a3.GraphPane.YAxis.Title.Text = "a3";     //纵坐标
+
+                zedGraph_a4.GraphPane.Title.Text = "第四层";
+                zedGraph_a4.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a4.GraphPane.YAxis.Title.Text = "a4";     //纵坐标
+
+
+                zedGraph_a5.GraphPane.Title.Text = "第五层";
+                zedGraph_a5.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a5.GraphPane.YAxis.Title.Text = "a5";     //纵坐标
+
+                zedGraph_a6.GraphPane.Title.Text = "第六层";
+                zedGraph_a6.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a6.GraphPane.YAxis.Title.Text = "a6";     //纵坐标
+
+
+                zedGraph_a7.GraphPane.Title.Text = "第七层";
+                zedGraph_a7.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a7.GraphPane.YAxis.Title.Text = "a7";     //纵坐标
+
+                PaintWave(a1, zedGraph_a1, "近似系数", "曲线图");
+                PaintWave(a2, zedGraph_a2, "近似系数", "曲线图");
+                PaintWave(a3, zedGraph_a3, "近似系数", "曲线图");
+                PaintWave(a4, zedGraph_a4, "近似系数", "曲线图");
+                PaintWave(a5, zedGraph_a5, "近似系数", "曲线图");
+                PaintWave(a6, zedGraph_a6, "近似系数", "曲线图");
+                PaintWave(a7, zedGraph_a7, "近似系数", "曲线图");
+            }
+            if (comboBox_ad.SelectedIndex == 1)
+            {
+                zedGraph_a1.GraphPane.Title.Text = "第一层";
+                zedGraph_a1.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a1.GraphPane.YAxis.Title.Text = "d1";     //纵坐标
+
+                zedGraph_a2.GraphPane.Title.Text = "第二层";
+                zedGraph_a2.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a2.GraphPane.YAxis.Title.Text = "d2";     //纵坐标
+
+                zedGraph_a3.GraphPane.Title.Text = "第三层";
+                zedGraph_a3.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a3.GraphPane.YAxis.Title.Text = "d3";     //纵坐标
+
+                zedGraph_a4.GraphPane.Title.Text = "第四层";
+                zedGraph_a4.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a4.GraphPane.YAxis.Title.Text = "d4";     //纵坐标
+
+
+                zedGraph_a5.GraphPane.Title.Text = "第五层";
+                zedGraph_a5.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a5.GraphPane.YAxis.Title.Text = "d5";     //纵坐标
+
+                zedGraph_a6.GraphPane.Title.Text = "第六层";
+                zedGraph_a6.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a6.GraphPane.YAxis.Title.Text = "d6";     //纵坐标
+
+
+                zedGraph_a7.GraphPane.Title.Text = "第七层";
+                zedGraph_a7.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
+                zedGraph_a7.GraphPane.YAxis.Title.Text = "d7";     //纵坐标
+                PaintWave(d1, zedGraph_a1, "细节系数", "曲线图");
+                PaintWave(d2, zedGraph_a2, "细节系数", "曲线图");
+                PaintWave(d3, zedGraph_a3, "细节系数", "曲线图");
+                PaintWave(d4, zedGraph_a4, "细节系数", "曲线图");
+                PaintWave(d5, zedGraph_a5, "细节系数", "曲线图");
+                PaintWave(d6, zedGraph_a6, "细节系数", "曲线图");
+                PaintWave(d7, zedGraph_a7, "细节系数", "曲线图");
+            }
+            
+        }
+        private void PaintWave(double[] a_d, ZedGraph.ZedGraphControl zed, string label, string mode)
+        {
+            double x1, y1;
+            PointPairList listWave = new PointPairList();
+            for (int i = 0; i < a_d.Length; i++)
+            {
+                x1 = i + 1;
+                y1 = a_d[i];
+                listWave.Add(x1, y1);
+            }
+            PaintDraw(listWave, zed, label, mode);
+        }
+
         //画图函数
         //pList:画图数据；
         //zed:控件名
         //label:标签；
         //mode:模式，曲线图or散点图。
-        private void PaintDraw(PointPairList pList, ZedGraph.ZedGraphControl zed,string label,string mode)
+        private void PaintDraw(PointPairList pList, ZedGraph.ZedGraphControl zed, string label, string mode)
         {
             LineItem myCurve;
             switch (mode)
             {
-                case ("曲线图"):zed.GraphPane.CurveList.Clear();//清空曲线
-                                //创建曲线
-                                myCurve = zed.GraphPane.AddCurve( label , pList, Color.Black, SymbolType.None);
-                                //zedGraph1.IsShowPointValues = true;//当鼠标经过时，显示点的坐标。
-                                zed.GraphPane.AxisChange();  // 在数据变化时绘制图形;
-                                zed.Invalidate();//刷新
+                case ("曲线图"):
+                    zed.GraphPane.CurveList.Clear();//清空曲线
+                                                    //创建曲线
+                    myCurve = zed.GraphPane.AddCurve(label, pList, Color.Black, SymbolType.None);
+                    //zedGraph1.IsShowPointValues = true;//当鼠标经过时，显示点的坐标。
+                    zed.GraphPane.AxisChange();  // 在数据变化时绘制图形;
+                    zed.Invalidate();//刷新
                     break;
-                case ("散点图"):zed.GraphPane.CurveList.Clear();//清空曲线
-                                //创建曲线
-                                myCurve = zed.GraphPane.AddCurve(label, pList, Color.Black, SymbolType.Circle);
-                                myCurve.Symbol.Size = 3.0f;
-                                myCurve.Symbol.Fill = new Fill(Color.Black);
-                                myCurve.Line.IsVisible = false;
-                                //zedGraph1.IsShowPointValues = true;//当鼠标经过时，显示点的坐标。
-                                zed.GraphPane.AxisChange();  // 在数据变化时绘制图形;
-                                zed.Invalidate();
+                case ("散点图"):
+                    zed.GraphPane.CurveList.Clear();//清空曲线
+                                                    //创建曲线
+                    myCurve = zed.GraphPane.AddCurve(label, pList, Color.Black, SymbolType.Circle);
+                    myCurve.Symbol.Size = 3.0f;
+                    myCurve.Symbol.Fill = new Fill(Color.Black);
+                    myCurve.Line.IsVisible = false;
+                    //zedGraph1.IsShowPointValues = true;//当鼠标经过时，显示点的坐标。
+                    zed.GraphPane.AxisChange();  // 在数据变化时绘制图形;
+                    zed.Invalidate();
                     break;
                 default: break;
             }
         }
+
     }
 }
+
