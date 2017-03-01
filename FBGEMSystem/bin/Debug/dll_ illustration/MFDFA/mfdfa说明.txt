@@ -1,0 +1,18 @@
+命名空间：mfdfa
+类名：Cmfdfa
+方法：[Hq, tq, alpha, f, q] = mfdfa (signal)
+
+% INPUT PARAMETERS---------------------------------------------------------
+% 
+% signal:       input signal	（一维数组）
+
+% 
+% OUTPUT VARIABLES---------------------------------------------------------
+% 
+% Hq:           q-order Hurst exponent	（一维数组）
+% tq:           q-order mass exponent 	（一维数组）
+% alpha:        q-order singularity exponent	（一维数组）
+% f:            q-order dimension 	（一维数组）
+% q:            q-order that weights the local variations	（一维数组）
+
+功能：对信号进行多重分形去趋势（MFDFA）分析。

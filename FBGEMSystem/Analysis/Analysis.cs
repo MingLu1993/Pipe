@@ -69,6 +69,22 @@ namespace FBGEMSystem
             zedGraph_IPScatter.GraphPane.Title.Text = "瞬时相位自相关散点图";          //标题
             zedGraph_IPScatter.GraphPane.XAxis.Title.Text = "IP(n)";                   //横坐标
             zedGraph_IPScatter.GraphPane.YAxis.Title.Text = "IP(n+1)";                 //纵坐标
+
+            zedGraph_Hq.GraphPane.Title.Text = "广义Hurst指数H(q)";
+            zedGraph_Hq.GraphPane.XAxis.Title.Text = "q";   //横坐标
+            zedGraph_Hq.GraphPane.YAxis.Title.Text = "H(q)";     //纵坐标
+
+            zedGraph_tq.GraphPane.Title.Text = "尺度指数τ(q)";
+            zedGraph_tq.GraphPane.XAxis.Title.Text = "q";   //横坐标
+            zedGraph_tq.GraphPane.YAxis.Title.Text = "τ(q)";     //纵坐标
+
+            zedGraph_f.GraphPane.Title.Text = "多重分形谱";
+            zedGraph_f.GraphPane.XAxis.Title.Text = "α";   //横坐标
+            zedGraph_f.GraphPane.YAxis.Title.Text = "f(α)";     //纵坐标
+
+            textBox_alpha0.ReadOnly = true;
+            textBox_d_alpha.ReadOnly = true;
+            textBox_d_f.ReadOnly = true;
         }
 
         private void Analysis_FormClosed(object sender, FormClosedEventArgs e)
@@ -207,12 +223,13 @@ namespace FBGEMSystem
                 if(global.analysis_signal.Count>1)
                 {
                     process_signal = global.GetProcessSignal();
-
                     switch(AnalysisMethod)
                     {
-                        case "时频域波形":     TimeDomain(process_signal);
+                        case "时频域波形": TimeDomain(process_signal);
                                              break;
                         case "瞬时相位分析": IP(process_signal);
+                                             break;
+                        case "MFDFA": MFDFA(process_signal);
                                              break;
                         default:break;
                     }
@@ -293,7 +310,51 @@ namespace FBGEMSystem
             }
             PaintDraw(listScatter,zedGraph_IPScatter, "瞬时相位散点图", "散点图");
         }
-
+        //MFDFA，画图
+        private void MFDFA(double[] input)
+        {
+            double[] Hq = new double[0]; 
+            double[] tq = new double[0]; 
+            double[] alpha = new double[0]; 
+            double[] f = new double[0]; 
+            double[] q = new double[0]; 
+            global.MFDFA_Process(input, ref Hq, ref tq, ref alpha, ref f, ref q);
+            //画曲线图
+            double x1, y1;
+            PointPairList listHq = new PointPairList();
+            for (int i = 0; i < Hq.Length; i++)
+            {
+                x1 = q[i];
+                y1 = Hq[i];
+                listHq.Add(x1, y1);
+            }
+            PaintDraw(listHq, zedGraph_Hq, "广义Hurst指数H(q)", "曲线图");
+            double x2, y2;
+            PointPairList listtq = new PointPairList();
+            for (int i = 0; i < tq.Length; i++)
+            {
+                x2 = q[i];
+                y2 = tq[i];
+                listtq.Add(x2, y2);
+            }
+            PaintDraw(listtq, zedGraph_tq, "尺度指数τ(q)", "曲线图");
+            double x3, y3;
+            PointPairList listf = new PointPairList();
+            for (int i = 0; i < f.Length; i++)
+            {
+                x3 = alpha[i];
+                y3 = f[i];
+                listf.Add(x3, y3);
+            }
+            PaintDraw(listf, zedGraph_f, "多重分形谱", "曲线图");
+            double alpha0 = alpha[alpha.Length / 2];
+            double d_alpha = alpha[0] - alpha[alpha.Length - 1];
+            double d_f = f[0] - f[f.Length - 1];
+            //double d_f=Dq[hq.Length/2]-Math.Min(hq[hq.Length-1],hq[0]);
+            textBox_alpha0.Text = alpha0.ToString();
+            textBox_d_alpha.Text = d_alpha.ToString();
+            textBox_d_f.Text = d_f.ToString();
+        }
         //画图函数
         //pList:画图数据；
         //zed:控件名
