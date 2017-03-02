@@ -102,19 +102,6 @@ namespace FBGEMSystem
 
         }
 
-        private void MenuItemZTQS_Click(object sender, RoutedEventArgs e)
-        {
-            TrendCurve trendCurve = new TrendCurve();
-            trendCurve.ShowDialog();
-
-        }
-
-        private void MenuItemZZT_Click(object sender, RoutedEventArgs e)
-        {
-            CHBar chbar = new CHBar();
-            chbar.ShowDialog();
-        }
-
 
         private void MenuItemXB_Click(object sender, RoutedEventArgs e)
         {

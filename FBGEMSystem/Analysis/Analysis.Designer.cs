@@ -108,6 +108,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tabControl1.ItemSize = new System.Drawing.Size(96, 25);
             this.tabControl1.Location = new System.Drawing.Point(12, 58);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -120,9 +121,10 @@
             // 
             this.tabPage3.Controls.Add(this.zedGraph_FFT);
             this.tabPage3.Controls.Add(this.zedGraph_Time);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1345, 585);
+            this.tabPage3.Size = new System.Drawing.Size(1345, 578);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "时频域波形";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -160,10 +162,10 @@
             this.tabPage1.Controls.Add(this.zedGraph_IPCurve);
             this.tabPage1.Controls.Add(this.zedGraph_IPScatter);
             this.tabPage1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1345, 585);
+            this.tabPage1.Size = new System.Drawing.Size(1345, 578);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "瞬时相位分析";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -210,10 +212,11 @@
             this.tabPage2.Controls.Add(this.zedGraph_f);
             this.tabPage2.Controls.Add(this.zedGraph_tq);
             this.tabPage2.Controls.Add(this.zedGraph_Hq);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1345, 585);
+            this.tabPage2.Size = new System.Drawing.Size(1345, 578);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "MFDFA";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -339,9 +342,10 @@
             this.tabPage4.Controls.Add(this.zedGraph_a2);
             this.tabPage4.Controls.Add(this.zedGraph_a1);
             this.tabPage4.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1345, 585);
+            this.tabPage4.Size = new System.Drawing.Size(1345, 578);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "小波分析";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -354,7 +358,7 @@
             "细节系数"});
             this.comboBox_ad.Location = new System.Drawing.Point(68, 176);
             this.comboBox_ad.Name = "comboBox_ad";
-            this.comboBox_ad.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_ad.Size = new System.Drawing.Size(121, 24);
             this.comboBox_ad.TabIndex = 16;
             this.comboBox_ad.SelectedIndexChanged += new System.EventHandler(this.comboBox_ad_SelectedIndexChanged);
             // 
@@ -363,7 +367,7 @@
             this.comboBox_db.FormattingEnabled = true;
             this.comboBox_db.Location = new System.Drawing.Point(233, 79);
             this.comboBox_db.Name = "comboBox_db";
-            this.comboBox_db.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_db.Size = new System.Drawing.Size(121, 24);
             this.comboBox_db.TabIndex = 16;
             this.comboBox_db.SelectedIndexChanged += new System.EventHandler(this.comboBox_db_SelectedIndexChanged);
             // 
@@ -382,7 +386,7 @@
             "Coiflets"});
             this.comboBox_wavelet.Location = new System.Drawing.Point(68, 79);
             this.comboBox_wavelet.Name = "comboBox_wavelet";
-            this.comboBox_wavelet.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_wavelet.Size = new System.Drawing.Size(121, 24);
             this.comboBox_wavelet.TabIndex = 15;
             this.comboBox_wavelet.SelectedIndexChanged += new System.EventHandler(this.comboBox1_wavelet_SelectedIndexChanged);
             // 

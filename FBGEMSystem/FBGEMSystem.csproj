@@ -172,16 +172,7 @@
     <Compile Include="DataStorage\HoldIntegerSynchronizedEle.cs" />
     <Compile Include="DataStorage\Message.cs" />
     <Compile Include="DataStorage\MySectionHandler.cs" />
-    <Compile Include="RealtimeStatus\CHBar.xaml.cs">
-      <DependentUpon>CHBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RealtimeStatus\Histogram.xaml.cs">
-      <DependentUpon>Histogram.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RealtimeStatus\QueueData.cs" />
-    <Compile Include="RealtimeStatus\TrendCurve.xaml.cs">
-      <DependentUpon>TrendCurve.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DataStorage\Receiver.cs" />
     <Compile Include="DataStorage\Storer.cs" />
     <Compile Include="OnlineAnalysis\user.cs" />
@@ -208,19 +199,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RealtimeStatus\CHBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="RealtimeStatus\ElectricShow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RealtimeStatus\Histogram.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RealtimeStatus\TrendCurve.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -60,17 +60,6 @@
                                 <Image Source="/FBGEMSystem;component/Image/2.ico"/>
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="全部测点曲线" Style="{StaticResource MLB_MenuItem}" Click="MenuItemZTQS_Click" Foreground="Black">
-                            <MenuItem.Icon>
-                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="全部测点柱状图" Style="{StaticResource MLB_MenuItem}" Click="MenuItemZZT_Click" Foreground="Black">
-                            <MenuItem.Icon>
-                                <Image Source="/FBGEMSystem;component/Image/2.ico"/>
-                            </MenuItem.Icon>
-                        </MenuItem>
-
                     </MenuItem>
 
                     <MenuItem Header="信号处理" Style="{StaticResource MLB_MenuItem}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="Black">

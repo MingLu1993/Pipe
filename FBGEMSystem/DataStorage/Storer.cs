@@ -178,7 +178,7 @@ namespace FBGEMSystem
                         dt_Pres.Clear();
                         dt_Temp.Clear();
                         dt_Vibration.Clear();
-						RowsCount_Ele = dt_Pres.Rows.Count
+                        RowsCount_Ele = dt_Pres.Rows.Count;
                         //  dt4.Clear();
                     }
 
