@@ -176,6 +176,7 @@ namespace FBGEMSystem
 
                         //接一包解一包
                         msgEleDecode = decode_Electric(msgEle);
+
                         //如果画波形界面打开，则缓存进绘图缓存
                         if (Data.IsControl2 == true)
                         {
@@ -184,32 +185,17 @@ namespace FBGEMSystem
                                 sharedLocation1_Ele.Buffer = msgEleDecode;
                             }
                         }
-                        //if (sharedLocation_Ele.isFull == false)
+                        //存入存储缓冲
+                        if (Data.IsControlSQL == true)
                         {
                             sharedLocation_Ele.Buffer = msgEleDecode;
                         }
+
                         //if (process_all_msgEle.isFull == false)
                         //{
                         //    process_all_msgEle.Buffer = msg2Ele;
                         //}
-                        //if (Data.IsControl == true)
-                        //{
-                        //    if (sharedLocation1Ele.isFull == false)
-                        //    {
-                        //        sharedLocation1Ele.Buffer = msgEle;
-                        //    }
-                        //}
-                        //if (Data.IsControl2 == true)
-                        //{
-                        //    if (sharedLocation1Ele.isFull == false)
-                        //    {
-                        //        sharedLocation1Ele.Buffer = msgEle;
-                        //    }
-                        //}
-                        //if (Data.IsControl1 == true)
-                        //{
-                        //    Data.Ele = msgEle.CH1;
-                        //}
+
                         index++;
 
                     }

@@ -357,12 +357,13 @@ namespace FBGEMSystem
                 string NowTime = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + 
                                  DateTime.Now.Day.ToString() + "-"+ timenow;
                 msgFBG.dataTime = NowTime;
+
                 //存入存储缓冲
-
-                Receiver.sharedLocation_FBG.Buffer = msgFBG;
-
-
-
+                if(Data.IsControlSQL == true)
+                {
+                    Receiver.sharedLocation_FBG.Buffer = msgFBG;
+                }
+                //存入处理缓冲
                 if(Data.IsControlFBG == true)
                 {
                     Receiver.process_all_msg_FBG.Buffer = msgFBG;
