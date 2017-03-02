@@ -9,6 +9,7 @@ using System.Windows;
 using System.Configuration;
 using FBGEMSystem;
 
+
 namespace FBGEMSystem
 {
     class Storer
@@ -138,7 +139,7 @@ namespace FBGEMSystem
                         InsertRows_Ele(2, dt_Vibration);
                     }
 
-                    if (Receiver.sharedLocation_Ele.BufferSize > 0)
+                    if (Receiver.sharedLocation_FBG.BufferSize > 0)
                     {
                         msg_FBG = Receiver.sharedLocation_FBG.Buffer;
                         CH1_FBG = msg_FBG.CH1;
@@ -148,11 +149,6 @@ namespace FBGEMSystem
                         FBGTime = msg_FBG.dataTime;
                         RowsCount_FBG = InsertRows_FBG(dt_FBG);
                     }
-                    
-                    //插入光栅datatable
-                    //  InsertRows_FBG(FBGdt);
-                    //  InsertRows(3, dt4);
-
 
                     if (RowsCount_Ele == 2000 || (Receiver.sharedLocation_Ele.BufferSize == 0 && dt_Pres != null && dt_Temp != null && dt_Vibration != null))// && dt4 != null
                     {
@@ -165,7 +161,7 @@ namespace FBGEMSystem
                                 {
                                     bulkCopy.BatchSize = 2000;
 
-                                     bulkCopy.DestinationTableName = newTableNamePre;
+                                    bulkCopy.DestinationTableName = newTableNamePre;
                                     bulkCopy.WriteToServer(dt_Pres);
 
                                     bulkCopy.DestinationTableName = newTableNameTemp;
@@ -182,9 +178,11 @@ namespace FBGEMSystem
                         dt_Pres.Clear();
                         dt_Temp.Clear();
                         dt_Vibration.Clear();
+						RowsCount_Ele = dt_Pres.Rows.Count
                         //  dt4.Clear();
                     }
-                    if (RowsCount_FBG == 80000 || (Receiver.sharedLocation_FBG.BufferSize == 0 && dt_FBG != null))
+
+                    if (RowsCount_FBG == 2000 || (Receiver.sharedLocation_FBG.BufferSize == 0 && dt_FBG != null))
                     {
                         lock (this)
                         {
@@ -193,13 +191,14 @@ namespace FBGEMSystem
                                 conn.Open();
                                 using (SqlBulkCopy bulkCopy_FBG = new SqlBulkCopy(conn))
                                 {
-                                    bulkCopy_FBG.BatchSize = 80000;
+                                    bulkCopy_FBG.BatchSize = 2000;
                                     bulkCopy_FBG.DestinationTableName = newTableNameFBG;
                                     bulkCopy_FBG.WriteToServer(dt_FBG);
                                 }
                             }
                         }
                         dt_FBG.Clear();
+                        RowsCount_FBG = dt_FBG.Rows.Count;
                     }
                 }
                 catch (Exception e)
@@ -211,7 +210,7 @@ namespace FBGEMSystem
         }
 
         #region//创建内存表
-        //创建内存表~电类
+        //创建内存表电类
         public DataTable CreateDataTableEle(int k)
         {
             DataTable dt = new DataTable();
@@ -286,7 +285,7 @@ namespace FBGEMSystem
                                 //    break;
                         }
                     }
-                    dt.Rows.Add(row);
+                    dt.Rows.Add(row.ItemArray);
                 }
             }
             int count = dt.Rows.Count;
@@ -295,7 +294,7 @@ namespace FBGEMSystem
 
         //光纤光栅内存表赋值
         public int InsertRows_FBG(DataTable FBGdt)
-            {
+        {
 
             DataRow row_FBG = FBGdt.NewRow();
             row_FBG["Time"] = FBGTime;
@@ -309,30 +308,31 @@ namespace FBGEMSystem
                         case 0:
                             for (int j = 0; j < CHNum_FBG[i]; j++)
                             {
-                                row_FBG["Channel" + (i + 1).ToString() + "_" + (j + 1).ToString()] = CH1_FBG[j+k*Data.FBG_numPackage];
+                                row_FBG["Channel" + (i + 1).ToString() + "_" + (j + 1).ToString()] = CH1_FBG[j + k * 64];
                             }
                             break;
                         case 1:
                             for (int j = 0; j < CHNum_FBG[i]; j++)
                             {
-                                row_FBG["Channel" + (i + 1).ToString() + "_" + (j + 1).ToString()] = CH2_FBG[j + k * Data.FBG_numPackage];
+                                row_FBG["Channel" + (i + 1).ToString() + "_" + (j + 1).ToString()] = CH2_FBG[j + k * 64];
                             }
                             break;
                         case 2:
                             for (int j = 0; j < CHNum_FBG[i]; j++)
                             {
-                                row_FBG["Channel" + (i + 1).ToString() + "_" + (j + 1).ToString()] = CH3_FBG[j + k * Data.FBG_numPackage];
+                                row_FBG["Channel" + (i + 1).ToString() + "_" + (j + 1).ToString()] = CH3_FBG[j + k * 64];
                             }
                             break;
                         case 3:
                             for (int j = 0; j < CHNum_FBG[i]; j++)
                             {
-                                row_FBG["Channel" + (i + 1).ToString() + "_" + (j + 1).ToString()] = CH4_FBG[j + k * Data.FBG_numPackage];
+                                row_FBG["Channel" + (i + 1).ToString() + "_" + (j + 1).ToString()] = CH4_FBG[j + k * 64];
                             }
                             break;
                         default:break;
                     }
                 }
+                FBGdt.Rows.Add(row_FBG.ItemArray);
             }
             int count_FBG = FBGdt.Rows.Count;
             return count_FBG;

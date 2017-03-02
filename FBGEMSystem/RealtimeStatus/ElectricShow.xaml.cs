@@ -16,12 +16,12 @@ namespace FBGEMSystem.RealtimeStatus
         private Queue<float> que = new Queue<float>();
         //Message_Electric msg = new Message_Electric();
         Message_EleDecoded msg = new Message_EleDecoded();
-        private int k = 1500;
+        private int k = 300;
         int channel1 = 0;
         string type = "";
         int type_num = 0;
 
-        private int interval = 3000;//控制横轴的间距
+        private int interval = 500;//控制横轴的间距
         private DispatcherTimer dispatcherTimer = null;
         string Eletime = "";
 
@@ -119,7 +119,7 @@ namespace FBGEMSystem.RealtimeStatus
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.ToString());
+                //MessageBox.Show(err.ToString());
             }
         }
 
@@ -140,7 +140,7 @@ namespace FBGEMSystem.RealtimeStatus
                 if (msg.dataTime.Length > 0)
                     Eletime = msg.dataTime.Substring(msg.dataTime.Length - 12);
 
-                if (dataSeries.DataPoints.Count > 3000)
+                if (dataSeries.DataPoints.Count > 500)
                 {
                     if (qu.Count >= k)
                     {
@@ -166,7 +166,7 @@ namespace FBGEMSystem.RealtimeStatus
                 }
 
 
-                if (dataSeries.DataPoints.Count <= 3000)
+                if (dataSeries.DataPoints.Count <= 500)
                 {
                     if (qu.Count >= k)
                     {

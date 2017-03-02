@@ -330,20 +330,15 @@ namespace FBGEMSystem
                         {
                             case 2:
                                 CH1[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
-
-                                // msgFBG.CH1[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
                                 break;
                             case 3:
                                 CH2[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
-                                //msgFBG.CH2[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
                                 break;
                             case 4:
                                 CH3[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
-                                //msgFBG.CH3[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
                                 break;
                             case 5:
                                 CH4[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
-                                //msgFBG.CH4[MessageIndex * 64 + i - 1] = gPeaksAllf[tIndex, j, pos];
                                 break;
                             default:break;
                         }
@@ -363,7 +358,11 @@ namespace FBGEMSystem
                                  DateTime.Now.Day.ToString() + "-"+ timenow;
                 msgFBG.dataTime = NowTime;
                 //存入存储缓冲
+
                 Receiver.sharedLocation_FBG.Buffer = msgFBG;
+
+
+
                 if(Data.IsControlFBG == true)
                 {
                     Receiver.process_all_msg_FBG.Buffer = msgFBG;

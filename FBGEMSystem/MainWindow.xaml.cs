@@ -32,6 +32,8 @@ using getip;
 using preprocess;
 using plotfft;  //求FFTdll
 using mfdfa;    //MFDFA_dll
+using wavelet_S; //加载小波dll
+using ZedGraph;
 
 namespace FBGEMSystem
 {
@@ -44,8 +46,8 @@ namespace FBGEMSystem
         Cpreprocess pretmp = new Cpreprocess();
         Cplotfft plotfft = new Cplotfft();
         Cmfdfa mf = new Cmfdfa();
-
-
+        Cwavelet wave = new Cwavelet();
+        ZedGraphControl zed = new ZedGraphControl();
         //只使用了一个线程
         private bool isrecvThreadInit = false;
         Thread threRecvsFBG;
@@ -315,7 +317,6 @@ namespace FBGEMSystem
                     storer.GetConfig();
                     storer.InitiTb();
                     threStor = new Thread(new ThreadStart(storer.Stor));
-                    // storer.Stor();
                     threStor.Start();
                     threStor.IsBackground = true;
 
@@ -325,7 +326,7 @@ namespace FBGEMSystem
                     threRecvsFBG.IsBackground = true;
                     threRecvsEle.IsBackground = true;
                     threRecvsFBG.Start();
-                    //threRecvsEle.Start();
+                    threRecvsEle.Start();
                     isrecvThreadInit = true;
 
                 }

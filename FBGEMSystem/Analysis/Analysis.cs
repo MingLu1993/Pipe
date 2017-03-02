@@ -36,11 +36,16 @@ namespace FBGEMSystem
 
         int cmb_waveindex = 0;//小波基选择下拉框索引
         int let_c = 0;         //matlab 小波基选择参数
+        int cmb_wave_ad = 0; //小波分析中显示系数
+
+        delegate void SetTextCallback(string a,string b,string c);
+
+
         public Analysis()
         {
             InitializeComponent();
             init();
-            Data.IsControlFBG = true;
+            
         }
 
         private void init()
@@ -55,6 +60,8 @@ namespace FBGEMSystem
             {
                 comboBox_Point.Items.Add(i.ToString());
             }
+
+            AnalysisMethod = "时频域波形";       //默认时频域波形分析
 
             comboBox_wavelet.SelectedIndex = 2;   //默认是haar小波基
             cmb_waveindex = 2;
@@ -179,7 +186,7 @@ namespace FBGEMSystem
                 global.analysis_signal.Clear();
 
                 global.currentChannel = currentChannel;
-                AnalysisMethod = "时域波形";
+                
                 if (isThreadRunning == false)  //如果已经开启，则不执行
                 {
                     isThreadRunning = true;
@@ -202,6 +209,11 @@ namespace FBGEMSystem
         {
             if (comboBox_Point.SelectedItem != null)
             {
+                if(Data.IsControlFBG==false)
+                {
+                    Data.IsControlFBG = true;
+                }
+                
                 pointshow = Convert.ToInt32(comboBox_Point.SelectedItem.ToString());
                 //测点改变，清空待处理队列
                 global.analysis_signal.Clear();
@@ -209,7 +221,7 @@ namespace FBGEMSystem
             }
         }
 
-        //decode后的数据放在AnalysisUser类中的analysis_signal队列的数组中 
+        //小波分析中选择小波基
         private void comboBox1_wavelet_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmb_waveindex = comboBox_wavelet.SelectedIndex;
@@ -326,9 +338,15 @@ namespace FBGEMSystem
                 comboBox_db.Items.Clear();
             }
         }
- 
 
-    private void decode_thread()
+        //小波分析中显示系数选择
+        private void comboBox_ad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmb_wave_ad = comboBox_ad.SelectedIndex;
+        }
+
+        //decode后的数据放在AnalysisUser类中的analysis_signal队列的数组中 
+        private void decode_thread()
         {
             while (isThreadRunning && isCHSelected)
             {
@@ -488,10 +506,63 @@ namespace FBGEMSystem
             double d_alpha = alpha[0] - alpha[alpha.Length - 1];
             double d_f = f[0] - f[f.Length - 1];
             //double d_f=Dq[hq.Length/2]-Math.Min(hq[hq.Length-1],hq[0]);
-            textBox_alpha0.Text = alpha0.ToString();
-            textBox_d_alpha.Text = d_alpha.ToString();
-            textBox_d_f.Text = d_f.ToString();
+            //textBox_alpha0.Text = alpha0.ToString();
+            //textBox_d_alpha.Text = d_alpha.ToString();
+            //textBox_d_f.Text = d_f.ToString();
+            this.setMFDFA_text(alpha0.ToString(), d_alpha.ToString(), d_f.ToString());
         }
+
+        private void setMFDFA_text(string ALPHA0, string D_ALPHA, string D_F)
+        {
+            if (this.textBox_alpha0.InvokeRequired)//如果调用控件的线程和创建创建控件的线程不是同一个则为True
+            {
+                while (!this.textBox_alpha0.IsHandleCreated)
+                {
+                    //解决窗体关闭时出现“访问已释放句柄“的异常
+                    if (this.textBox_alpha0.Disposing || this.textBox_alpha0.IsDisposed)
+                        return;
+                }
+                SetTextCallback d = new SetTextCallback(setMFDFA_text);
+                this.textBox_alpha0.Invoke(d, new object[] { ALPHA0,D_ALPHA,D_F });
+            }
+            else
+            {
+                this.textBox_alpha0.Text = ALPHA0;
+            }
+
+            if (this.textBox_d_alpha.InvokeRequired)//如果调用控件的线程和创建创建控件的线程不是同一个则为True
+            {
+                while (!this.textBox_d_alpha.IsHandleCreated)
+                {
+                    //解决窗体关闭时出现“访问已释放句柄“的异常
+                    if (this.textBox_d_alpha.Disposing || this.textBox_d_alpha.IsDisposed)
+                        return;
+                }
+                SetTextCallback d = new SetTextCallback(setMFDFA_text);
+                this.textBox_d_alpha.Invoke(d, new object[] { ALPHA0, D_ALPHA, D_F });
+            }
+            else
+            {
+                this.textBox_d_alpha.Text = D_ALPHA;
+            }
+
+            if (this.textBox_d_f.InvokeRequired)//如果调用控件的线程和创建创建控件的线程不是同一个则为True
+            {
+                while (!this.textBox_d_f.IsHandleCreated)
+                {
+                    //解决窗体关闭时出现“访问已释放句柄“的异常
+                    if (this.textBox_d_f.Disposing || this.textBox_d_f.IsDisposed)
+                        return;
+                }
+                SetTextCallback d = new SetTextCallback(setMFDFA_text);
+                this.textBox_d_f.Invoke(d, new object[] { ALPHA0, D_ALPHA, D_F });
+            }
+            else
+            {
+                this.textBox_d_f.Text = D_F;
+            }
+        }
+       
         //小波分析
         private void WAVELET(double[] input)
         {
@@ -513,7 +584,7 @@ namespace FBGEMSystem
 
             global.WAVE_Process(input,let_c, ref a1, ref a2, ref a3, ref a4, ref a5, ref a6, ref a7, ref d1, ref d2, ref d3, ref d4, ref d5, ref d6, ref d7);
             //画曲线图
-            if(comboBox_ad.SelectedIndex==0)
+            if(cmb_wave_ad == 0) 
             {
                 zedGraph_a1.GraphPane.Title.Text = "第一层";
                 zedGraph_a1.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
@@ -553,7 +624,7 @@ namespace FBGEMSystem
                 PaintWave(a6, zedGraph_a6, "近似系数", "曲线图");
                 PaintWave(a7, zedGraph_a7, "近似系数", "曲线图");
             }
-            if (comboBox_ad.SelectedIndex == 1)
+            if (cmb_wave_ad == 1)
             {
                 zedGraph_a1.GraphPane.Title.Text = "第一层";
                 zedGraph_a1.GraphPane.XAxis.Title.Text = "样本序数";   //横坐标
@@ -620,17 +691,17 @@ namespace FBGEMSystem
                 case ("曲线图"):
                     zed.GraphPane.CurveList.Clear();//清空曲线
                                                     //创建曲线
-                    myCurve = zed.GraphPane.AddCurve(label, pList, Color.Black, SymbolType.None);
-                    //zedGraph1.IsShowPointValues = true;//当鼠标经过时，显示点的坐标。
+                    myCurve = zed.GraphPane.AddCurve(label, pList, Color.Red, SymbolType.None);
+                    zed.IsShowPointValues = true;//当鼠标经过时，显示点的坐标。
                     zed.GraphPane.AxisChange();  // 在数据变化时绘制图形;
                     zed.Invalidate();//刷新
                     break;
                 case ("散点图"):
                     zed.GraphPane.CurveList.Clear();//清空曲线
                                                     //创建曲线
-                    myCurve = zed.GraphPane.AddCurve(label, pList, Color.Black, SymbolType.Circle);
-                    myCurve.Symbol.Size = 3.0f;
-                    myCurve.Symbol.Fill = new Fill(Color.Black);
+                    myCurve = zed.GraphPane.AddCurve(label, pList, Color.Red, SymbolType.Circle);
+                    myCurve.Symbol.Size = 2.0f;
+                    myCurve.Symbol.Fill = new Fill(Color.Red);
                     myCurve.Line.IsVisible = false;
                     //zedGraph1.IsShowPointValues = true;//当鼠标经过时，显示点的坐标。
                     zed.GraphPane.AxisChange();  // 在数据变化时绘制图形;
