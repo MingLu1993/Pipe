@@ -30,6 +30,10 @@ using FBGEMSystem.Set;
 using System.Net;
 using getip;
 using preprocess;
+using plotfft;  //求FFTdll
+using mfdfa;    //MFDFA_dll
+using wavelet_S; //加载小波dll
+using ZedGraph;
 
 namespace FBGEMSystem
 {
@@ -40,13 +44,15 @@ namespace FBGEMSystem
     {
         Cgetip iptmp = new Cgetip();
         Cpreprocess pretmp = new Cpreprocess();
-
-
+        Cplotfft plotfft = new Cplotfft();
+        Cmfdfa mf = new Cmfdfa();
+        Cwavelet wave = new Cwavelet();
+        ZedGraphControl zed = new ZedGraphControl();
         //只使用了一个线程
         private bool isrecvThreadInit = false;
         Thread threRecvsFBG;
         Thread threRecvsEle;
-        Thread[] threStor = new Thread[1];
+        Thread threStor;
         //Thread thredecode;不需要电类解包缓存
 
 
@@ -62,11 +68,10 @@ namespace FBGEMSystem
             pCurrentWin = this;   //子窗口可以使用MainWindow.pCurrenWin    来访问主窗口变量及方法
             IPAddress.TryParse("192.168.1.10", out Data.remoteIP);  //remoteIP赋初值
 
-            storer = new Storer();
+           
             receiver = new Receiver();
             receiver.Client_Initi();
-            storer.GetConfig();
-            storer.InitiTb();
+            
 
             //thredecode = new Thread(new ThreadStart(receiver.decode_Electric));
 
@@ -95,19 +100,6 @@ namespace FBGEMSystem
             ReadConfig readConfig = new ReadConfig();
             string result =readConfig.CreateConfigFile(); 
 
-        }
-
-        private void MenuItemZTQS_Click(object sender, RoutedEventArgs e)
-        {
-            TrendCurve trendCurve = new TrendCurve();
-            trendCurve.ShowDialog();
-
-        }
-
-        private void MenuItemZZT_Click(object sender, RoutedEventArgs e)
-        {
-            CHBar chbar = new CHBar();
-            chbar.ShowDialog();
         }
 
 
@@ -284,36 +276,58 @@ namespace FBGEMSystem
             LabelInfo.Width = 50;
             LabelInfo.Height = 30;
             LabelInfo.Foreground = Brushes.Red;
-            LabelInfo.FontSize = 20;
+            LabelInfo.FontSize = 12;
 
             canvas.Children.Add(LabelInfo);
             Canvas.SetLeft(LabelInfo, X);
             Canvas.SetTop(LabelInfo, Y);
         }
-    
+
+        private void MenuItemDiagnosis_Click(object sender, RoutedEventArgs e)
+        {
+            ;
+        }
+
         private void MenuItemConnect_Click(object sender, RoutedEventArgs e)
         {
             receiver.SocketConnect();
         }
         private void MenuItemStart_Click(object sender, RoutedEventArgs e)
         {
+            
             if (receiver.streamtoserver != null)      //必须先连接才能初始化receiver.streamtoserver
             {
                 receiver.SocketStart();
-                if(isrecvThreadInit==false)
+                if (isrecvThreadInit == false)
                 {
+                    storer = new Storer();
+                    storer.GetConfig();
+                    storer.InitiTb();
+                    threStor = new Thread(new ThreadStart(storer.Stor));
+                    threStor.Start();
+                    threStor.IsBackground = true;
+
                     //开启接收线程
                     threRecvsFBG = new Thread(new ThreadStart(receiver.Recv_FBG));
                     threRecvsEle = new Thread(new ThreadStart(receiver.Recv_Electric));
                     threRecvsFBG.IsBackground = true;
                     threRecvsEle.IsBackground = true;
                     threRecvsFBG.Start();
-                    //threRecvsEle.Start();
+                    threRecvsEle.Start();
                     isrecvThreadInit = true;
+
                 }
             }
             else
             {
+              
+                storer = new Storer();
+                storer.GetConfig();
+                storer.InitiTb();
+                threStor = new Thread(new ThreadStart(storer.Stor));
+                // storer.Stor();
+                threStor.Start();
+                threStor.IsBackground = true;
 
                 System.Windows.MessageBox.Show("请先建立连接！", "警告");
                 //调试udp

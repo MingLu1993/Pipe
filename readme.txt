@@ -26,3 +26,14 @@
 20170216 修改user.cs和AnalysisUser.cs中的错误，Analysis.cs中加入画图刷新；
          Analysis加入时域显示。
 	 bin文件夹中加入dll文件及说明。
+20170227 Analysis.cs中加入FFT图。
+20170228：Store.cs中添加FBG存储内容；setting.cs中添加FBG与电类通道选择赋值；Mainwindow.cs中添加Srore.stor存储线程
+20170228 Store.cs修改数据表名格式
+20170301 Analysis.cs中加入MFDFA图。
+20170301 Store.cs中修改取数据，加入取数据条件判断。
+20170301 FBG解析后放入缓存，从系统读取时间放入结构体中的datatime中。
+20170301 Analysis.cs中加入小波分析。
+20170302 TCP、UDP同时通信；
+	 电类与FBG同时存入数据库；
+	 电类数据显示。FBG数据在线分析；
+	 Receiver.cs中UDP ip为测试用；
