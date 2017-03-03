@@ -288,7 +288,8 @@ namespace FBGEMSystem
 
         private void MenuItemDiagnosis_Click(object sender, RoutedEventArgs e)
         {
-            ;
+            Diagnosis diagnosis = new Diagnosis();
+            diagnosis.Show();
         }
 
         private void MenuItemConnect_Click(object sender, RoutedEventArgs e)

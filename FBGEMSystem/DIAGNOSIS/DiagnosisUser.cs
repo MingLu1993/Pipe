@@ -24,8 +24,8 @@ namespace FBGEMSystem
         //public double[,] Trains;        //训练样本，一行为一个样本
 
         public static int T = 0;           //设置每次增量训练的迭代次数，程序初始化时需设置
-        public static int TargetsNum = 0;  //管路状态个数，类别个数，程序初始化时需设置
-        private static object a;
+        public static int TargetsNum ;  //管路状态个数，类别个数，程序初始化时需设置
+        public static object a =new object();
 
         public static void TRAIN( double[,] Trains)
         {

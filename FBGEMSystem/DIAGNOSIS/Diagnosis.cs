@@ -2,28 +2,35 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FBGEMSystem.Diagnosis
+namespace FBGEMSystem
 {
     public partial class Diagnosis : Form
     {
 
         double[,] TrainSamples;
+        bool isSampleRead; //是否读取完毕
         
         public Diagnosis()
         {
             InitializeComponent();
+            textBox_T.Text = DiagnosisUser.T.ToString();
         }
 
         private void button_TOK_Click(object sender, EventArgs e)
         {
-            if(textBox_T.Text!="")
+            if( (textBox_T.Text!="") && (int.Parse(textBox_T.Text) != 0) )
             {
                 DiagnosisUser.T = int.Parse(textBox_T.Text);
+            }
+            else
+            {
+                MessageBox.Show("请输入有效T值！T取正整数");
             }
         }
 
@@ -73,22 +80,57 @@ namespace FBGEMSystem.Diagnosis
                 {
                     TrainSamples[j,x] = TrainSamplesList[j][x];
                 }
-                
             }
+            isSampleRead = true;
+            DiagnosisUser.TargetsNum = 5;  //!!!!!!!!!!!!!
+            MessageBox.Show("读取完毕！");
         }
 
         private void button_learn_Click(object sender, EventArgs e)
         {
             if(DiagnosisUser.T==0)
             {
-                MessageBox.Show("请先设置T");
+                MessageBox.Show("请先设置T！");
             }
             else
             {
+                if (isSampleRead==true)
+                {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Reset();
+                    stopwatch.Start(); //  开始监视代码运行时间
 
+                    DiagnosisUser.TRAIN(TrainSamples);
+                    TrainSamples = null;
+                    isSampleRead = false;
+                    stopwatch.Stop(); //  停止监视
+                    TimeSpan timespan = stopwatch.Elapsed; //  获取当前实例测量得出的总时间
+                    MessageBox.Show("经过"+ timespan.ToString()+"s"+"第"+DiagnosisUser.K.ToString()+"次训练成功");
+
+                    if (DiagnosisUser.K > 0  && button_TOK.Enabled ==true)
+                    {
+                        button_TOK.Enabled = false;   //进行过训练后，T值不可改变
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("请先读取样本集！");
+                }
             }
         }
 
-
+        private void button_test_Click(object sender, EventArgs e)
+        {
+            double[,] test = { { 9, 2, 18, 0.222000000000000, 0.611000000000000, 0.722000000000000, 11, 11, 13, 1 } };
+            if(DiagnosisUser.K==0)
+            {
+                MessageBox.Show("请先进行训练！");
+            }
+            else
+            {
+               int result= DiagnosisUser.PREDICT(test);
+               MessageBox.Show("预测结果为"+result.ToString());
+            }
+        }
     }
 }

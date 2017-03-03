@@ -1,4 +1,4 @@
-﻿namespace FBGEMSystem.Diagnosis
+﻿namespace FBGEMSystem
 {
     partial class Diagnosis
     {
@@ -36,6 +36,7 @@
             this.openFileDialog_sample = new System.Windows.Forms.OpenFileDialog();
             this.button_TOK = new System.Windows.Forms.Button();
             this.button_ReadSample = new System.Windows.Forms.Button();
+            this.button_test = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label42
@@ -58,9 +59,9 @@
             // 
             // textBox_newsamples
             // 
-            this.textBox_newsamples.Location = new System.Drawing.Point(167, 143);
+            this.textBox_newsamples.Location = new System.Drawing.Point(167, 146);
             this.textBox_newsamples.Name = "textBox_newsamples";
-            this.textBox_newsamples.Size = new System.Drawing.Size(248, 21);
+            this.textBox_newsamples.Size = new System.Drawing.Size(277, 21);
             this.textBox_newsamples.TabIndex = 6;
             // 
             // button_learn
@@ -77,7 +78,7 @@
             // button_chooseNew
             // 
             this.button_chooseNew.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_chooseNew.Location = new System.Drawing.Point(34, 138);
+            this.button_chooseNew.Location = new System.Drawing.Point(34, 140);
             this.button_chooseNew.Name = "button_chooseNew";
             this.button_chooseNew.Size = new System.Drawing.Size(115, 30);
             this.button_chooseNew.TabIndex = 4;
@@ -101,19 +102,31 @@
             // 
             // button_ReadSample
             // 
-            this.button_ReadSample.Location = new System.Drawing.Point(431, 141);
+            this.button_ReadSample.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_ReadSample.Location = new System.Drawing.Point(34, 183);
             this.button_ReadSample.Name = "button_ReadSample";
-            this.button_ReadSample.Size = new System.Drawing.Size(75, 23);
+            this.button_ReadSample.Size = new System.Drawing.Size(117, 35);
             this.button_ReadSample.TabIndex = 8;
             this.button_ReadSample.Text = "读取样本集";
             this.button_ReadSample.UseVisualStyleBackColor = true;
             this.button_ReadSample.Click += new System.EventHandler(this.button_ReadSample_Click);
+            // 
+            // button_test
+            // 
+            this.button_test.Location = new System.Drawing.Point(712, 232);
+            this.button_test.Name = "button_test";
+            this.button_test.Size = new System.Drawing.Size(75, 23);
+            this.button_test.TabIndex = 9;
+            this.button_test.Text = "训练测试";
+            this.button_test.UseVisualStyleBackColor = true;
+            this.button_test.Click += new System.EventHandler(this.button_test_Click);
             // 
             // Diagnosis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 354);
+            this.Controls.Add(this.button_test);
             this.Controls.Add(this.button_ReadSample);
             this.Controls.Add(this.button_TOK);
             this.Controls.Add(this.label42);
@@ -122,7 +135,7 @@
             this.Controls.Add(this.button_learn);
             this.Controls.Add(this.button_chooseNew);
             this.Name = "Diagnosis";
-            this.Text = "Diagnosis";
+            this.Text = "故障诊断增量训练";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,5 +151,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog_sample;
         private System.Windows.Forms.Button button_TOK;
         private System.Windows.Forms.Button button_ReadSample;
+        private System.Windows.Forms.Button button_test;
     }
 }
