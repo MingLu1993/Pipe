@@ -128,7 +128,13 @@
     <Compile Include="Analysis\AnalysisUser.cs" />
     <Compile Include="DataStorage\GlobalMembersFBG.cs" />
     <Compile Include="DataStorage\HoldIntegerSynchronizedFBG.cs" />
-    <Compile Include="Diagnosis.cs" />
+    <Compile Include="Diagnosis\DiagnosisUser.cs" />
+    <Compile Include="Diagnosis\Diagnosis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Diagnosis\Diagnosis.Designer.cs">
+      <DependentUpon>Diagnosis.cs</DependentUpon>
+    </Compile>
     <Compile Include="RealtimeStatus\ElectricShow.xaml.cs">
       <DependentUpon>ElectricShow.xaml</DependentUpon>
     </Compile>
@@ -228,6 +234,9 @@
     </Compile>
     <EmbeddedResource Include="Analysis\Analysis.resx">
       <DependentUpon>Analysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagnosis\Diagnosis.resx">
+      <DependentUpon>Diagnosis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Set\AddLabelInfo.resx">
       <DependentUpon>AddLabelInfo.cs</DependentUpon>

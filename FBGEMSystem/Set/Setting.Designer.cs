@@ -176,20 +176,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.textBox_newsamples = new System.Windows.Forms.TextBox();
-            this.button_learn = new System.Windows.Forms.Button();
-            this.button_chooseNew = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_choosePicture = new System.Windows.Forms.TextBox();
             this.Button_Choose = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.textBox_T = new System.Windows.Forms.TextBox();
-            this.label42 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage2
@@ -274,7 +267,6 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.ItemSize = new System.Drawing.Size(96, 25);
             this.tabControl1.Location = new System.Drawing.Point(12, 45);
             this.tabControl1.Name = "tabControl1";
@@ -1770,49 +1762,6 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "电类压力传感器";
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.label42);
-            this.tabPage3.Controls.Add(this.textBox_T);
-            this.tabPage3.Controls.Add(this.textBox_newsamples);
-            this.tabPage3.Controls.Add(this.button_learn);
-            this.tabPage3.Controls.Add(this.button_chooseNew);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1028, 436);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "故障诊断学习";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // textBox_newsamples
-            // 
-            this.textBox_newsamples.Location = new System.Drawing.Point(255, 114);
-            this.textBox_newsamples.Name = "textBox_newsamples";
-            this.textBox_newsamples.Size = new System.Drawing.Size(248, 21);
-            this.textBox_newsamples.TabIndex = 1;
-            // 
-            // button_learn
-            // 
-            this.button_learn.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_learn.Location = new System.Drawing.Point(64, 195);
-            this.button_learn.Name = "button_learn";
-            this.button_learn.Size = new System.Drawing.Size(115, 32);
-            this.button_learn.TabIndex = 0;
-            this.button_learn.Text = "增量学习";
-            this.button_learn.UseVisualStyleBackColor = true;
-            this.button_learn.Click += new System.EventHandler(this.Button_Choose_Click);
-            // 
-            // button_chooseNew
-            // 
-            this.button_chooseNew.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_chooseNew.Location = new System.Drawing.Point(64, 109);
-            this.button_chooseNew.Name = "button_chooseNew";
-            this.button_chooseNew.Size = new System.Drawing.Size(115, 30);
-            this.button_chooseNew.TabIndex = 0;
-            this.button_chooseNew.Text = "选择新样本集";
-            this.button_chooseNew.UseVisualStyleBackColor = true;
-            this.button_chooseNew.Click += new System.EventHandler(this.Button_Choose_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -1844,23 +1793,6 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "JPG文件|*.jpg|PNG图片|*.png";
             // 
-            // textBox_T
-            // 
-            this.textBox_T.Location = new System.Drawing.Point(255, 44);
-            this.textBox_T.Name = "textBox_T";
-            this.textBox_T.Size = new System.Drawing.Size(248, 21);
-            this.textBox_T.TabIndex = 1;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label42.Location = new System.Drawing.Point(42, 46);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(192, 16);
-            this.label42.TabIndex = 2;
-            this.label42.Text = "设置增量学习迭代次数T：";
-            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1877,8 +1809,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2038,11 +1968,5 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.TabPage tabPage3;
-        public System.Windows.Forms.TextBox textBox_newsamples;
-        private System.Windows.Forms.Button button_learn;
-        private System.Windows.Forms.Button button_chooseNew;
-        private System.Windows.Forms.Label label42;
-        public System.Windows.Forms.TextBox textBox_T;
     }
 }
