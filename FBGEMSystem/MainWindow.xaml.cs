@@ -34,6 +34,7 @@ using plotfft;  //求FFTdll
 using mfdfa;    //MFDFA_dll
 using wavelet_S; //加载小波dll
 using ZedGraph;
+using Learn;
 
 namespace FBGEMSystem
 {
@@ -47,6 +48,8 @@ namespace FBGEMSystem
         Cplotfft plotfft = new Cplotfft();
         Cmfdfa mf = new Cmfdfa();
         Cwavelet wave = new Cwavelet();
+        CLearn clearn = new CLearn();
+
         ZedGraphControl zed = new ZedGraphControl();
         //只使用了一个线程
         private bool isrecvThreadInit = false;

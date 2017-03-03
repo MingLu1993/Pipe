@@ -176,14 +176,20 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.textBox_newsamples = new System.Windows.Forms.TextBox();
+            this.button_learn = new System.Windows.Forms.Button();
+            this.button_chooseNew = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_choosePicture = new System.Windows.Forms.TextBox();
             this.Button_Choose = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
+            this.textBox_T = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage2
@@ -195,10 +201,10 @@
             this.tabPage2.Controls.Add(this.label37);
             this.tabPage2.Controls.Add(this.label36);
             this.tabPage2.Controls.Add(this.label35);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1028, 443);
+            this.tabPage2.Size = new System.Drawing.Size(1028, 436);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "通信设置";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -268,10 +274,13 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.ItemSize = new System.Drawing.Size(96, 25);
             this.tabControl1.Location = new System.Drawing.Point(12, 45);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1036, 469);
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 11;
             // 
             // tabPage1
@@ -414,10 +423,10 @@
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1028, 443);
+            this.tabPage1.Size = new System.Drawing.Size(1028, 436);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "传感器通道设置";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -456,7 +465,7 @@
             this.FBGChannel4_Num.Size = new System.Drawing.Size(68, 21);
             this.FBGChannel4_Num.TabIndex = 150;
             this.FBGChannel4_Num.Text = "0";
-            this.FBGChannel4_Num.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FBGChannel4_Num_KeyPress);
+            this.FBGChannel4_Num.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FBGtextboxLimit);
             // 
             // FBGChannel3_Num
             // 
@@ -465,7 +474,7 @@
             this.FBGChannel3_Num.Size = new System.Drawing.Size(60, 21);
             this.FBGChannel3_Num.TabIndex = 148;
             this.FBGChannel3_Num.Text = "0";
-            this.FBGChannel3_Num.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FBGChannel3_Num_KeyPress);
+            this.FBGChannel3_Num.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FBGtextboxLimit);
             // 
             // FBGChannel2_Num
             // 
@@ -474,7 +483,7 @@
             this.FBGChannel2_Num.Size = new System.Drawing.Size(64, 21);
             this.FBGChannel2_Num.TabIndex = 146;
             this.FBGChannel2_Num.Text = "0";
-            this.FBGChannel2_Num.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FBGChannel2_Num_KeyPress);
+            this.FBGChannel2_Num.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FBGtextboxLimit);
             // 
             // FBGChannel1_Num
             // 
@@ -483,7 +492,7 @@
             this.FBGChannel1_Num.Size = new System.Drawing.Size(66, 21);
             this.FBGChannel1_Num.TabIndex = 144;
             this.FBGChannel1_Num.Text = "0";
-            this.FBGChannel1_Num.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FBGChannel1_Num_KeyPress);
+            this.FBGChannel1_Num.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FBGtextboxLimit);
             // 
             // label39
             // 
@@ -717,7 +726,7 @@
             this.VibrationRange_low8.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_low8.TabIndex = 94;
             this.VibrationRange_low8.Text = "0";
-            this.VibrationRange_low8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_low8_KeyPress);
+            this.VibrationRange_low8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_low8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_low8
@@ -727,7 +736,7 @@
             this.TemperatureRange_low8.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_low8.TabIndex = 93;
             this.TemperatureRange_low8.Text = "0";
-            this.TemperatureRange_low8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_low8_KeyPress);
+            this.TemperatureRange_low8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_low8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_low8
@@ -737,7 +746,7 @@
             this.PressureRange_low8.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_low8.TabIndex = 92;
             this.PressureRange_low8.Text = "0";
-            this.PressureRange_low8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_low8_KeyPress);
+            this.PressureRange_low8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_low8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_high8
@@ -747,7 +756,7 @@
             this.VibrationRange_high8.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_high8.TabIndex = 91;
             this.VibrationRange_high8.Text = "0";
-            this.VibrationRange_high8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_high8_KeyPress);
+            this.VibrationRange_high8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_high8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_high8
@@ -757,7 +766,7 @@
             this.TemperatureRange_high8.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_high8.TabIndex = 90;
             this.TemperatureRange_high8.Text = "0";
-            this.TemperatureRange_high8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_high8_KeyPress);
+            this.TemperatureRange_high8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_high8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_high8
@@ -767,7 +776,7 @@
             this.PressureRange_high8.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_high8.TabIndex = 89;
             this.PressureRange_high8.Text = "0";
-            this.PressureRange_high8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_high8_KeyPress);
+            this.PressureRange_high8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_high8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_low7
@@ -777,7 +786,7 @@
             this.VibrationRange_low7.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_low7.TabIndex = 88;
             this.VibrationRange_low7.Text = "0";
-            this.VibrationRange_low7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_low7_KeyPress);
+            this.VibrationRange_low7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_low7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_low7
@@ -787,7 +796,7 @@
             this.TemperatureRange_low7.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_low7.TabIndex = 97;
             this.TemperatureRange_low7.Text = "0";
-            this.TemperatureRange_low7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_low7_KeyPress);
+            this.TemperatureRange_low7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_low7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_low7
@@ -797,7 +806,7 @@
             this.PressureRange_low7.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_low7.TabIndex = 86;
             this.PressureRange_low7.Text = "0";
-            this.PressureRange_low7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_low7_KeyPress);
+            this.PressureRange_low7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_low7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_high7
@@ -807,7 +816,7 @@
             this.VibrationRange_high7.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_high7.TabIndex = 85;
             this.VibrationRange_high7.Text = "0";
-            this.VibrationRange_high7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_high7_KeyPress);
+            this.VibrationRange_high7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_high7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_high7
@@ -817,7 +826,7 @@
             this.TemperatureRange_high7.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_high7.TabIndex = 84;
             this.TemperatureRange_high7.Text = "0";
-            this.TemperatureRange_high7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_high7_KeyPress);
+            this.TemperatureRange_high7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_high7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_high7
@@ -827,7 +836,7 @@
             this.PressureRange_high7.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_high7.TabIndex = 83;
             this.PressureRange_high7.Text = "0";
-            this.PressureRange_high7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_high7_KeyPress);
+            this.PressureRange_high7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_high7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_low6
@@ -837,7 +846,7 @@
             this.VibrationRange_low6.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_low6.TabIndex = 82;
             this.VibrationRange_low6.Text = "0";
-            this.VibrationRange_low6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_low6_KeyPress);
+            this.VibrationRange_low6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_low6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_low6
@@ -847,7 +856,7 @@
             this.TemperatureRange_low6.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_low6.TabIndex = 81;
             this.TemperatureRange_low6.Text = "0";
-            this.TemperatureRange_low6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_low6_KeyPress);
+            this.TemperatureRange_low6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_low6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_low6
@@ -857,7 +866,7 @@
             this.PressureRange_low6.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_low6.TabIndex = 80;
             this.PressureRange_low6.Text = "0";
-            this.PressureRange_low6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_low6_KeyPress);
+            this.PressureRange_low6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_low6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_high6
@@ -867,7 +876,7 @@
             this.VibrationRange_high6.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_high6.TabIndex = 79;
             this.VibrationRange_high6.Text = "0";
-            this.VibrationRange_high6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_high6_KeyPress);
+            this.VibrationRange_high6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_high6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_high6
@@ -877,7 +886,7 @@
             this.TemperatureRange_high6.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_high6.TabIndex = 78;
             this.TemperatureRange_high6.Text = "0";
-            this.TemperatureRange_high6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_high6_KeyPress);
+            this.TemperatureRange_high6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_high6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_high6
@@ -887,7 +896,7 @@
             this.PressureRange_high6.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_high6.TabIndex = 95;
             this.PressureRange_high6.Text = "0";
-            this.PressureRange_high6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_high6_KeyPress);
+            this.PressureRange_high6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_high6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_low5
@@ -897,7 +906,7 @@
             this.VibrationRange_low5.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_low5.TabIndex = 96;
             this.VibrationRange_low5.Text = "0";
-            this.VibrationRange_low5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_low5_KeyPress);
+            this.VibrationRange_low5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_low5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_low5
@@ -907,7 +916,7 @@
             this.TemperatureRange_low5.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_low5.TabIndex = 99;
             this.TemperatureRange_low5.Text = "0";
-            this.TemperatureRange_low5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_low5_KeyPress);
+            this.TemperatureRange_low5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_low5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_low5
@@ -917,7 +926,7 @@
             this.PressureRange_low5.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_low5.TabIndex = 98;
             this.PressureRange_low5.Text = "0";
-            this.PressureRange_low5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_low5_KeyPress);
+            this.PressureRange_low5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_low5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_high5
@@ -927,7 +936,7 @@
             this.VibrationRange_high5.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_high5.TabIndex = 116;
             this.VibrationRange_high5.Text = "0";
-            this.VibrationRange_high5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_high5_KeyPress);
+            this.VibrationRange_high5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_high5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_high5
@@ -937,7 +946,7 @@
             this.TemperatureRange_high5.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_high5.TabIndex = 114;
             this.TemperatureRange_high5.Text = "0";
-            this.TemperatureRange_high5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_high5_KeyPress);
+            this.TemperatureRange_high5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_high5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_high5
@@ -947,7 +956,7 @@
             this.PressureRange_high5.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_high5.TabIndex = 113;
             this.PressureRange_high5.Text = "0";
-            this.PressureRange_high5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_high5_KeyPress);
+            this.PressureRange_high5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_high5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_low4
@@ -957,7 +966,7 @@
             this.VibrationRange_low4.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_low4.TabIndex = 112;
             this.VibrationRange_low4.Text = "0";
-            this.VibrationRange_low4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_low4_KeyPress);
+            this.VibrationRange_low4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_low4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_low4
@@ -967,7 +976,7 @@
             this.TemperatureRange_low4.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_low4.TabIndex = 111;
             this.TemperatureRange_low4.Text = "0";
-            this.TemperatureRange_low4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_low4_KeyPress);
+            this.TemperatureRange_low4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_low4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_low4
@@ -977,7 +986,7 @@
             this.PressureRange_low4.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_low4.TabIndex = 110;
             this.PressureRange_low4.Text = "0";
-            this.PressureRange_low4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_low4_KeyPress);
+            this.PressureRange_low4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_low4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_high4
@@ -987,7 +996,7 @@
             this.VibrationRange_high4.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_high4.TabIndex = 109;
             this.VibrationRange_high4.Text = "0";
-            this.VibrationRange_high4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_high4_KeyPress);
+            this.VibrationRange_high4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_high4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_high4
@@ -997,7 +1006,7 @@
             this.TemperatureRange_high4.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_high4.TabIndex = 108;
             this.TemperatureRange_high4.Text = "0";
-            this.TemperatureRange_high4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_high4_KeyPress);
+            this.TemperatureRange_high4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_high4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_high4
@@ -1007,7 +1016,7 @@
             this.PressureRange_high4.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_high4.TabIndex = 115;
             this.PressureRange_high4.Text = "0";
-            this.PressureRange_high4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_high4_KeyPress);
+            this.PressureRange_high4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_high4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_low3
@@ -1017,7 +1026,7 @@
             this.VibrationRange_low3.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_low3.TabIndex = 106;
             this.VibrationRange_low3.Text = "0";
-            this.VibrationRange_low3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_low3_KeyPress);
+            this.VibrationRange_low3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_low3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_low3
@@ -1027,7 +1036,7 @@
             this.TemperatureRange_low3.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_low3.TabIndex = 105;
             this.TemperatureRange_low3.Text = "0";
-            this.TemperatureRange_low3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_low3_KeyPress);
+            this.TemperatureRange_low3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_low3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_low3
@@ -1037,7 +1046,7 @@
             this.PressureRange_low3.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_low3.TabIndex = 104;
             this.PressureRange_low3.Text = "0";
-            this.PressureRange_low3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_low3_KeyPress);
+            this.PressureRange_low3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_low3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_high3
@@ -1047,7 +1056,7 @@
             this.VibrationRange_high3.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_high3.TabIndex = 103;
             this.VibrationRange_high3.Text = "0";
-            this.VibrationRange_high3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_high3_KeyPress);
+            this.VibrationRange_high3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_high3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_high3
@@ -1057,7 +1066,7 @@
             this.TemperatureRange_high3.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_high3.TabIndex = 107;
             this.TemperatureRange_high3.Text = "0";
-            this.TemperatureRange_high3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_high3_KeyPress);
+            this.TemperatureRange_high3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_high3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_high3
@@ -1067,7 +1076,7 @@
             this.PressureRange_high3.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_high3.TabIndex = 102;
             this.PressureRange_high3.Text = "0";
-            this.PressureRange_high3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_high3_KeyPress);
+            this.PressureRange_high3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_high3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_low2
@@ -1077,7 +1086,7 @@
             this.VibrationRange_low2.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_low2.TabIndex = 101;
             this.VibrationRange_low2.Text = "0";
-            this.VibrationRange_low2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_low2_KeyPress);
+            this.VibrationRange_low2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_low2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_low2
@@ -1087,7 +1096,7 @@
             this.TemperatureRange_low2.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_low2.TabIndex = 100;
             this.TemperatureRange_low2.Text = "0";
-            this.TemperatureRange_low2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_low2_KeyPress);
+            this.TemperatureRange_low2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_low2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_low2
@@ -1097,7 +1106,7 @@
             this.PressureRange_low2.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_low2.TabIndex = 77;
             this.PressureRange_low2.Text = "0";
-            this.PressureRange_low2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_low2_KeyPress);
+            this.PressureRange_low2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_low2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_high2
@@ -1107,7 +1116,7 @@
             this.VibrationRange_high2.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_high2.TabIndex = 87;
             this.VibrationRange_high2.Text = "0";
-            this.VibrationRange_high2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_high2_KeyPress);
+            this.VibrationRange_high2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_high2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_high2
@@ -1117,7 +1126,7 @@
             this.TemperatureRange_high2.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_high2.TabIndex = 76;
             this.TemperatureRange_high2.Text = "0";
-            this.TemperatureRange_high2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_high2_KeyPress);
+            this.TemperatureRange_high2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_high2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // PressureRange_high2
@@ -1127,7 +1136,7 @@
             this.PressureRange_high2.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_high2.TabIndex = 69;
             this.PressureRange_high2.Text = "0";
-            this.PressureRange_high2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_high2_KeyPress);
+            this.PressureRange_high2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_high2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_low1
@@ -1137,7 +1146,7 @@
             this.VibrationRange_low1.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_low1.TabIndex = 75;
             this.VibrationRange_low1.Text = "0";
-            this.VibrationRange_low1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_low1_KeyPress);
+            this.VibrationRange_low1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_low1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // VibrationRange_high1
@@ -1147,7 +1156,7 @@
             this.VibrationRange_high1.Size = new System.Drawing.Size(49, 21);
             this.VibrationRange_high1.TabIndex = 74;
             this.VibrationRange_high1.Text = "0";
-            this.VibrationRange_high1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VibrationRange_high1_KeyPress);
+            this.VibrationRange_high1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.VibrationRange_high1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_low1
@@ -1157,7 +1166,7 @@
             this.TemperatureRange_low1.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_low1.TabIndex = 73;
             this.TemperatureRange_low1.Text = "0";
-            this.TemperatureRange_low1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_low1_KeyPress);
+            this.TemperatureRange_low1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_low1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // TemperatureRange_high1
@@ -1167,7 +1176,7 @@
             this.TemperatureRange_high1.Size = new System.Drawing.Size(49, 21);
             this.TemperatureRange_high1.TabIndex = 72;
             this.TemperatureRange_high1.Text = "0";
-            this.TemperatureRange_high1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TemperatureRange_high1_KeyPress);
+            this.TemperatureRange_high1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.TemperatureRange_high1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // label26
@@ -1186,7 +1195,7 @@
             this.PressureRange_low1.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_low1.TabIndex = 71;
             this.PressureRange_low1.Text = "0";
-            this.PressureRange_low1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_low1_KeyPress);
+            this.PressureRange_low1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_low1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // label17
@@ -1205,7 +1214,7 @@
             this.PressureRange_high1.Size = new System.Drawing.Size(49, 21);
             this.PressureRange_high1.TabIndex = 70;
             this.PressureRange_high1.Text = "0";
-            this.PressureRange_high1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressureRange_high1_KeyPress);
+            this.PressureRange_high1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.PressureRange_high1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // label8
@@ -1474,7 +1483,7 @@
             this.Vibration_Sensitivity8.Size = new System.Drawing.Size(78, 21);
             this.Vibration_Sensitivity8.TabIndex = 17;
             this.Vibration_Sensitivity8.Text = "0";
-            this.Vibration_Sensitivity8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Vibration_Sensitivity8_KeyPress);
+            this.Vibration_Sensitivity8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Vibration_Sensitivity8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Temperature_Sensitivity8
@@ -1484,7 +1493,7 @@
             this.Temperature_Sensitivity8.Size = new System.Drawing.Size(78, 21);
             this.Temperature_Sensitivity8.TabIndex = 18;
             this.Temperature_Sensitivity8.Text = "0";
-            this.Temperature_Sensitivity8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Temperature_Sensitivity8_KeyPress);
+            this.Temperature_Sensitivity8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Temperature_Sensitivity8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Pressure_Sensitivity8
@@ -1494,7 +1503,7 @@
             this.Pressure_Sensitivity8.Size = new System.Drawing.Size(78, 21);
             this.Pressure_Sensitivity8.TabIndex = 19;
             this.Pressure_Sensitivity8.Text = "0";
-            this.Pressure_Sensitivity8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Pressure_Sensitivity8_KeyPress);
+            this.Pressure_Sensitivity8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Pressure_Sensitivity8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Vibration_Sensitivity7
@@ -1504,7 +1513,7 @@
             this.Vibration_Sensitivity7.Size = new System.Drawing.Size(78, 21);
             this.Vibration_Sensitivity7.TabIndex = 20;
             this.Vibration_Sensitivity7.Text = "0";
-            this.Vibration_Sensitivity7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Vibration_Sensitivity7_KeyPress);
+            this.Vibration_Sensitivity7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Vibration_Sensitivity7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Temperature_Sensitivity7
@@ -1514,7 +1523,7 @@
             this.Temperature_Sensitivity7.Size = new System.Drawing.Size(78, 21);
             this.Temperature_Sensitivity7.TabIndex = 21;
             this.Temperature_Sensitivity7.Text = "0";
-            this.Temperature_Sensitivity7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Temperature_Sensitivity7_KeyPress);
+            this.Temperature_Sensitivity7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Temperature_Sensitivity7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Pressure_Sensitivity7
@@ -1524,7 +1533,7 @@
             this.Pressure_Sensitivity7.Size = new System.Drawing.Size(78, 21);
             this.Pressure_Sensitivity7.TabIndex = 22;
             this.Pressure_Sensitivity7.Text = "0";
-            this.Pressure_Sensitivity7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Pressure_Sensitivity7_KeyPress);
+            this.Pressure_Sensitivity7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Pressure_Sensitivity7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Vibration_Sensitivity6
@@ -1534,7 +1543,7 @@
             this.Vibration_Sensitivity6.Size = new System.Drawing.Size(78, 21);
             this.Vibration_Sensitivity6.TabIndex = 28;
             this.Vibration_Sensitivity6.Text = "0";
-            this.Vibration_Sensitivity6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Vibration_Sensitivity6_KeyPress);
+            this.Vibration_Sensitivity6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Vibration_Sensitivity6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Temperature_Sensitivity6
@@ -1544,7 +1553,7 @@
             this.Temperature_Sensitivity6.Size = new System.Drawing.Size(78, 21);
             this.Temperature_Sensitivity6.TabIndex = 23;
             this.Temperature_Sensitivity6.Text = "0";
-            this.Temperature_Sensitivity6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Temperature_Sensitivity6_KeyPress);
+            this.Temperature_Sensitivity6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Temperature_Sensitivity6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Pressure_Sensitivity6
@@ -1554,7 +1563,7 @@
             this.Pressure_Sensitivity6.Size = new System.Drawing.Size(78, 21);
             this.Pressure_Sensitivity6.TabIndex = 24;
             this.Pressure_Sensitivity6.Text = "0";
-            this.Pressure_Sensitivity6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Pressure_Sensitivity6_KeyPress);
+            this.Pressure_Sensitivity6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Pressure_Sensitivity6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Vibration_Sensitivity5
@@ -1564,7 +1573,7 @@
             this.Vibration_Sensitivity5.Size = new System.Drawing.Size(78, 21);
             this.Vibration_Sensitivity5.TabIndex = 25;
             this.Vibration_Sensitivity5.Text = "0";
-            this.Vibration_Sensitivity5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Vibration_Sensitivity5_KeyPress);
+            this.Vibration_Sensitivity5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Vibration_Sensitivity5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Temperature_Sensitivity5
@@ -1574,7 +1583,7 @@
             this.Temperature_Sensitivity5.Size = new System.Drawing.Size(78, 21);
             this.Temperature_Sensitivity5.TabIndex = 26;
             this.Temperature_Sensitivity5.Text = "0";
-            this.Temperature_Sensitivity5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Temperature_Sensitivity5_KeyPress);
+            this.Temperature_Sensitivity5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Temperature_Sensitivity5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Pressure_Sensitivity5
@@ -1584,7 +1593,7 @@
             this.Pressure_Sensitivity5.Size = new System.Drawing.Size(78, 21);
             this.Pressure_Sensitivity5.TabIndex = 27;
             this.Pressure_Sensitivity5.Text = "0";
-            this.Pressure_Sensitivity5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Pressure_Sensitivity5_KeyPress);
+            this.Pressure_Sensitivity5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Pressure_Sensitivity5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Vibration_Sensitivity4
@@ -1594,7 +1603,7 @@
             this.Vibration_Sensitivity4.Size = new System.Drawing.Size(78, 21);
             this.Vibration_Sensitivity4.TabIndex = 40;
             this.Vibration_Sensitivity4.Text = "0";
-            this.Vibration_Sensitivity4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Vibration_Sensitivity4_KeyPress);
+            this.Vibration_Sensitivity4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Vibration_Sensitivity4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Temperature_Sensitivity4
@@ -1604,7 +1613,7 @@
             this.Temperature_Sensitivity4.Size = new System.Drawing.Size(78, 21);
             this.Temperature_Sensitivity4.TabIndex = 29;
             this.Temperature_Sensitivity4.Text = "0";
-            this.Temperature_Sensitivity4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Temperature_Sensitivity4_KeyPress);
+            this.Temperature_Sensitivity4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Temperature_Sensitivity4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Pressure_Sensitivity4
@@ -1614,7 +1623,7 @@
             this.Pressure_Sensitivity4.Size = new System.Drawing.Size(78, 21);
             this.Pressure_Sensitivity4.TabIndex = 30;
             this.Pressure_Sensitivity4.Text = "0";
-            this.Pressure_Sensitivity4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Pressure_Sensitivity4_KeyPress);
+            this.Pressure_Sensitivity4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Pressure_Sensitivity4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Vibration_Sensitivity3
@@ -1624,7 +1633,7 @@
             this.Vibration_Sensitivity3.Size = new System.Drawing.Size(78, 21);
             this.Vibration_Sensitivity3.TabIndex = 31;
             this.Vibration_Sensitivity3.Text = "0";
-            this.Vibration_Sensitivity3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Vibration_Sensitivity3_KeyPress);
+            this.Vibration_Sensitivity3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Vibration_Sensitivity3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Temperature_Sensitivity3
@@ -1634,7 +1643,7 @@
             this.Temperature_Sensitivity3.Size = new System.Drawing.Size(78, 21);
             this.Temperature_Sensitivity3.TabIndex = 32;
             this.Temperature_Sensitivity3.Text = "0";
-            this.Temperature_Sensitivity3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Temperature_Sensitivity3_KeyPress);
+            this.Temperature_Sensitivity3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Temperature_Sensitivity3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Pressure_Sensitivity3
@@ -1644,7 +1653,7 @@
             this.Pressure_Sensitivity3.Size = new System.Drawing.Size(78, 21);
             this.Pressure_Sensitivity3.TabIndex = 34;
             this.Pressure_Sensitivity3.Text = "0";
-            this.Pressure_Sensitivity3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Pressure_Sensitivity3_KeyPress);
+            this.Pressure_Sensitivity3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Pressure_Sensitivity3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Vibration_Sensitivity2
@@ -1654,7 +1663,7 @@
             this.Vibration_Sensitivity2.Size = new System.Drawing.Size(78, 21);
             this.Vibration_Sensitivity2.TabIndex = 35;
             this.Vibration_Sensitivity2.Text = "0";
-            this.Vibration_Sensitivity2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Vibration_Sensitivity2_KeyPress);
+            this.Vibration_Sensitivity2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Vibration_Sensitivity2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Temperature_Sensitivity2
@@ -1664,7 +1673,7 @@
             this.Temperature_Sensitivity2.Size = new System.Drawing.Size(78, 21);
             this.Temperature_Sensitivity2.TabIndex = 36;
             this.Temperature_Sensitivity2.Text = "0";
-            this.Temperature_Sensitivity2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Temperature_Sensitivity2_KeyPress);
+            this.Temperature_Sensitivity2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Temperature_Sensitivity2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Pressure_Sensitivity2
@@ -1674,7 +1683,7 @@
             this.Pressure_Sensitivity2.Size = new System.Drawing.Size(78, 21);
             this.Pressure_Sensitivity2.TabIndex = 37;
             this.Pressure_Sensitivity2.Text = "0";
-            this.Pressure_Sensitivity2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Pressure_Sensitivity2_KeyPress);
+            this.Pressure_Sensitivity2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Pressure_Sensitivity2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Vibration_Sensitivity1
@@ -1684,7 +1693,7 @@
             this.Vibration_Sensitivity1.Size = new System.Drawing.Size(78, 21);
             this.Vibration_Sensitivity1.TabIndex = 38;
             this.Vibration_Sensitivity1.Text = "0";
-            this.Vibration_Sensitivity1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Vibration_Sensitivity1_KeyPress);
+            this.Vibration_Sensitivity1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Vibration_Sensitivity1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Temperature_Sensitivity1
@@ -1694,7 +1703,7 @@
             this.Temperature_Sensitivity1.Size = new System.Drawing.Size(78, 21);
             this.Temperature_Sensitivity1.TabIndex = 39;
             this.Temperature_Sensitivity1.Text = "0";
-            this.Temperature_Sensitivity1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Temperature_Sensitivity1_KeyPress);
+            this.Temperature_Sensitivity1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Temperature_Sensitivity1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // Pressure_Sensitivity1
@@ -1704,7 +1713,7 @@
             this.Pressure_Sensitivity1.Size = new System.Drawing.Size(78, 21);
             this.Pressure_Sensitivity1.TabIndex = 33;
             this.Pressure_Sensitivity1.Text = "0";
-            this.Pressure_Sensitivity1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Pressure_Sensitivity1_KeyPress);
+            this.Pressure_Sensitivity1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ELETextboxLimit);
             this.Pressure_Sensitivity1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseDown);
             // 
             // label4
@@ -1761,6 +1770,49 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "电类压力传感器";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.label42);
+            this.tabPage3.Controls.Add(this.textBox_T);
+            this.tabPage3.Controls.Add(this.textBox_newsamples);
+            this.tabPage3.Controls.Add(this.button_learn);
+            this.tabPage3.Controls.Add(this.button_chooseNew);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1028, 436);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "故障诊断学习";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // textBox_newsamples
+            // 
+            this.textBox_newsamples.Location = new System.Drawing.Point(255, 114);
+            this.textBox_newsamples.Name = "textBox_newsamples";
+            this.textBox_newsamples.Size = new System.Drawing.Size(248, 21);
+            this.textBox_newsamples.TabIndex = 1;
+            // 
+            // button_learn
+            // 
+            this.button_learn.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_learn.Location = new System.Drawing.Point(64, 195);
+            this.button_learn.Name = "button_learn";
+            this.button_learn.Size = new System.Drawing.Size(115, 32);
+            this.button_learn.TabIndex = 0;
+            this.button_learn.Text = "增量学习";
+            this.button_learn.UseVisualStyleBackColor = true;
+            this.button_learn.Click += new System.EventHandler(this.Button_Choose_Click);
+            // 
+            // button_chooseNew
+            // 
+            this.button_chooseNew.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_chooseNew.Location = new System.Drawing.Point(64, 109);
+            this.button_chooseNew.Name = "button_chooseNew";
+            this.button_chooseNew.Size = new System.Drawing.Size(115, 30);
+            this.button_chooseNew.TabIndex = 0;
+            this.button_chooseNew.Text = "选择新样本集";
+            this.button_chooseNew.UseVisualStyleBackColor = true;
+            this.button_chooseNew.Click += new System.EventHandler(this.Button_Choose_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -1792,6 +1844,23 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "JPG文件|*.jpg|PNG图片|*.png";
             // 
+            // textBox_T
+            // 
+            this.textBox_T.Location = new System.Drawing.Point(255, 44);
+            this.textBox_T.Name = "textBox_T";
+            this.textBox_T.Size = new System.Drawing.Size(248, 21);
+            this.textBox_T.TabIndex = 1;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label42.Location = new System.Drawing.Point(42, 46);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(192, 16);
+            this.label42.TabIndex = 2;
+            this.label42.Text = "设置增量学习迭代次数T：";
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1808,6 +1877,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1960,7 +2031,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button_SocketSure;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
         private System.Windows.Forms.TextBox FBGChannel4_Num;
         private System.Windows.Forms.TextBox FBGChannel3_Num;
         private System.Windows.Forms.TextBox FBGChannel2_Num;
@@ -1968,5 +2038,11 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.TabPage tabPage3;
+        public System.Windows.Forms.TextBox textBox_newsamples;
+        private System.Windows.Forms.Button button_learn;
+        private System.Windows.Forms.Button button_chooseNew;
+        private System.Windows.Forms.Label label42;
+        public System.Windows.Forms.TextBox textBox_T;
     }
 }

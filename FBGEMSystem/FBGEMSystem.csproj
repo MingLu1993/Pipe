@@ -67,6 +67,9 @@
     <Reference Include="getip">
       <HintPath>..\..\..\c#\WinForm_test2_LL\WinForm_test2\WinForm_test2\bin\getip.dll</HintPath>
     </Reference>
+    <Reference Include="Learn">
+      <HintPath>bin\Debug\dll_ illustration\Learn\Learn\for_testing\Learn.dll</HintPath>
+    </Reference>
     <Reference Include="mfdfa">
       <HintPath>F:\matlab\管路系统\mfdfa\for_redistribution_files_only\mfdfa.dll</HintPath>
     </Reference>
@@ -125,6 +128,7 @@
     <Compile Include="Analysis\AnalysisUser.cs" />
     <Compile Include="DataStorage\GlobalMembersFBG.cs" />
     <Compile Include="DataStorage\HoldIntegerSynchronizedFBG.cs" />
+    <Compile Include="Diagnosis.cs" />
     <Compile Include="RealtimeStatus\ElectricShow.xaml.cs">
       <DependentUpon>ElectricShow.xaml</DependentUpon>
     </Compile>
@@ -230,12 +234,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Set\Setting.resx">
       <DependentUpon>Setting.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LiveDataShow\FBGData1.resx">
       <DependentUpon>FBGData1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OnlineAnalysis\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
