@@ -31,7 +31,7 @@ namespace FBGEMSystem
 
         //用于电类UDP
         private UdpClient udpEle;
-        private static IPAddress IP = IPAddress.Parse("127.0.0.1");
+        private static IPAddress IP = IPAddress.Parse("192.168.1.231");//测试用，应该与TCP的ip相同
         private IPEndPoint UdpEleIEP = null;
         IPEndPoint remote = null;
 
@@ -39,7 +39,7 @@ namespace FBGEMSystem
         public static int index = 0;
         public static int buffer_capacity = 4000;
         //FBG数据缓存
-        public static HoldIntegerSynchronizedFBG sharedLocation_FBG = new HoldIntegerSynchronizedFBG(buffer_capacity);//存储缓冲
+        public static HoldIntegerSynchronizedFBG sharedLocation_FBG = new HoldIntegerSynchronizedFBG(buffer_capacity);//存储缓冲1
         public static HoldIntegerSynchronizedFBG sharedLocation1_FBG = new HoldIntegerSynchronizedFBG(buffer_capacity);//绘图缓冲 
         public static HoldIntegerSynchronizedFBG process_all_msg_FBG = new HoldIntegerSynchronizedFBG(buffer_capacity);//分析缓冲
         //电类数据缓存
@@ -70,12 +70,22 @@ namespace FBGEMSystem
         //与tcp建立连接，发送"test\n"给udp
         public void SocketConnect()
         {
-            UdpEleIEP = new IPEndPoint(Data.remoteIP, Data.UDPPort);
+            UdpEleIEP = new IPEndPoint(Data.remoteIP, Data.port);
 
-            TcpFBG.Connect(Data.remoteIP, Data.TCPPort);
-            streamtoserver = TcpFBG.GetStream();
+           
 
             byte[] byte1 = new byte[10000];
+            try
+            {
+                TcpFBG.Connect(Data.remoteIP, Data.TCPPort);
+                streamtoserver = TcpFBG.GetStream();
+                
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show("连接失败，请重启软件重新连接！");
+            }
+
             if (TcpFBG.Connected)
             {
                 //Text = "连接成功，接收WHUTFBGV1A";
@@ -104,14 +114,15 @@ namespace FBGEMSystem
                 }
                 gmFBG.DecodeFPGAFlashConfig(config_nRecv, byte1);
                 MessageBox.Show("解析config完毕");
-                
+
                 //udp发送"C\n"至下位机，便于下位机获取本机ip及端口号
                 //udpEle.Send(bytetest,bytetest.Length,UdpEleIEP);
                 //Array.Clear(byte1, 0, byte1.Length);
                 //bytesEle = udpEle.Receive(ref remote);
                 //MessageBox.Show("TCP、UDP连接完毕");
             }
-         }
+
+        }
         //tcp发送"Z\n"，开始指令
         public void SocketStart()
         {
@@ -124,13 +135,14 @@ namespace FBGEMSystem
                 }         
             
         }
+        //光纤光栅数据接收
         public void Recv_FBG()
         {
             try
             {
                 while (true)
                 {
-                    lock (this)
+                   // lock (this)
                     {
                        lock (streamtoserver)
                        {
@@ -148,17 +160,18 @@ namespace FBGEMSystem
 
             catch (Exception err)
             {
-                MessageBox.Show(err.ToString());
+                //MessageBox.Show(err.ToString());
             }
         }
 
+        //电类数据接收
         public void Recv_Electric()
         {
             try
             { 
                 while (true)
                 {
-                    lock (this)
+                    //lock (this)
                     {
                         bytesEle = udpEle.Receive(ref remote);
                     }
@@ -174,6 +187,7 @@ namespace FBGEMSystem
 
                         //接一包解一包
                         msgEleDecode = decode_Electric(msgEle);
+
                         //如果画波形界面打开，则缓存进绘图缓存
                         if (Data.IsControl2 == true)
                         {
@@ -182,28 +196,17 @@ namespace FBGEMSystem
                                 sharedLocation1_Ele.Buffer = msgEleDecode;
                             }
                         }
+                        //存入存储缓冲
+                        if (Data.IsControlSQL == true)
+                        {
+                            sharedLocation_Ele.Buffer = msgEleDecode;
+                        }
+
                         //if (process_all_msgEle.isFull == false)
                         //{
                         //    process_all_msgEle.Buffer = msg2Ele;
                         //}
-                        //if (Data.IsControl == true)
-                        //{
-                        //    if (sharedLocation1Ele.isFull == false)
-                        //    {
-                        //        sharedLocation1Ele.Buffer = msgEle;
-                        //    }
-                        //}
-                        //if (Data.IsControl2 == true)
-                        //{
-                        //    if (sharedLocation1Ele.isFull == false)
-                        //    {
-                        //        sharedLocation1Ele.Buffer = msgEle;
-                        //    }
-                        //}
-                        //if (Data.IsControl1 == true)
-                        //{
-                        //    Data.Ele = msgEle.CH1;
-                        //}
+
                         index++;
 
                     }
@@ -212,7 +215,7 @@ namespace FBGEMSystem
 
             catch (Exception err)
             {
-                MessageBox.Show(err.ToString());
+                //MessageBox.Show(err.ToString());
             }
         }
 

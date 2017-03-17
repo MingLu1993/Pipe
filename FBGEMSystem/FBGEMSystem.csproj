@@ -67,9 +67,18 @@
     <Reference Include="getip">
       <HintPath>..\..\..\c#\WinForm_test2_LL\WinForm_test2\WinForm_test2\bin\getip.dll</HintPath>
     </Reference>
+    <Reference Include="Learn">
+      <HintPath>bin\Debug\dll_ illustration\Learn\Learn\for_testing\Learn.dll</HintPath>
+    </Reference>
+    <Reference Include="mfdfa">
+      <HintPath>F:\matlab\管路系统\mfdfa\for_redistribution_files_only\mfdfa.dll</HintPath>
+    </Reference>
     <Reference Include="MWArray, Version=2.15.0.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\MWArray.dll</HintPath>
+    </Reference>
+    <Reference Include="plotfft">
+      <HintPath>F:\matlab\管路系统\plotfft\for_redistribution_files_only\plotfft.dll</HintPath>
     </Reference>
     <Reference Include="preprocess">
       <HintPath>..\..\..\c#\WinForm_test2_LL\WinForm_test2\WinForm_test2\bin\preprocess.dll</HintPath>
@@ -87,6 +96,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="wavelet_S">
+      <HintPath>..\..\matlab2015a\bin\wavelet_S\for_redistribution_files_only\wavelet_S.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -116,6 +128,13 @@
     <Compile Include="Analysis\AnalysisUser.cs" />
     <Compile Include="DataStorage\GlobalMembersFBG.cs" />
     <Compile Include="DataStorage\HoldIntegerSynchronizedFBG.cs" />
+    <Compile Include="DIAGNOSIS\DiagnosisUser.cs" />
+    <Compile Include="DIAGNOSIS\Diagnosis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DIAGNOSIS\Diagnosis.Designer.cs">
+      <DependentUpon>Diagnosis.cs</DependentUpon>
+    </Compile>
     <Compile Include="RealtimeStatus\ElectricShow.xaml.cs">
       <DependentUpon>ElectricShow.xaml</DependentUpon>
     </Compile>
@@ -163,16 +182,7 @@
     <Compile Include="DataStorage\HoldIntegerSynchronizedEle.cs" />
     <Compile Include="DataStorage\Message.cs" />
     <Compile Include="DataStorage\MySectionHandler.cs" />
-    <Compile Include="RealtimeStatus\CHBar.xaml.cs">
-      <DependentUpon>CHBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RealtimeStatus\Histogram.xaml.cs">
-      <DependentUpon>Histogram.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RealtimeStatus\QueueData.cs" />
-    <Compile Include="RealtimeStatus\TrendCurve.xaml.cs">
-      <DependentUpon>TrendCurve.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DataStorage\Receiver.cs" />
     <Compile Include="DataStorage\Storer.cs" />
     <Compile Include="OnlineAnalysis\user.cs" />
@@ -199,19 +209,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RealtimeStatus\CHBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="RealtimeStatus\ElectricShow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RealtimeStatus\Histogram.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RealtimeStatus\TrendCurve.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,17 +235,22 @@
     <EmbeddedResource Include="Analysis\Analysis.resx">
       <DependentUpon>Analysis.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DIAGNOSIS\Diagnosis.resx">
+      <DependentUpon>Diagnosis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Set\AddLabelInfo.resx">
       <DependentUpon>AddLabelInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Set\Setting.resx">
       <DependentUpon>Setting.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LiveDataShow\FBGData1.resx">
       <DependentUpon>FBGData1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OnlineAnalysis\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -346,6 +349,10 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\停止.jpg" />
+    <Resource Include="Image\开始.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
