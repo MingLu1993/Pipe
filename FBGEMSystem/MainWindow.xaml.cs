@@ -34,6 +34,7 @@ using plotfft;  //求FFTdll
 using mfdfa;    //MFDFA_dll
 using wavelet_S; //加载小波dll
 using ZedGraph;
+using Learn;
 
 namespace FBGEMSystem
 {
@@ -47,6 +48,8 @@ namespace FBGEMSystem
         Cplotfft plotfft = new Cplotfft();
         Cmfdfa mf = new Cmfdfa();
         Cwavelet wave = new Cwavelet();
+        CLearn clearn = new CLearn();
+
         ZedGraphControl zed = new ZedGraphControl();
         //只使用了一个线程
         private bool isrecvThreadInit = false;
@@ -98,8 +101,8 @@ namespace FBGEMSystem
               
             //create system config
             ReadConfig readConfig = new ReadConfig();
-            string result =readConfig.CreateConfigFile(); 
-
+            string result =readConfig.CreateConfigFile();
+            
         }
 
 
@@ -112,7 +115,7 @@ namespace FBGEMSystem
         private void MenuItemAnalysis_Click(object sender, RoutedEventArgs e)
         {
             Analysis analysis = new Analysis();
-            analysis.ShowDialog();
+            analysis.Show();
         }
 
         private void MenuItemQXPL_Click(object sender, RoutedEventArgs e)
@@ -285,7 +288,8 @@ namespace FBGEMSystem
 
         private void MenuItemDiagnosis_Click(object sender, RoutedEventArgs e)
         {
-            ;
+            Diagnosis diagnosis = new Diagnosis();
+            diagnosis.Show();
         }
 
         private void MenuItemConnect_Click(object sender, RoutedEventArgs e)
@@ -294,18 +298,31 @@ namespace FBGEMSystem
         }
         private void MenuItemStart_Click(object sender, RoutedEventArgs e)
         {
-            
+            //如果未进行通道设置，提示先设置通道
+            if (Data.isChannelSetting == false)
+            {
+                Data.IsControl2 = false;
+                System.Windows.Forms.MessageBox.Show("请先设置通道", "帮助");
+                Setting setting = new Setting();
+                setting.Show();
+                return;
+            }
+
             if (receiver.streamtoserver != null)      //必须先连接才能初始化receiver.streamtoserver
             {
                 receiver.SocketStart();
                 if (isrecvThreadInit == false)
                 {
-                    storer = new Storer();
-                    storer.GetConfig();
-                    storer.InitiTb();
-                    threStor = new Thread(new ThreadStart(storer.Stor));
-                    threStor.Start();
-                    threStor.IsBackground = true;
+                    Data.IsControlSQL = true; //控制是否写入数据库
+                    if (Data.IsControlSQL == true)
+                    {
+                        storer = new Storer();
+                        storer.GetConfig();
+                        storer.InitiTb();
+                        threStor = new Thread(new ThreadStart(storer.Stor));
+                        threStor.Start();
+                        threStor.IsBackground = true;
+                    }
 
                     //开启接收线程
                     threRecvsFBG = new Thread(new ThreadStart(receiver.Recv_FBG));
@@ -315,28 +332,28 @@ namespace FBGEMSystem
                     threRecvsFBG.Start();
                     threRecvsEle.Start();
                     isrecvThreadInit = true;
-
                 }
             }
             else
             {
-              
-                storer = new Storer();
-                storer.GetConfig();
-                storer.InitiTb();
-                threStor = new Thread(new ThreadStart(storer.Stor));
-                // storer.Stor();
-                threStor.Start();
-                threStor.IsBackground = true;
-
+                Data.IsControlSQL = true; //控制是否写入数据库
+                if (Data.IsControlSQL == true)
+                {
+                    storer = new Storer();
+                    storer.GetConfig();
+                    storer.InitiTb();
+                    threStor = new Thread(new ThreadStart(storer.Stor));
+                    threStor.Start();
+                    threStor.IsBackground = true;
+                }
                 System.Windows.MessageBox.Show("请先建立连接！", "警告");
                 //调试udp
                 threRecvsEle = new Thread(new ThreadStart(receiver.Recv_Electric));
                 threRecvsEle.IsBackground = true;
                 threRecvsEle.Start();
                 //调试udp   end
-                return;
             }
+
         }
         private void MenuItemStop_Click(object sender, RoutedEventArgs e)
         {

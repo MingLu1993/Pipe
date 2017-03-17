@@ -72,10 +72,20 @@ namespace FBGEMSystem
         {
             UdpEleIEP = new IPEndPoint(Data.remoteIP, Data.port);
 
-            TcpFBG.Connect(Data.remoteIP, Data.TCPPort);
-            streamtoserver = TcpFBG.GetStream();
+           
 
             byte[] byte1 = new byte[10000];
+            try
+            {
+                TcpFBG.Connect(Data.remoteIP, Data.TCPPort);
+                streamtoserver = TcpFBG.GetStream();
+                
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show("连接失败，请重启软件重新连接！");
+            }
+
             if (TcpFBG.Connected)
             {
                 //Text = "连接成功，接收WHUTFBGV1A";
@@ -104,14 +114,15 @@ namespace FBGEMSystem
                 }
                 gmFBG.DecodeFPGAFlashConfig(config_nRecv, byte1);
                 MessageBox.Show("解析config完毕");
-                
+
                 //udp发送"C\n"至下位机，便于下位机获取本机ip及端口号
                 //udpEle.Send(bytetest,bytetest.Length,UdpEleIEP);
                 //Array.Clear(byte1, 0, byte1.Length);
                 //bytesEle = udpEle.Receive(ref remote);
                 //MessageBox.Show("TCP、UDP连接完毕");
             }
-         }
+
+        }
         //tcp发送"Z\n"，开始指令
         public void SocketStart()
         {
@@ -176,6 +187,7 @@ namespace FBGEMSystem
 
                         //接一包解一包
                         msgEleDecode = decode_Electric(msgEle);
+
                         //如果画波形界面打开，则缓存进绘图缓存
                         if (Data.IsControl2 == true)
                         {
@@ -184,32 +196,17 @@ namespace FBGEMSystem
                                 sharedLocation1_Ele.Buffer = msgEleDecode;
                             }
                         }
-                        //if (sharedLocation_Ele.isFull == false)
+                        //存入存储缓冲
+                        if (Data.IsControlSQL == true)
                         {
                             sharedLocation_Ele.Buffer = msgEleDecode;
                         }
+
                         //if (process_all_msgEle.isFull == false)
                         //{
                         //    process_all_msgEle.Buffer = msg2Ele;
                         //}
-                        //if (Data.IsControl == true)
-                        //{
-                        //    if (sharedLocation1Ele.isFull == false)
-                        //    {
-                        //        sharedLocation1Ele.Buffer = msgEle;
-                        //    }
-                        //}
-                        //if (Data.IsControl2 == true)
-                        //{
-                        //    if (sharedLocation1Ele.isFull == false)
-                        //    {
-                        //        sharedLocation1Ele.Buffer = msgEle;
-                        //    }
-                        //}
-                        //if (Data.IsControl1 == true)
-                        //{
-                        //    Data.Ele = msgEle.CH1;
-                        //}
+
                         index++;
 
                     }

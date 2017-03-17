@@ -1,0 +1,38 @@
+ant:
+<ant>
+  <mkdir dir="G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_redistribution" />
+  <mkdir dir="G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing" />
+  <mkdir dir="G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_redistribution_files_only" />
+</ant>
+mcc -W 'dotnet:Learn,CLearn,0.0,private' -T link:lib -d 'G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing' -v 'class{CLearn:G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Predict.m,G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\PredictMacro.m,G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\train.m,G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\trainMacro.m}' 
+Compiler version: 6.0 (R2015a)
+Dependency analysis by REQUIREMENTS.
+[警告: Adding path "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn"
+to Compiler path instance.] 
+[警告: Adding path "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn"
+to Compiler path instance.] 
+[警告: 重复的目录名称: G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn] 
+[警告: Adding path "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn"
+to Compiler path instance.] 
+[警告: 重复的目录名称: G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn] 
+[警告: Adding path "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn"
+to Compiler path instance.] 
+[警告: 重复的目录名称: G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn] 
+Parsing file "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Predict.m"
+	(Referenced from: "Compiler Command Line").
+Parsing file "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\PredictMacro.m"
+	(Referenced from: "Compiler Command Line").
+Parsing file "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\train.m"
+	(Referenced from: "Compiler Command Line").
+Parsing file "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\trainMacro.m"
+	(Referenced from: "Compiler Command Line").
+Deleting 0 temporary MEX authorization files.
+Generating file "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing\CLearnNative.cs".
+Generating file "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing\CLearn.cs".
+Generating file "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing\readme.txt".
+Executing command: C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /nologo /optimize /doc:"G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing\Learn.xml" /t:library /r:"D:\Program Files\MATLAB\MATLAB Production Server\R2015a\toolbox\dotnetbuilder\bin\win64\v2.0\MWArray.dll" /resource:"G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing\Learn.ctf" /out:"G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing\Learn.dll" "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing\CLearn.cs"Executing command: C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /nologo /optimize /doc:"G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing\LearnNative.xml" /t:library /r:"D:\Program Files\MATLAB\MATLAB Production Server\R2015a\toolbox\dotnetbuilder\bin\win64\v2.0\MWArray.dll" /resource:"G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing\Learn.ctf" /out:"G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing\LearnNative.dll" "G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_testing\CLearnNative.cs"
+Packaging...
+Creating the bundle...
+Web based installer created at G:\pipe\Pipe\FBGEMSystem\bin\Debug\dll_ illustration\Learn\Learn\for_redistribution\MyAppInstaller_web.exe.
+Packaging complete.
+Elapsed packaging time was: 39 seconds.
