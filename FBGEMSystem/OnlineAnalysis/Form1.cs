@@ -310,9 +310,7 @@ namespace FBGEMSystem
             //int count = 0;
             while (true && isSelectmy)
             {
-                
 
-               
                 for (int j = 0; j < maxpoint; j++)
                 {
                     if (global.ch_point_denoise[currentChannel, j].Count > 1)

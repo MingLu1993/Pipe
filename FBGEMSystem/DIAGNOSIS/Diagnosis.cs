@@ -8,6 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
+using System.Runtime.InteropServices;
+using System.Threading;
+
 namespace FBGEMSystem
 {
     public partial class Diagnosis : Form
@@ -20,6 +24,10 @@ namespace FBGEMSystem
         {
             InitializeComponent();
             textBox_T.Text = DiagnosisUser.T.ToString();
+            if (DiagnosisUser.K > 0 && button_TOK.Enabled == true)
+            {
+                button_TOK.Enabled = false;   //进行过训练后，T值不可改变
+            }
         }
 
         private void button_TOK_Click(object sender, EventArgs e)
@@ -55,7 +63,6 @@ namespace FBGEMSystem
         {
             System.IO.StreamReader file = new System.IO.StreamReader(textBox_newsamples.Text);
             string line;
-            int r = 0;
 
             line = file.ReadLine();    //读一行，为属性名
             String[] strs = line.Split(',');   //为了得到列数
@@ -118,6 +125,30 @@ namespace FBGEMSystem
                 }
             }
         }
+        //[DllImport("kernel32.dll")]
+        //static extern int Beep(int dwFreq, int dwDuration);
+        bool warning;
+        void beep()
+        {
+            while(warning)
+            {
+                int a = 5000;
+                int b = 1000;
+                //Beep(a, b);
+                Console.Beep(a, b);
+            }   
+        }
+
+        [DllImport("winmm.dll")]
+        public static extern bool PlaySound(String Filename, int Mod, int Flags);
+        void beep1()
+        {
+            while (warning)
+            {
+                PlaySound("at20157171155.mp3", 0, 1);      //把1替换成9，可连续播放 
+            }
+     
+        }
 
         private void button_test_Click(object sender, EventArgs e)
         {
@@ -129,7 +160,12 @@ namespace FBGEMSystem
             else
             {
                int result= DiagnosisUser.PREDICT(test);
-               MessageBox.Show("预测结果为"+result.ToString());
+                warning = true;
+                Thread trd = new Thread(beep);
+                trd.Start();
+                //MessageBox.Show("预测结果为"+result.ToString());
+                MessageBox.Show("出现卡箍松动故障，请尽快检修！","警告！");
+                warning = false;
             }
         }
     }

@@ -72,10 +72,20 @@ namespace FBGEMSystem
         {
             UdpEleIEP = new IPEndPoint(Data.remoteIP, Data.port);
 
-            TcpFBG.Connect(Data.remoteIP, Data.TCPPort);
-            streamtoserver = TcpFBG.GetStream();
+           
 
             byte[] byte1 = new byte[10000];
+            try
+            {
+                TcpFBG.Connect(Data.remoteIP, Data.TCPPort);
+                streamtoserver = TcpFBG.GetStream();
+                
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show("连接失败，请重启软件重新连接！");
+            }
+
             if (TcpFBG.Connected)
             {
                 //Text = "连接成功，接收WHUTFBGV1A";
@@ -104,14 +114,15 @@ namespace FBGEMSystem
                 }
                 gmFBG.DecodeFPGAFlashConfig(config_nRecv, byte1);
                 MessageBox.Show("解析config完毕");
-                
+
                 //udp发送"C\n"至下位机，便于下位机获取本机ip及端口号
                 //udpEle.Send(bytetest,bytetest.Length,UdpEleIEP);
                 //Array.Clear(byte1, 0, byte1.Length);
                 //bytesEle = udpEle.Receive(ref remote);
                 //MessageBox.Show("TCP、UDP连接完毕");
             }
-         }
+
+        }
         //tcp发送"Z\n"，开始指令
         public void SocketStart()
         {
